@@ -1,11 +1,22 @@
-import { AuthProvider } from "@/context/AuthContext";
+import { View } from "react-native";
+import Button from "@/components/Button";
 
 export default function App() {
 
   return (
-    <AuthProvider>
-
-
-    </AuthProvider>
+    <View
+      style={{
+        flex:1,
+        justifyContent:"center",
+        padding:20,
+      }}
+    >
+      <Button
+        title="Entrar"
+        onPress={()=>{
+          console.log("Login")
+        }}
+      />
+    </View>
   );
 }
