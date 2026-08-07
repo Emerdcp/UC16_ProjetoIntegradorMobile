@@ -1,6 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Text, ActivityIndicator,} from "react-native";
-import { Colors } from "@/theme";
+import { TouchableOpacity, Text, ActivityIndicator, } from "react-native";
+import { Colors } from "@/designSystem";
 import { styles } from "./styles";
 import { ButtonProps } from "./types";
 

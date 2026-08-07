@@ -1,6 +1,6 @@
 export const Typography = {
-  title: 32,
-  h1: 28,
+  title: 34,
+  h1: 30,
   h2: 24,
   h3: 20,
   cardTitle: 18,

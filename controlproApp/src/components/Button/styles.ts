@@ -1,19 +1,20 @@
 import { StyleSheet } from "react-native";
 
-import { Colors, Radius, Spacing, Typography, } from "@/theme";
+import { Colors, Radius, Spacing, Typography, } from "@/designSystem";
 
 export const styles = StyleSheet.create({
 
     button: {
-        height: 52,
+        height: 56,
         borderRadius: Radius.lg,
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: Spacing.xl,
+        marginTop: 10,
     },
     text: {
         color: Colors.white,
-        fontSize: Typography.body,
+        fontSize: 17,
         fontWeight: "600",
     },
 });
