@@ -1,41 +1,38 @@
-// import { View } from "react-native";
-// import Button from "@/components/Button";
-// import Input from "@/components/Input";
-// import Card from "@/components/Card";
-// import { Colors } from "@/designSystem";
+import React from "react";
 
-import LoginScreen from "@/screens/Login";
+import {
+  NavigationContainer,
+} from "@react-navigation/native";
+
+import {
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
+
+import {
+  AuthProvider,
+} from "@/context/AuthContext";
+
+import RootNavigator from "@/navigation/RootNavigator";
+
 
 export default function App() {
 
-  return <LoginScreen />;
+  return (
+
+    <SafeAreaProvider>
+
+      <AuthProvider>
+
+        <NavigationContainer>
+
+          <RootNavigator />
+
+        </NavigationContainer>
+
+      </AuthProvider>
+
+    </SafeAreaProvider>
+
+  );
 
 }
-    // (
-    // <View
-    //   style={{
-    //     flex: 1,
-    //     justifyContent: "center",
-    //     padding: 20,
-    //     backgroundColor: Colors.background,
-    //   }}
-    // >
-    //   <Card>
-    //     <Input
-    //       label="Usuário"
-    //       placeholder="Digite seu e-mail"
-    //     />
-    //     <Input
-    //       label="Senha"
-    //       placeholder="Digite sua senha"
-    //     />
-    //     <Button
-    //       title="Entrar"
-    //       onPress={() => {
-    //         console.log("Login")
-    //       }}
-    //     />
-    //   </Card>
-    // </View>
-  // );
-// }

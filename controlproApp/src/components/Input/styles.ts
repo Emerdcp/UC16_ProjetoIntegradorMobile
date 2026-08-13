@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 16,
-        color: Colors.text,
+        color: "#172033",
     },
     error: {
         color: Colors.error,
