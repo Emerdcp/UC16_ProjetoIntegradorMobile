@@ -11,19 +11,41 @@ import {
     DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 
-import { Ionicons } from "@expo/vector-icons";
+import {
+    Ionicons,
+} from "@expo/vector-icons";
 
-import { useAuth } from "@/context/AuthContext";
+import {
+    useAuth,
+} from "@/context/AuthContext";
 
-import { styles } from "./styles";
+import {
+    styles,
+} from "./styles";
 
+import type {
+    AppScreen,
+} from "@/navigation/types";
+
+
+/* =====================================================
+   ITEM DO MENU
+===================================================== */
 
 interface MenuItem {
+
     label: string;
+
     icon: keyof typeof Ionicons.glyphMap;
-    screen: string;
+
+    screen?: AppScreen;
+
 }
 
+
+/* =====================================================
+   MENU
+===================================================== */
 
 const menuItems: MenuItem[] = [
 
@@ -42,7 +64,6 @@ const menuItems: MenuItem[] = [
     {
         label: "Projetos",
         icon: "folder-outline",
-        screen: "Projetos",
     },
 
     {
@@ -54,45 +75,64 @@ const menuItems: MenuItem[] = [
     {
         label: "Kanban",
         icon: "grid-outline",
-        screen: "Kanban",
     },
 
     {
         label: "Agenda",
         icon: "calendar-outline",
-        screen: "Agenda",
     },
 
     {
         label: "Perfil",
         icon: "person-outline",
-        screen: "Perfil",
     },
 
     {
         label: "Configurações",
         icon: "settings-outline",
-        screen: "Configuracoes",
     },
 
 ];
 
 
+/* =====================================================
+   DRAWER
+===================================================== */
+
 export default function CustomDrawer({
     navigation,
+    state,
 }: DrawerContentComponentProps) {
+
 
     const {
         user,
         signOut,
     } = useAuth();
 
-    
-    function handleNavigate(screen: string) {
+
+    /* =================================================
+       NAVEGAÇÃO
+    ================================================= */
+
+    function handleNavigate(
+        screen?: AppScreen
+    ) {
+
+        if (!screen) {
+
+            return;
+
+        }
 
         navigation.navigate(screen);
+
     }
 
+
+    /* =================================================
+       SAIR
+    ================================================= */
 
     async function handleSignOut() {
 
@@ -101,13 +141,31 @@ export default function CustomDrawer({
     }
 
 
+    /* =================================================
+       ROTA ATUAL
+    ================================================= */
+
+    const currentRoute =
+        state.routes[state.index]?.name;
+
+
+    /* =================================================
+       TELA
+    ================================================= */
+
     return (
 
         <View style={styles.container}>
 
-            {/* HEADER */}
+
+            {/* =================================================
+               HEADER
+            ================================================= */}
 
             <View style={styles.header}>
+
+
+                {/* LOGO */}
 
                 <Image
                     source={require("../../assets/images/logo/logo.png")}
@@ -116,16 +174,30 @@ export default function CustomDrawer({
                 />
 
 
+                {/* USUÁRIO */}
+
                 <View style={styles.userContainer}>
+
+
+                    {/* AVATAR */}
 
                     <View style={styles.avatar}>
 
                         <Text style={styles.avatarText}>
-                            {user?.nome?.charAt(0).toUpperCase() || "A"}
+
+                            {
+                                user?.nome
+                                    ?.charAt(0)
+                                    .toUpperCase()
+                                || "A"
+                            }
+
                         </Text>
 
                     </View>
 
+
+                    {/* INFORMAÇÕES */}
 
                     <View style={styles.userInfo}>
 
@@ -133,11 +205,17 @@ export default function CustomDrawer({
                             style={styles.userName}
                             numberOfLines={1}
                         >
-                            {user?.nome || "Administrador"}
+                            {
+                                user?.nome
+                                || "Administrador"
+                            }
                         </Text>
 
+
                         <Text style={styles.userRole}>
+
                             Administrador
+
                         </Text>
 
                     </View>
@@ -147,26 +225,40 @@ export default function CustomDrawer({
             </View>
 
 
-            {/* MENU */}
+            {/* =================================================
+               MENU
+            ================================================= */}
 
             <View style={styles.menu}>
 
+
                 {menuItems.map((item) => {
 
+
                     const isActive =
-                        item.screen === "Home";
+                        item.screen === currentRoute;
+
 
                     return (
 
                         <TouchableOpacity
-                            key={item.screen}
+                            key={item.label}
                             style={[
                                 styles.menuItem,
-                                isActive && styles.menuItemActive,
+
+                                isActive &&
+                                    styles.menuItemActive,
                             ]}
                             activeOpacity={0.8}
-                            onPress={() => handleNavigate(item.screen)}
+                            onPress={() =>
+                                handleNavigate(
+                                    item.screen
+                                )
+                            }
                         >
+
+
+                            {/* ÍCONE */}
 
                             <Ionicons
                                 name={item.icon}
@@ -178,14 +270,22 @@ export default function CustomDrawer({
                                 }
                             />
 
+
+                            {/* TEXTO */}
+
                             <Text
                                 style={[
                                     styles.menuText,
-                                    isActive && styles.menuTextActive,
+
+                                    isActive &&
+                                        styles.menuTextActive,
                                 ]}
                             >
+
                                 {item.label}
+
                             </Text>
+
 
                         </TouchableOpacity>
 
@@ -193,12 +293,16 @@ export default function CustomDrawer({
 
                 })}
 
+
             </View>
 
 
-            {/* FOOTER */}
+            {/* =================================================
+               FOOTER
+            ================================================= */}
 
             <View style={styles.footer}>
+
 
                 <TouchableOpacity
                     style={styles.logout}
@@ -206,21 +310,29 @@ export default function CustomDrawer({
                     onPress={handleSignOut}
                 >
 
+
                     <Ionicons
                         name="log-out-outline"
                         size={21}
                         color="#F87171"
                     />
 
+
                     <Text style={styles.logoutText}>
+
                         Sair
+
                     </Text>
+
 
                 </TouchableOpacity>
 
+
             </View>
+
 
         </View>
 
     );
+
 }

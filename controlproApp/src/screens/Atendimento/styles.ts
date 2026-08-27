@@ -10,6 +10,10 @@ import {
 
 export const styles = StyleSheet.create({
 
+    /* =====================================================
+       FUNDO
+    ===================================================== */
+
     background: {
         flex: 1,
     },
@@ -17,75 +21,83 @@ export const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "rgba(3, 11, 38, 0.88)",
+        backgroundColor: "rgba(5, 11, 44, 0.82)",
     },
 
 
-    /* HEADER */
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+
         paddingHorizontal: Spacing.lg,
         paddingVertical: Spacing.md,
-        backgroundColor: "rgba(15, 27, 52, 0.96)",
+
+        backgroundColor: "rgba(3, 29, 54, 0.94)",
+
         borderBottomWidth: 1,
-        borderBottomColor: "rgba(255,255,255,0.08)",
+        borderBottomColor: "#24364D",
     },
+
+
     headerButton: {
-        width: 44,
-        height: 44,
+        width: 42,
+        height: 42,
+
         alignItems: "center",
         justifyContent: "center",
+
         borderRadius: Radius.md,
-        backgroundColor: Colors.background,
+
+        backgroundColor: "rgba(15, 23, 42, 0.65)",
+
         borderWidth: 1,
-        borderColor: Colors.border,
-        marginRight: Spacing.md,
+        borderColor: "#33445F",
     },
-    headerInfo: {
+
+
+    headerTitleArea: {
         flex: 1,
+
+        marginHorizontal: 12,
     },
-    title: {
-        fontSize: 24,
+
+
+    headerTitle: {
+        fontSize: 22,
         fontWeight: "700",
+
         color: Colors.white,
     },
 
 
-    subtitle: {
-        marginTop: 3,
+    headerSubtitle: {
+        marginTop: 2,
+
         fontSize: 12,
-        color: Colors.textSecondary,
+
+        color: "#94A3B8",
     },
 
 
-    notificationButton: {
-        width: 44,
-        height: 44,
-
-        alignItems: "center",
-        justifyContent: "center",
-
-        borderRadius: Radius.md,
-
-        backgroundColor: Colors.background,
-
-        borderWidth: 1,
-        borderColor: Colors.border,
-    },
-
-
-    /* CONTEÚDO */
+    /* =====================================================
+       CONTEÚDO
+    ===================================================== */
 
     content: {
-        padding: Spacing.lg,
-        paddingBottom: 100,
+        paddingHorizontal: Spacing.lg,
+        paddingTop: Spacing.lg,
+
+        paddingBottom: 110,
     },
 
 
-    /* BUSCA */
+    /* =====================================================
+       PESQUISA
+    ===================================================== */
 
     searchContainer: {
         height: 52,
@@ -93,223 +105,272 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
 
-        paddingHorizontal: Spacing.md,
+        paddingHorizontal: 15,
 
-        borderRadius: Radius.md,
-
-        backgroundColor: Colors.surface,
+        backgroundColor: "#202D42",
 
         borderWidth: 1,
-        borderColor: Colors.border,
+        borderColor: "#33445F",
+
+        borderRadius: Radius.lg,
     },
 
 
     searchInput: {
         flex: 1,
 
-        marginLeft: Spacing.sm,
+        marginLeft: 10,
 
         fontSize: 14,
 
-        color: Colors.white,
+        color: "#FFFFFF",
     },
 
 
-    /* FILTROS */
+    /* =====================================================
+       FILTROS
+    ===================================================== */
 
     filters: {
-        paddingVertical: Spacing.md,
         gap: 8,
+
+        paddingVertical: 14,
     },
 
 
     filterButton: {
-        paddingHorizontal: 16,
-        paddingVertical: 9,
+        paddingHorizontal: 18,
+        paddingVertical: 10,
 
-        borderRadius: Radius.full,
+        borderRadius: 22,
 
-        backgroundColor: Colors.surface,
+        backgroundColor: "#202D42",
 
         borderWidth: 1,
-        borderColor: Colors.border,
+        borderColor: "#33445F",
     },
 
 
     filterButtonActive: {
-        backgroundColor: Colors.primary,
-        borderColor: Colors.primary,
+        backgroundColor: "#3B82F6",
+
+        borderColor: "#3B82F6",
     },
 
 
     filterText: {
         fontSize: 12,
+
         fontWeight: "600",
-        color: Colors.textSecondary,
+
+        color: "#94A3B8",
     },
 
 
     filterTextActive: {
-        color: Colors.white,
+        color: "#FFFFFF",
     },
 
 
-    /* LISTA */
+    /* =====================================================
+       CABEÇALHO DA LISTA
+    ===================================================== */
 
     listHeader: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
 
-        marginTop: Spacing.sm,
-        marginBottom: Spacing.sm,
+        marginBottom: 10,
     },
 
 
     listTitle: {
         fontSize: 18,
+
         fontWeight: "700",
-        color: Colors.white,
+
+        color: "#FFFFFF",
     },
 
 
-    total: {
+    listCount: {
         fontSize: 12,
-        color: Colors.textSecondary,
+
+        color: "#94A3B8",
     },
 
 
-    /* CARD */
+    /* =====================================================
+       CARD DE ATENDIMENTO
+    ===================================================== */
 
-    card: {
-        marginBottom: Spacing.md,
+    attendanceCard: {
+        marginBottom: 12,
 
-        padding: Spacing.md,
+        padding: 14,
 
-        borderRadius: Radius.lg,
-
-        backgroundColor: Colors.surface,
+        backgroundColor: "#202D42",
 
         borderWidth: 1,
-        borderColor: Colors.border,
+        borderColor: "#33445F",
+
+        borderRadius: 16,
     },
 
 
-    cardTop: {
+    attendanceTop: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+
+        marginBottom: 10,
     },
 
 
-    number: {
+    attendanceNumber: {
         fontSize: 12,
+
         fontWeight: "700",
-        color: Colors.primary,
+
+        color: "#3B82F6",
     },
 
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
 
     status: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 11,
         paddingVertical: 5,
 
-        borderRadius: Radius.full,
+        borderRadius: 20,
     },
 
 
-    statusProgress: {
-        backgroundColor: "rgba(34,197,94,0.15)",
+    statusInProgress: {
+        backgroundColor: "rgba(34, 197, 94, 0.16)",
     },
 
 
     statusWaiting: {
-        backgroundColor: "rgba(245,158,11,0.15)",
+        backgroundColor: "rgba(245, 158, 11, 0.16)",
     },
 
 
     statusResolved: {
-        backgroundColor: "rgba(59,130,246,0.15)",
+        backgroundColor: "rgba(59, 130, 246, 0.16)",
     },
 
 
     statusText: {
         fontSize: 10,
-        fontWeight: "700",
-    },
 
-
-    statusTextProgress: {
-        color: "#22C55E",
-    },
-
-
-    statusTextWaiting: {
-        color: "#F59E0B",
-    },
-
-
-    statusTextResolved: {
-        color: "#60A5FA",
-    },
-
-
-    cardTitle: {
-        marginTop: Spacing.md,
-
-        fontSize: 16,
         fontWeight: "700",
 
-        color: Colors.white,
+        color: "#FFFFFF",
     },
 
 
-    client: {
-        marginTop: 5,
+    /* =====================================================
+       INFORMAÇÕES
+    ===================================================== */
 
+    attendanceTitle: {
+        fontSize: 15,
+
+        fontWeight: "700",
+
+        color: "#FFFFFF",
+
+        marginBottom: 5,
+    },
+
+
+    attendanceClient: {
         fontSize: 12,
 
-        color: Colors.textSecondary,
+        color: "#94A3B8",
     },
 
 
-    cardFooter: {
+    /* =====================================================
+       RODAPÉ DO CARD
+    ===================================================== */
+
+    attendanceFooter: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
 
-        marginTop: Spacing.md,
+        marginTop: 12,
 
-        paddingTop: Spacing.sm,
+        paddingTop: 10,
 
         borderTopWidth: 1,
-        borderTopColor: "rgba(255,255,255,0.06)",
+        borderTopColor: "#2D3C52",
     },
 
 
-    priorityContainer: {
+    priorityArea: {
         flexDirection: "row",
         alignItems: "center",
+
+        gap: 5,
     },
 
 
-    priority: {
-        marginLeft: 5,
-
+    priorityText: {
         fontSize: 11,
 
-        fontWeight: "600",
-
-        color: Colors.textSecondary,
+        color: "#AEBBD0",
     },
 
 
-    date: {
+    attendanceDate: {
         fontSize: 11,
-        color: Colors.textSecondary,
+
+        color: "#94A3B8",
     },
 
 
-    /* NOVO ATENDIMENTO */
+    /* =====================================================
+       VAZIO
+    ===================================================== */
+
+    empty: {
+        alignItems: "center",
+
+        paddingVertical: 70,
+    },
+
+
+    emptyTitle: {
+        marginTop: 12,
+
+        fontSize: 15,
+
+        fontWeight: "700",
+
+        color: "#FFFFFF",
+    },
+
+
+    emptyText: {
+        marginTop: 5,
+
+        fontSize: 12,
+
+        textAlign: "center",
+
+        color: "#94A3B8",
+    },
+
+
+    /* =====================================================
+       BOTÃO FLUTUANTE
+    ===================================================== */
 
     floatingButton: {
         position: "absolute",
@@ -335,6 +396,7 @@ export const styles = StyleSheet.create({
         },
 
         shadowOpacity: 0.30,
+
         shadowRadius: 6,
     },
 

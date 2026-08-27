@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
+
 import {
     ImageBackground,
     ScrollView,
@@ -7,24 +8,44 @@ import {
     TouchableOpacity,
     TextInput,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
-import { styles } from "./styles";
-import { DrawerActions } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigationProp } from "@/navigation/types";
+
+import { styles } from "./styles";
+
+
+
+/* =====================================================
+   TIPOS
+===================================================== */
+
+type Status =
+    | "Aguardando"
+    | "Em andamento"
+    | "Resolvido";
 
 interface Atendimento {
     id: number;
     numero: string;
     titulo: string;
     cliente: string;
-    status: "Em andamento" | "Aguardando" | "Resolvido";
+    status: Status;
     prioridade: "Alta" | "Média" | "Baixa";
     data: string;
 }
 
+
+/* =====================================================
+   DADOS TEMPORÁRIOS
+===================================================== */
+
 const atendimentos: Atendimento[] = [
+
     {
         id: 1,
         numero: "#0025",
@@ -34,6 +55,7 @@ const atendimentos: Atendimento[] = [
         prioridade: "Alta",
         data: "12/08/2026",
     },
+
     {
         id: 2,
         numero: "#0024",
@@ -43,6 +65,7 @@ const atendimentos: Atendimento[] = [
         prioridade: "Média",
         data: "12/08/2026",
     },
+
     {
         id: 3,
         numero: "#0023",
@@ -52,12 +75,105 @@ const atendimentos: Atendimento[] = [
         prioridade: "Baixa",
         data: "11/08/2026",
     },
+
 ];
 
 
+/* =====================================================
+   TELA
+===================================================== */
+
 export default function AtendimentoScreen() {
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<AppNavigationProp>();
+
+    const [search, setSearch] = useState("");
+
+    const [filtro, setFiltro] = useState<
+        "Todos" |
+        "Aguardando" |
+        "Em andamento" |
+        "Resolvido"
+    >("Todos");
+
+
+    /* =================================================
+       FILTROS
+    ================================================= */
+
+    const atendimentosFiltrados = useMemo(() => {
+
+        return atendimentos.filter((item) => {
+
+            const correspondeStatus =
+                filtro === "Todos" ||
+                item.status === filtro;
+
+
+            const texto =
+                search.toLowerCase().trim();
+
+
+            const correspondeBusca =
+                item.numero.toLowerCase().includes(texto) ||
+                item.titulo.toLowerCase().includes(texto) ||
+                item.cliente.toLowerCase().includes(texto);
+
+
+            return correspondeStatus && correspondeBusca;
+
+        });
+
+    }, [search, filtro]);
+
+
+    /* =================================================
+       STATUS
+    ================================================= */
+
+    function getStatusStyle(status: Status) {
+
+        switch (status) {
+
+            case "Em andamento":
+                return styles.statusInProgress;
+
+            case "Aguardando":
+                return styles.statusWaiting;
+
+            case "Resolvido":
+                return styles.statusResolved;
+
+            default:
+                return styles.statusWaiting;
+        }
+    }
+
+
+    /* =================================================
+       PRIORIDADE
+    ================================================= */
+
+    function getPriorityColor(
+        prioridade: Atendimento["prioridade"]
+    ) {
+
+        switch (prioridade) {
+
+            case "Alta":
+                return "#EF4444";
+
+            case "Média":
+                return "#F59E0B";
+
+            case "Baixa":
+                return "#22C55E";
+
+            default:
+                return "#94A3B8";
+        }
+    }
+
 
     return (
 
@@ -67,36 +183,40 @@ export default function AtendimentoScreen() {
             resizeMode="cover"
         >
 
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView
+                style={styles.container}
+                edges={["top", "left", "right", "bottom"]}
+            >
 
-                {/* HEADER */}
+
+                {/* =================================================
+                   HEADER
+                ================================================= */}
 
                 <View style={styles.header}>
 
                     <TouchableOpacity
                         style={styles.headerButton}
                         activeOpacity={0.8}
-                        onPress={() => {
-                            navigation.dispatch(DrawerActions.openDrawer());
-                        }}
+                        onPress={() => navigation.openDrawer()}
                     >
 
                         <Ionicons
                             name="menu-outline"
-                            size={24}
+                            size={25}
                             color="#FFFFFF"
                         />
 
                     </TouchableOpacity>
 
 
-                    <View style={styles.headerInfo}>
+                    <View style={styles.headerTitleArea}>
 
-                        <Text style={styles.title}>
+                        <Text style={styles.headerTitle}>
                             Atendimentos
                         </Text>
 
-                        <Text style={styles.subtitle}>
+                        <Text style={styles.headerSubtitle}>
                             Controle e acompanhamento
                         </Text>
 
@@ -104,7 +224,7 @@ export default function AtendimentoScreen() {
 
 
                     <TouchableOpacity
-                        style={styles.notificationButton}
+                        style={styles.headerButton}
                         activeOpacity={0.8}
                         onPress={() => {
                             console.log("Notificações");
@@ -122,31 +242,42 @@ export default function AtendimentoScreen() {
                 </View>
 
 
+                {/* =================================================
+                   CONTEÚDO
+                ================================================= */}
+
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.content}
                 >
 
-                    {/* BUSCA */}
+
+                    {/* =================================================
+                       PESQUISA
+                    ================================================= */}
 
                     <View style={styles.searchContainer}>
 
                         <Ionicons
                             name="search-outline"
-                            size={20}
+                            size={21}
                             color="#94A3B8"
                         />
 
                         <TextInput
-                            style={styles.searchInput}
+                            value={search}
+                            onChangeText={setSearch}
                             placeholder="Pesquisar atendimento..."
                             placeholderTextColor="#94A3B8"
+                            style={styles.searchInput}
                         />
 
                     </View>
 
 
-                    {/* FILTROS */}
+                    {/* =================================================
+                       FILTROS
+                    ================================================= */}
 
                     <ScrollView
                         horizontal
@@ -154,55 +285,52 @@ export default function AtendimentoScreen() {
                         contentContainerStyle={styles.filters}
                     >
 
-                        <TouchableOpacity
-                            style={[
-                                styles.filterButton,
-                                styles.filterButtonActive,
-                            ]}
-                        >
+                        {[
+                            "Todos",
+                            "Aguardando",
+                            "Em andamento",
+                            "Resolvido",
+                        ].map((item) => (
 
-                            <Text
+                            <TouchableOpacity
+                                key={item}
+                                activeOpacity={0.8}
+                                onPress={() =>
+                                    setFiltro(
+                                        item as
+                                        "Todos" |
+                                        "Aguardando" |
+                                        "Em andamento" |
+                                        "Resolvido"
+                                    )
+                                }
                                 style={[
-                                    styles.filterText,
-                                    styles.filterTextActive,
+                                    styles.filterButton,
+                                    filtro === item &&
+                                    styles.filterButtonActive,
                                 ]}
                             >
-                                Todos
-                            </Text>
 
-                        </TouchableOpacity>
+                                <Text
+                                    style={[
+                                        styles.filterText,
+                                        filtro === item &&
+                                        styles.filterTextActive,
+                                    ]}
+                                >
+                                    {item}
+                                </Text>
 
+                            </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.filterButton}>
-
-                            <Text style={styles.filterText}>
-                                Aguardando
-                            </Text>
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={styles.filterButton}>
-
-                            <Text style={styles.filterText}>
-                                Em andamento
-                            </Text>
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={styles.filterButton}>
-
-                            <Text style={styles.filterText}>
-                                Resolvidos
-                            </Text>
-
-                        </TouchableOpacity>
+                        ))}
 
                     </ScrollView>
 
 
-                    {/* CABEÇALHO DA LISTA */}
+                    {/* =================================================
+                       TÍTULO DA LISTA
+                    ================================================= */}
 
                     <View style={styles.listHeader}>
 
@@ -210,26 +338,39 @@ export default function AtendimentoScreen() {
                             Atendimentos
                         </Text>
 
-                        <Text style={styles.total}>
-                            {atendimentos.length} registros
+                        <Text style={styles.listCount}>
+                            {atendimentosFiltrados.length} registros
                         </Text>
 
                     </View>
 
 
-                    {/* CARDS */}
+                    {/* =================================================
+                       LISTA
+                    ================================================= */}
 
-                    {atendimentos.map((item) => (
+                    {atendimentosFiltrados.map((item) => (
 
                         <TouchableOpacity
                             key={item.id}
-                            style={styles.card}
+                            style={styles.attendanceCard}
                             activeOpacity={0.85}
+                            onPress={() => {
+
+                                console.log(
+                                    "Atendimento:",
+                                    item.numero
+                                );
+
+                            }}
                         >
 
-                            <View style={styles.cardTop}>
 
-                                <Text style={styles.number}>
+                            {/* TOPO */}
+
+                            <View style={styles.attendanceTop}>
+
+                                <Text style={styles.attendanceNumber}>
                                     {item.numero}
                                 </Text>
 
@@ -237,24 +378,11 @@ export default function AtendimentoScreen() {
                                 <View
                                     style={[
                                         styles.status,
-                                        item.status === "Resolvido"
-                                            ? styles.statusResolved
-                                            : item.status === "Aguardando"
-                                                ? styles.statusWaiting
-                                                : styles.statusProgress,
+                                        getStatusStyle(item.status),
                                     ]}
                                 >
 
-                                    <Text
-                                        style={[
-                                            styles.statusText,
-                                            item.status === "Resolvido"
-                                                ? styles.statusTextResolved
-                                                : item.status === "Aguardando"
-                                                    ? styles.statusTextWaiting
-                                                    : styles.statusTextProgress,
-                                        ]}
-                                    >
+                                    <Text style={styles.statusText}>
                                         {item.status}
                                     </Text>
 
@@ -263,40 +391,43 @@ export default function AtendimentoScreen() {
                             </View>
 
 
-                            <Text style={styles.cardTitle}>
+                            {/* TÍTULO */}
+
+                            <Text style={styles.attendanceTitle}>
                                 {item.titulo}
                             </Text>
 
 
-                            <Text style={styles.client}>
+                            {/* CLIENTE */}
+
+                            <Text style={styles.attendanceClient}>
                                 Cliente: {item.cliente}
                             </Text>
 
 
-                            <View style={styles.cardFooter}>
+                            {/* RODAPÉ */}
 
-                                <View style={styles.priorityContainer}>
+                            <View style={styles.attendanceFooter}>
+
+
+                                <View style={styles.priorityArea}>
 
                                     <Ionicons
                                         name="flag-outline"
                                         size={15}
-                                        color={
-                                            item.prioridade === "Alta"
-                                                ? "#EF4444"
-                                                : item.prioridade === "Média"
-                                                    ? "#F59E0B"
-                                                    : "#22C55E"
-                                        }
+                                        color={getPriorityColor(
+                                            item.prioridade
+                                        )}
                                     />
 
-                                    <Text style={styles.priority}>
+                                    <Text style={styles.priorityText}>
                                         {item.prioridade}
                                     </Text>
 
                                 </View>
 
 
-                                <Text style={styles.date}>
+                                <Text style={styles.attendanceDate}>
                                     {item.data}
                                 </Text>
 
@@ -306,27 +437,59 @@ export default function AtendimentoScreen() {
 
                     ))}
 
+
+                    {/* =================================================
+                       VAZIO
+                    ================================================= */}
+
+                    {atendimentosFiltrados.length === 0 && (
+
+                        <View style={styles.empty}>
+
+                            <Ionicons
+                                name="search-outline"
+                                size={40}
+                                color="#64748B"
+                            />
+
+                            <Text style={styles.emptyTitle}>
+                                Nenhum atendimento encontrado
+                            </Text>
+
+                            <Text style={styles.emptyText}>
+                                Tente alterar os filtros ou pesquisar
+                                outro termo.
+                            </Text>
+
+                        </View>
+
+                    )}
+
                 </ScrollView>
 
 
-                {/* NOVO ATENDIMENTO */}
+                {/* =================================================
+                   BOTÃO FLUTUANTE
+                ================================================= */}
 
                 <TouchableOpacity
                     style={styles.floatingButton}
                     activeOpacity={0.85}
-                    onPress={() => {
-                        console.log("Novo Atendimento");
-                    }}
+                    onPress={() => navigation.navigate("NovoAtendimento")}
                 >
+
                     <Ionicons
                         name="add"
-                        size={30}
+                        size={32}
                         color="#FFFFFF"
                     />
+
                 </TouchableOpacity>
 
             </SafeAreaView>
 
         </ImageBackground>
+
     );
+
 }
