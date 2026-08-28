@@ -21,20 +21,22 @@ import type { ClientesStackParamList, } from "@/navigation/ClientesNavigator";
 
 import { DrawerActions } from "@react-navigation/native";
 
-import { cnpjMask } from "@/utils/mask";
+import { cpfMask, cnpjMask } from "@/utils/mask";
 
 import { styles } from "./styles";
 
+import type { Cliente } from "@/types/cliente";
 
-interface Cliente {
-    id: number;
-    razaoSocial: string;
-    nomeFantasia: string;
-    cnpj: string;
-    cidade: string;
-    estado: string;
-    status: "A" | "I";
-}
+
+// interface Cliente {
+//     id: number;
+//     razaoSocial: string;
+//     nomeFantasia: string;
+//     cnpj: string;
+//     cidade: string;
+//     estado: string;
+//     status: "A" | "I";
+// }
 
 
 /*
@@ -43,35 +45,6 @@ interface Cliente {
  * Depois serão substituídos pelos dados
  * vindos do SQLite.
  */
-const clientes: Cliente[] = [
-    {
-        id: 1,
-        razaoSocial: "Empresa XYZ Ltda",
-        nomeFantasia: "Empresa XYZ",
-        cnpj: "12345678000195",
-        cidade: "Americana",
-        estado: "SP",
-        status: "A",
-    },
-    {
-        id: 2,
-        razaoSocial: "Cliente ABC Ltda",
-        nomeFantasia: "Cliente ABC",
-        cnpj: "98765432000110",
-        cidade: "Campinas",
-        estado: "SP",
-        status: "A",
-    },
-    {
-        id: 3,
-        razaoSocial: "Comercial ControlPro Ltda",
-        nomeFantasia: "ControlPro",
-        cnpj: "11222333000144",
-        cidade: "São Paulo",
-        estado: "SP",
-        status: "I",
-    },
-];
 
 
 export default function ClientesScreen() {
@@ -81,45 +54,123 @@ export default function ClientesScreen() {
             NativeStackNavigationProp<ClientesStackParamList>
         >();
 
+
     const [busca, setBusca] = useState("");
 
 
-    /*
-     * FILTRO
-     */
+    /* =====================================================
+       CLIENTES TEMPORÁRIOS
+    ===================================================== */
+
+    const [clientes, setClientes] = useState<Cliente[]>([
+        {
+            id: 1,
+            pessoa: "J",
+            nome: "Empresa XYZ Ltda",
+            nomeFantasia: "Empresa XYZ",
+            documento: "12345678000195",
+            telefone: "",
+            email: "",
+            cep: "",
+            endereco: "",
+            numero: "",
+            bairro: "",
+            cidade: "Americana",
+            estado: "SP",
+            observacao: "",
+            status: "A",
+        },
+
+        {
+            id: 2,
+            pessoa: "J",
+            nome: "Cliente ABC Ltda",
+            nomeFantasia: "Cliente ABC",
+            documento: "98765432000110",
+            telefone: "",
+            email: "",
+            cep: "",
+            endereco: "",
+            numero: "",
+            bairro: "",
+            cidade: "Campinas",
+            estado: "SP",
+            observacao: "",
+            status: "A",
+        },
+
+        {
+            id: 3,
+            pessoa: "J",
+            nome: "Comercial ControlPro Ltda",
+            nomeFantasia: "ControlPro",
+            documento: "11222333000144",
+            telefone: "",
+            email: "",
+            cep: "",
+            endereco: "",
+            numero: "",
+            bairro: "",
+            cidade: "São Paulo",
+            estado: "SP",
+            observacao: "",
+            status: "I",
+        },
+    ]);
+
+
+    /* =====================================================
+       FILTRO
+    ===================================================== */
 
     const clientesFiltrados = useMemo(() => {
 
-        const termo = busca
-            .toLowerCase()
-            .trim();
+        const termo =
+            busca.toLowerCase().trim();
+
 
         if (!termo) {
+
             return clientes;
+
         }
+
+
+        const numerosBusca =
+            termo.replace(/\D/g, "");
+
 
         return clientes.filter((cliente) => {
 
-            const cnpj =
-                cliente.cnpj.toLowerCase();
+            const nome =
+                cliente.nome.toLowerCase();
+
+            const nomeFantasia =
+                cliente.nomeFantasia.toLowerCase();
+
+            const documento =
+                cliente.documento.replace(
+                    /\D/g,
+                    ""
+                );
+
 
             return (
-                cliente.razaoSocial
-                    .toLowerCase()
-                    .includes(termo) ||
 
-                cliente.nomeFantasia
-                    .toLowerCase()
-                    .includes(termo) ||
+                nome.includes(termo) ||
 
-                cnpj.includes(
-                    termo.replace(/\D/g, "")
+                nomeFantasia.includes(termo) ||
+
+                (
+                    numerosBusca.length > 0 &&
+                    documento.includes(numerosBusca)
                 )
+
             );
 
         });
 
-    }, [busca]);
+    }, [busca, clientes]);
 
 
     return (
@@ -277,11 +328,14 @@ export default function ClientesScreen() {
                                         style={styles.clientCompany}
                                         numberOfLines={1}
                                     >
-                                        {cliente.razaoSocial}
+                                        {cliente.nome}
                                     </Text>
 
                                     <Text style={styles.clientDocument}>
-                                        CNPJ: {cnpjMask(cliente.cnpj)}
+                                        {cliente.pessoa === "F"
+                                            ? `CPF: ${cpfMask(cliente.documento)}`
+                                            : `CNPJ: ${cnpjMask(cliente.documento)}`
+                                        }
                                     </Text>
 
                                     <Text style={styles.clientLocation}>

@@ -20,8 +20,9 @@ interface Indicator {
     id: number;
     title: string;
     value: number;
-     icon: keyof typeof Ionicons.glyphMap;
-    screen?: AppScreen;
+    icon: keyof typeof Ionicons.glyphMap;
+    // screen?: AppScreen;
+    screen?: "Atendimento" | "Clientes";
 }
 
 
@@ -46,6 +47,7 @@ const indicators: Indicator[] = [
         title: "Clientes",
         value: 35,
         icon: "people-outline",
+        screen: "Clientes"
     },
 
     {

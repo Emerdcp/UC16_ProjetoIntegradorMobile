@@ -1,52 +1,65 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+    createContext,
+    useContext,
+    useState,
+    ReactNode,
+} from "react";
 
 import { User } from "@/types/User";
 
+import {
+    login,
+} from "@/services/authService";
+
+
 interface AuthContextData {
+
     user: User | null;
+
     token: string | null;
+
     loading: boolean;
-    signIn: (usuario: string, senha: string) => Promise<boolean>;
+
+    signIn: (
+        email: string,
+        senha: string
+    ) => Promise<boolean>;
+
     signOut: () => Promise<void>;
+
 }
+
 
 interface AuthProviderProps {
     children: ReactNode;
 }
 
+
 const AuthContext = createContext<AuthContextData>(
     {} as AuthContextData
 );
+
 
 export function AuthProvider({
     children,
 }: AuthProviderProps) {
 
-    const [user, setUser] = useState<User | null>(null);
-    const [token, setToken] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [user, setUser] =
+        useState<User | null>(null);
 
-    /*
- * LOGIN LOCAL
- *
- * Temporariamente vamos utilizar
- * um usuário fictício.
- *
- * Depois substituiremos esta parte
- * pela chamada da API.
- */
+    const [token, setToken] =
+        useState<string | null>(null);
 
-    // async function signIn(
-    //     usuario: string,
-    //     senha: string
-    // ): Promise<boolean> {
-    //     console.log("Login:", usuario, senha);
+    const [loading, setLoading] =
+        useState(false);
 
-    //     return true;
-    // }
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
 
     async function signIn(
-        usuario: string,
+        email: string,
         senha: string
     ): Promise<boolean> {
 
@@ -54,28 +67,36 @@ export function AuthProvider({
 
         try {
 
-            if (
-                usuario === "admin@controlpro.com" &&
-                senha === "123456"
-            ) {
+            const response =
+                await login({
+                    email,
+                    senha,
+                });
 
-                /*
-                 * Usuário temporário.
-                 *
-                 * Depois virá da API.
-                 */
-                const usuarioLogado = {
-                    id: 1,
-                    nome: "Administrador",
-                    email: usuario,
-                } as User;
 
-                setUser(usuarioLogado);
+            if (!response?.token) {
 
-                setToken("token-local-controlpro");
+                return false;
 
-                return true;
             }
+
+
+            setToken(response.token);
+
+
+            setUser(
+                response.usuario as User
+            );
+
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+                "Erro ao realizar login:",
+                error
+            );
 
             return false;
 
@@ -84,12 +105,13 @@ export function AuthProvider({
             setLoading(false);
 
         }
+
     }
 
 
-    /*
-    * LOGOUT
-    */
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
 
     async function signOut(): Promise<void> {
 
@@ -99,7 +121,9 @@ export function AuthProvider({
 
     }
 
+
     return (
+
         <AuthContext.Provider
             value={{
                 user,
@@ -109,14 +133,20 @@ export function AuthProvider({
                 signOut,
             }}
         >
+
             {children}
+
         </AuthContext.Provider>
+
     );
+
 }
 
-/*
- * Hook de autenticação
- */
+
+/* =========================================================
+   HOOK
+========================================================= */
+
 export function useAuth(): AuthContextData {
 
     return useContext(AuthContext);
