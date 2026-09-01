@@ -19,6 +19,10 @@ export const styles = StyleSheet.create({
     },
 
 
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
     container: {
         flex: 1,
         backgroundColor: "rgba(5, 11, 44, 0.82)",
@@ -202,7 +206,7 @@ export const styles = StyleSheet.create({
 
 
     /* =====================================================
-       CARD DE ATENDIMENTO
+       CARD
     ===================================================== */
 
     attendanceCard: {
@@ -228,6 +232,15 @@ export const styles = StyleSheet.create({
     },
 
 
+    /* =====================================================
+       CÓDIGO
+    ===================================================== */
+
+    numberArea: {
+        flex: 1,
+    },
+
+
     attendanceNumber: {
         fontSize: 12,
 
@@ -242,6 +255,13 @@ export const styles = StyleSheet.create({
     ===================================================== */
 
     status: {
+        flexDirection: "row",
+
+        alignItems: "center",
+        justifyContent: "center",
+
+        gap: 5,
+
         paddingHorizontal: 11,
         paddingVertical: 5,
 
@@ -249,18 +269,48 @@ export const styles = StyleSheet.create({
     },
 
 
-    statusInProgress: {
-        backgroundColor: "rgba(34, 197, 94, 0.16)",
-    },
-
+    /* -----------------------------------------------------
+       ABERTO
+    ----------------------------------------------------- */
 
     statusWaiting: {
-        backgroundColor: "rgba(245, 158, 11, 0.16)",
+        backgroundColor: "rgba(245, 158, 11, 0.18)",
     },
 
 
+    /* -----------------------------------------------------
+       EM ATENDIMENTO
+    ----------------------------------------------------- */
+
+    statusInProgress: {
+        backgroundColor: "rgba(59, 130, 246, 0.18)",
+    },
+
+
+    /* -----------------------------------------------------
+       DESENVOLVIMENTO
+    ----------------------------------------------------- */
+
+    statusDevelopment: {
+        backgroundColor: "rgba(168, 85, 247, 0.18)",
+    },
+
+
+    /* -----------------------------------------------------
+       FINALIZADO
+    ----------------------------------------------------- */
+
     statusResolved: {
-        backgroundColor: "rgba(59, 130, 246, 0.16)",
+        backgroundColor: "rgba(34, 197, 94, 0.18)",
+    },
+
+
+    /* -----------------------------------------------------
+       CANCELADO
+    ----------------------------------------------------- */
+
+    statusCancelled: {
+        backgroundColor: "rgba(239, 68, 68, 0.18)",
     },
 
 
@@ -274,7 +324,7 @@ export const styles = StyleSheet.create({
 
 
     /* =====================================================
-       INFORMAÇÕES
+       TÍTULO / DESCRIÇÃO
     ===================================================== */
 
     attendanceTitle: {
@@ -282,26 +332,92 @@ export const styles = StyleSheet.create({
 
         fontWeight: "700",
 
+        lineHeight: 21,
+
         color: "#FFFFFF",
+
+        marginBottom: 7,
+    },
+
+
+    /* =====================================================
+       INFORMAÇÃO DO CLIENTE
+    ===================================================== */
+
+    infoRow: {
+        flexDirection: "row",
+
+        alignItems: "center",
+
+        gap: 7,
 
         marginBottom: 5,
     },
 
 
     attendanceClient: {
+        flex: 1,
+
         fontSize: 12,
 
-        color: "#94A3B8",
+        color: "#CBD5E1",
     },
 
 
     /* =====================================================
-       RODAPÉ DO CARD
+       DETALHES
+    ===================================================== */
+
+    detailsArea: {
+        flexDirection: "row",
+
+        gap: 10,
+
+        marginTop: 8,
+    },
+
+
+    detailItem: {
+        flex: 1,
+
+        padding: 9,
+
+        backgroundColor: "rgba(15, 23, 42, 0.45)",
+
+        borderRadius: 9,
+
+        borderWidth: 1,
+        borderColor: "#2D3C52",
+    },
+
+
+    detailLabel: {
+        fontSize: 10,
+
+        color: "#64748B",
+
+        marginBottom: 3,
+    },
+
+
+    detailValue: {
+        fontSize: 11,
+
+        fontWeight: "600",
+
+        color: "#CBD5E1",
+    },
+
+
+    /* =====================================================
+       RODAPÉ
     ===================================================== */
 
     attendanceFooter: {
         flexDirection: "row",
+
         alignItems: "center",
+
         justifyContent: "space-between",
 
         marginTop: 12,
@@ -313,18 +429,12 @@ export const styles = StyleSheet.create({
     },
 
 
-    priorityArea: {
+    dateArea: {
         flexDirection: "row",
+
         alignItems: "center",
 
-        gap: 5,
-    },
-
-
-    priorityText: {
-        fontSize: 11,
-
-        color: "#AEBBD0",
+        gap: 6,
     },
 
 
@@ -343,6 +453,8 @@ export const styles = StyleSheet.create({
         alignItems: "center",
 
         paddingVertical: 70,
+
+        paddingHorizontal: 20,
     },
 
 
@@ -354,6 +466,8 @@ export const styles = StyleSheet.create({
         fontWeight: "700",
 
         color: "#FFFFFF",
+
+        textAlign: "center",
     },
 
 
@@ -365,6 +479,31 @@ export const styles = StyleSheet.create({
         textAlign: "center",
 
         color: "#94A3B8",
+    },
+
+
+    /* =====================================================
+       BOTÃO TENTAR NOVAMENTE
+    ===================================================== */
+
+    retryButton: {
+        marginTop: 18,
+
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+
+        borderRadius: 10,
+
+        backgroundColor: "#2864E8",
+    },
+
+
+    retryText: {
+        fontSize: 13,
+
+        fontWeight: "700",
+
+        color: "#FFFFFF",
     },
 
 

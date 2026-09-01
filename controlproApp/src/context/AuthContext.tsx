@@ -4,55 +4,37 @@ import React, {
     useState,
     ReactNode,
 } from "react";
-
 import { User } from "@/types/User";
-
-import {
-    login,
-} from "@/services/authService";
+import { login, } from "@/services/authService";
+import { api } from "@/services/api";
 
 
 interface AuthContextData {
-
     user: User | null;
-
     token: string | null;
-
     loading: boolean;
-
     signIn: (
         email: string,
         senha: string
     ) => Promise<boolean>;
-
     signOut: () => Promise<void>;
-
 }
-
 
 interface AuthProviderProps {
     children: ReactNode;
 }
 
-
 const AuthContext = createContext<AuthContextData>(
     {} as AuthContextData
 );
-
 
 export function AuthProvider({
     children,
 }: AuthProviderProps) {
 
-    const [user, setUser] =
-        useState<User | null>(null);
-
-    const [token, setToken] =
-        useState<string | null>(null);
-
-    const [loading, setLoading] =
-        useState(false);
-
+    const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     /* =====================================================
        LOGIN
@@ -66,48 +48,38 @@ export function AuthProvider({
         setLoading(true);
 
         try {
-
             const response =
                 await login({
                     email,
                     senha,
                 });
 
-
             if (!response?.token) {
-
                 return false;
-
             }
-
 
             setToken(response.token);
 
+            api.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${response.token}`;
 
             setUser(
                 response.usuario as User
             );
 
-
             return true;
 
         } catch (error) {
-
             console.error(
                 "Erro ao realizar login:",
                 error
             );
-
             return false;
-
         } finally {
-
             setLoading(false);
-
         }
-
     }
-
 
     /* =====================================================
        LOGOUT
@@ -118,6 +90,10 @@ export function AuthProvider({
         setUser(null);
 
         setToken(null);
+
+        delete api.defaults.headers.common[
+            "Authorization"
+        ];
 
     }
 

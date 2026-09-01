@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import {
+    Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
@@ -9,43 +9,16 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-
-import {
-    SafeAreaView,
-} from "react-native-safe-area-context";
-
-import {
-    Ionicons,
-} from "@expo/vector-icons";
-
-import {
-    useNavigation,
-} from "@react-navigation/native";
-
-import type {
-    NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
-import type {
-    ClientesStackParamList,
-} from "@/navigation/ClientesNavigator";
-
-import {
-    cpfMask,
-    cnpjMask,
-    telefoneMask,
-    cepMask,
-} from "@/utils/mask";
-
-import {
-    buscarCep,
-} from "@/services/cepService";
-
-import {
-    buscarCnpj,
-} from "@/services/cnpjService";
-
 import { styles } from "./NovoClienteScreenStyles";
+import { SafeAreaView, } from "react-native-safe-area-context";
+import { Ionicons, } from "@expo/vector-icons";
+import { useNavigation, } from "@react-navigation/native";
+import type { NativeStackNavigationProp, } from "@react-navigation/native-stack";
+import type { ClientesStackParamList, } from "@/navigation/ClientesNavigator";
+import { cpfMask, cnpjMask, telefoneMask, cepMask, } from "@/utils/mask";
+import { buscarCep, } from "@/services/cepService";
+import { buscarCnpj, } from "@/services/cnpjService";
+import { createCliente, } from "@/services/clienteService";
 
 
 type NavigationProp =
@@ -180,15 +153,11 @@ export default function NovoClienteScreen() {
             }
 
             setNome(
-                data.razao_social ||
-                data.razaoSocial ||
-                ""
+                data.razao_social || ""
             );
 
             setNomeFantasia(
-                data.nome_fantasia ||
-                data.nomeFantasia ||
-                ""
+                data.nome_fantasia || ""
             );
 
             if (data.email) {
@@ -319,28 +288,168 @@ export default function NovoClienteScreen() {
        SALVAR
     ===================================================== */
 
-    function handleSalvar() {
+    async function handleSalvar() {
 
-        console.log(
-            "CLIENTE:",
-            {
-                pessoa,
-                documento,
-                nome,
-                nomeFantasia,
-                telefone,
-                email,
-                cep,
-                endereco,
-                numero,
-                bairro,
-                cidade,
-                estado,
-                observacao,
-            }
-        );
+        if (!nome.trim()) {
 
-        navigation.goBack();
+            Alert.alert(
+                "Validação",
+                pessoa === "J"
+                    ? "Informe a Razão Social."
+                    : "Informe o nome do cliente."
+            );
+
+            return;
+        }
+
+
+        if (!documento.trim()) {
+
+            Alert.alert(
+                "Validação",
+                pessoa === "J"
+                    ? "Informe o CNPJ."
+                    : "Informe o CPF."
+            );
+
+            return;
+        }
+
+
+        if (
+            pessoa === "J" &&
+            !nomeFantasia.trim()
+        ) {
+
+            Alert.alert(
+                "Validação",
+                "Informe o Nome Fantasia."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const documentoLimpo =
+                documento.replace(/\D/g, "");
+
+
+            const data = {
+
+                cli_razaosocial:
+                    nome,
+
+                cli_fantasia:
+                    pessoa === "J"
+                        ? nomeFantasia
+                        : nome,
+
+                cli_datacadastro:
+                    new Date()
+                        .toISOString()
+                        .split("T")[0],
+
+                cli_pessoa:
+                    pessoa,
+
+                cli_cnpjcpf:
+                    documentoLimpo,
+
+                cli_tipodoc:
+                    pessoa === "J"
+                        ? "CNPJ"
+                        : "CPF",
+
+                cli_documento:
+                    documentoLimpo,
+
+                cli_status:
+                    "A",
+
+                cli_horascontratadas:
+                    0,
+
+                cli_observacao:
+                    observacao,
+
+                cli_telefone:
+                    telefone,
+
+                cli_email:
+                    email,
+
+                endereco: {
+
+                    ce_cep:
+                        cep.replace(/\D/g, ""),
+
+                    ce_endereco:
+                        endereco,
+
+                    ce_numero:
+                        numero,
+
+                    ce_complemento:
+                        "",
+
+                    ce_bairro:
+                        bairro,
+
+                    ce_cidade:
+                        cidade,
+
+                    ce_estado:
+                        estado,
+
+                },
+
+                contatos: [],
+
+                sistemas: [],
+
+            };
+
+
+            console.log(
+                "CADASTRANDO CLIENTE:",
+                data
+            );
+
+
+            await createCliente(data);
+
+
+            Alert.alert(
+                "Sucesso",
+                "Cliente cadastrado com sucesso.",
+                [
+                    {
+                        text: "OK",
+                        onPress: () =>
+                            navigation.goBack(),
+                    },
+                ]
+            );
+
+
+        } catch (error: any) {
+
+            console.log(
+                "ERRO AO CADASTRAR CLIENTE:",
+                error
+            );
+
+
+            Alert.alert(
+                "Erro",
+                error?.response?.data?.error ||
+                "Não foi possível cadastrar o cliente."
+            );
+
+        }
+
     }
 
 
@@ -425,7 +534,7 @@ export default function NovoClienteScreen() {
                             style={[
                                 styles.personButton,
                                 pessoa === "J" &&
-                                    styles.personButtonActive,
+                                styles.personButtonActive,
                             ]}
                             onPress={() =>
                                 handlePessoa("J")
@@ -446,7 +555,7 @@ export default function NovoClienteScreen() {
                                 style={[
                                     styles.personText,
                                     pessoa === "J" &&
-                                        styles.personTextActive,
+                                    styles.personTextActive,
                                 ]}
                             >
                                 Pessoa Jurídica
@@ -459,7 +568,7 @@ export default function NovoClienteScreen() {
                             style={[
                                 styles.personButton,
                                 pessoa === "F" &&
-                                    styles.personButtonActive,
+                                styles.personButtonActive,
                             ]}
                             onPress={() =>
                                 handlePessoa("F")
@@ -480,7 +589,7 @@ export default function NovoClienteScreen() {
                                 style={[
                                     styles.personText,
                                     pessoa === "F" &&
-                                        styles.personTextActive,
+                                    styles.personTextActive,
                                 ]}
                             >
                                 Pessoa Física

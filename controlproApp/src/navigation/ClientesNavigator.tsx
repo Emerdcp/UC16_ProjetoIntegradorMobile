@@ -4,14 +4,16 @@ import {
     createNativeStackNavigator,
 } from "@react-navigation/native-stack";
 
-import ClientesScreen from "@/screens/Clientes";
+import ClientesScreen from "@/screens/Clientes/ClientesScreen";
 import NovoClienteScreen from "@/screens/Clientes/NovoClienteScreen";
-
-
+import ClienteDetalheScreen from "@/screens/Clientes/ClienteDetalheScreen";
 
 export type ClientesStackParamList = {
     Clientes: undefined;
     NovoCliente: undefined;
+    ClienteDetalhe: {
+        id: number;
+    };
 };
 
 
@@ -37,6 +39,11 @@ export default function ClientesNavigator() {
             <Stack.Screen
                 name="NovoCliente"
                 component={NovoClienteScreen}
+            />
+
+            <Stack.Screen
+                name="ClienteDetalhe"
+                component={ClienteDetalheScreen}
             />
 
         </Stack.Navigator>
