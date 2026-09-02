@@ -264,5 +264,215 @@ export const styles = StyleSheet.create({
 
         color: Colors.white,
     },
+    /* =====================================================
+   SELECT
+===================================================== */
+
+    selectText: {
+        flex: 1,
+
+        marginLeft: 10,
+
+        fontSize: 15,
+
+        color: "#1E293B",
+    },
+
+
+    selectPlaceholder: {
+        color: "#94A3B8",
+    },
+
+
+    inputDisabled: {
+        backgroundColor: "#E2E8F0",
+
+        borderColor: "#CBD5E1",
+
+        opacity: 0.7,
+    },
+
+
+    /* =====================================================
+       CARREGAMENTO
+    ===================================================== */
+
+    loadingContainer: {
+        flex: 1,
+
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+
+    loadingText: {
+        marginTop: 12,
+
+        fontSize: 14,
+
+        color: "#FFFFFF",
+    },
+
+
+    loadingInline: {
+        flexDirection: "row",
+
+        alignItems: "center",
+
+        marginTop: -8,
+        marginBottom: 15,
+    },
+
+
+    loadingInlineText: {
+        marginLeft: 8,
+
+        fontSize: 12,
+
+        color: "#CBD5E1",
+    },
+
+
+    /* =====================================================
+       BOTÃO DESABILITADO
+    ===================================================== */
+
+    saveButtonDisabled: {
+        opacity: 0.6,
+    },
+
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    modalOverlay: {
+        flex: 1,
+
+        justifyContent: "flex-end",
+
+        backgroundColor: "rgba(0, 0, 0, 0.65)",
+    },
+
+
+    modalContainer: {
+        height: "75%",
+
+        backgroundColor: "#07152B",
+
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+
+        overflow: "hidden",
+    },
+
+
+    /* =====================================================
+       CABEÇALHO DO MODAL
+    ===================================================== */
+
+    modalHeader: {
+        flexDirection: "row",
+
+        alignItems: "center",
+        justifyContent: "space-between",
+
+        paddingHorizontal: 20,
+        paddingVertical: 18,
+
+        backgroundColor: "#0B2038",
+
+        borderBottomWidth: 1,
+        borderBottomColor: "#243852",
+    },
+
+
+    modalTitle: {
+        fontSize: 18,
+
+        fontWeight: "700",
+
+        color: "#FFFFFF",
+    },
+
+
+    modalList: {
+        flex: 1,
+
+        paddingHorizontal: 16,
+        paddingTop: 8,
+    },
+
+
+    /* =====================================================
+       ITEM DO MODAL
+    ===================================================== */
+
+    modalItem: {
+        flexDirection: "row",
+
+        alignItems: "center",
+
+        paddingVertical: 14,
+
+        paddingHorizontal: 8,
+
+        borderBottomWidth: 1,
+
+        borderBottomColor: "#1E334D",
+    },
+
+
+    modalItemIcon: {
+        width: 42,
+        height: 42,
+
+        alignItems: "center",
+        justifyContent: "center",
+
+        marginRight: 12,
+
+        borderRadius: Radius.md,
+
+        backgroundColor: "#142A42",
+    },
+
+
+    modalItemTextArea: {
+        flex: 1,
+    },
+
+
+    modalItemTitle: {
+        fontSize: 15,
+
+        fontWeight: "600",
+
+        color: "#FFFFFF",
+    },
+
+
+    modalItemSubtitle: {
+        marginTop: 3,
+
+        fontSize: 12,
+
+        color: "#8FA1B8",
+    },
+
+
+    /* =====================================================
+       LISTA VAZIA
+    ===================================================== */
+
+    emptyText: {
+        paddingVertical: 30,
+
+        textAlign: "center",
+
+        fontSize: 14,
+
+        color: "#8FA1B8",
+    },
 
 });

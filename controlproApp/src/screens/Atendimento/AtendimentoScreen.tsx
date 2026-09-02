@@ -1,9 +1,5 @@
-import React, {
-    useCallback,
-    useEffect,
-    useState,
-} from "react";
-
+import React, { useCallback, useState, } from "react";
+import { useFocusEffect, useNavigation, DrawerActions, } from "@react-navigation/native";
 import {
     ImageBackground,
     ScrollView,
@@ -14,25 +10,16 @@ import {
     ActivityIndicator,
     RefreshControl,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Ionicons } from "@expo/vector-icons";
-
-import {
-    useFocusEffect,
-    useNavigation,
-} from "@react-navigation/native";
-
-import { AppNavigationProp } from "@/navigation/types";
-
-import {
-    getAtendimentos,
-    Atendimento,
-    AtendimentoStatus,
-} from "@/services/atendimentoService";
-
+// import { AppNavigationProp } from "@/navigation/types";
+import { getAtendimentos, Atendimento, AtendimentoStatus, } from "@/services/atendimentoService";
 import { styles } from "./styles";
+import { NativeStackNavigationProp, } from "@react-navigation/native-stack";
+import { AtendimentoStackParamList, } from "@/navigation/AtendimentoNavigator";
+// import { CompositeNavigationProp, } from "@react-navigation/native";
+// import { DrawerNavigationProp, } from "@react-navigation/drawer";
+// import { AppDrawerParamList, } from "@/navigation/types";
 
 
 /* =====================================================
@@ -51,8 +38,11 @@ type FiltroStatus =
 export default function AtendimentoScreen() {
 
     const navigation =
-        useNavigation<AppNavigationProp>();
-
+        useNavigation<
+            NativeStackNavigationProp<
+                AtendimentoStackParamList
+            >
+        >();
 
     /* =================================================
        ESTADOS
@@ -347,21 +337,12 @@ export default function AtendimentoScreen() {
         atendimento: Atendimento
     ) {
 
-        console.log(
-            "Atendimento selecionado:",
-            atendimento.id
+        navigation.navigate(
+            "AtendimentoDetalhe",
+            {
+                id: atendimento.id,
+            }
         );
-
-        /*
-         * Próxima etapa:
-         *
-         * navigation.navigate(
-         *     "DetalheAtendimento",
-         *     {
-         *         id: atendimento.id
-         *     }
-         * )
-         */
 
     }
 
@@ -402,7 +383,9 @@ export default function AtendimentoScreen() {
                         style={styles.headerButton}
                         activeOpacity={0.8}
                         onPress={() =>
-                            navigation.openDrawer()
+                            navigation.dispatch(
+                                DrawerActions.openDrawer()
+                            )
                         }
                     >
 
@@ -592,7 +575,7 @@ export default function AtendimentoScreen() {
                                     styles.filterButton,
 
                                     filtro ===
-                                        item.value &&
+                                    item.value &&
                                     styles.filterButtonActive,
                                 ]}
                             >
@@ -602,7 +585,7 @@ export default function AtendimentoScreen() {
                                         styles.filterText,
 
                                         filtro ===
-                                            item.value &&
+                                        item.value &&
                                         styles.filterTextActive,
                                     ]}
                                 >

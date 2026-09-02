@@ -1,25 +1,19 @@
 import React from "react";
-import { createDrawerNavigator, } from "@react-navigation/drawer";
+import { createDrawerNavigator,} from "@react-navigation/drawer";
 import HomeScreen from "@/screens/Home";
 import CustomDrawer from "@/components/CustomDrawer";
-import AtendimentoScreen from "@/screens/Atendimento";
-import NovoAtendimentoScreen from "@/screens/Atendimento/NovoAtendimentoScreen";
-// import ClientesScreen from "@/screens/Clientes";
-// import NovoClienteScreen from "@/screens/Clientes/NovoClienteScreen";
+import AtendimentoNavigator from "./AtendimentoNavigator";
 import ClientesNavigator from "./ClientesNavigator";
+import { AppDrawerParamList,} from "./types";
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<AppDrawerParamList>();
 
 export default function AppNavigator() {
-
     return (
-
         <Drawer.Navigator
-
             drawerContent={(props) => (
                 <CustomDrawer {...props} />
             )}
-
             screenOptions={{
                 headerShown: false,
                 drawerType: "slide",
@@ -29,6 +23,9 @@ export default function AppNavigator() {
             }}
         >
 
+            {/* =================================================
+               HOME
+            ================================================= */}
             <Drawer.Screen
                 name="Home"
                 component={HomeScreen}
@@ -37,27 +34,20 @@ export default function AppNavigator() {
                 }}
             />
 
+            {/* =================================================
+               ATENDIMENTOS
+            ================================================= */}
             <Drawer.Screen
                 name="Atendimento"
-                component={AtendimentoScreen}
+                component={AtendimentoNavigator}
                 options={{
                     title: "Atendimento",
                 }}
             />
 
-            <Drawer.Screen
-                name="NovoAtendimento"
-                component={NovoAtendimentoScreen}
-                options={{
-                    title: "Novo Atendimento",
-                    drawerItemStyle: {
-                        display: "none",
-                    },
-                }}
-            />
-
-            {/* CLIENTES */}
-
+            {/* =================================================
+               CLIENTES
+            ================================================= */}
             <Drawer.Screen
                 name="Clientes"
                 component={ClientesNavigator}
@@ -66,10 +56,6 @@ export default function AppNavigator() {
                 }}
             />
 
-
-
-
         </Drawer.Navigator>
-
     );
 }

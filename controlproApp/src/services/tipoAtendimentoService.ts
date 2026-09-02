@@ -2,58 +2,36 @@ import { api } from "./api";
 
 
 /* =====================================================
-   PROJETO
+   TIPO DE ATENDIMENTO
 ===================================================== */
 
-export interface Projeto {
+export interface TipoAtendimento {
 
     id: number;
 
-    pj_codigo: string;
+    ta_descricao: string;
 
-    pj_descresumo?: string;
+    ta_ordem?: number;
 
-    pj_tipo?: string;
-
-    pj_controle?: string;
-
-    pj_status?: string;
-
-    pj_data?: string;
-
-    cli_fantasia?: string;
-
-    sis_sigla?: string;
-
-    usu_nome?: string;
+    st_registro?: "A" | "I";
 
 }
 
 
 /* =====================================================
-   LISTAR PROJETOS
+   LISTAR TIPOS
 ===================================================== */
 
-export async function getProjetos(
-    clienteId?: number,
+export async function getTiposAtendimento(
     search = ""
 ) {
 
     const response =
         await api.get(
-            "/projeto",
+            "/tipo-atendimento",
             {
                 params: {
-
-                    cliente_id:
-                        clienteId || "",
-
                     search,
-
-                    page: 1,
-
-                    limit: 100,
-
                 },
             }
         );
@@ -64,16 +42,16 @@ export async function getProjetos(
 
 
 /* =====================================================
-   BUSCAR PROJETO
+   BUSCAR POR ID
 ===================================================== */
 
-export async function getProjetoById(
+export async function getTipoAtendimentoById(
     id: number
 ) {
 
     const response =
         await api.get(
-            `/projeto/${id}`
+            `/tipo-atendimento/${id}`
         );
 
     return response.data;

@@ -2,58 +2,36 @@ import { api } from "./api";
 
 
 /* =====================================================
-   PROJETO
+   SISTEMA
 ===================================================== */
 
-export interface Projeto {
+export interface Sistema {
 
     id: number;
 
-    pj_codigo: string;
-
-    pj_descresumo?: string;
-
-    pj_tipo?: string;
-
-    pj_controle?: string;
-
-    pj_status?: string;
-
-    pj_data?: string;
-
-    cli_fantasia?: string;
-
     sis_sigla?: string;
 
-    usu_nome?: string;
+    sis_descricao?: string;
 
 }
 
 
 /* =====================================================
-   LISTAR PROJETOS
+   LISTAR SISTEMAS
 ===================================================== */
 
-export async function getProjetos(
-    clienteId?: number,
+export async function getSistemas(
     search = ""
 ) {
 
     const response =
         await api.get(
-            "/projeto",
+            "/sistema",
             {
                 params: {
-
-                    cliente_id:
-                        clienteId || "",
-
                     search,
-
                     page: 1,
-
                     limit: 100,
-
                 },
             }
         );
@@ -64,16 +42,16 @@ export async function getProjetos(
 
 
 /* =====================================================
-   BUSCAR PROJETO
+   BUSCAR SISTEMA POR ID
 ===================================================== */
 
-export async function getProjetoById(
+export async function getSistemaById(
     id: number
 ) {
 
     const response =
         await api.get(
-            `/projeto/${id}`
+            `/sistema/${id}`
         );
 
     return response.data;
