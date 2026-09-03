@@ -1,10 +1,12 @@
 import React from "react";
-import { createDrawerNavigator,} from "@react-navigation/drawer";
+import { createDrawerNavigator, } from "@react-navigation/drawer";
 import HomeScreen from "@/screens/Home";
 import CustomDrawer from "@/components/CustomDrawer";
 import AtendimentoNavigator from "./AtendimentoNavigator";
 import ClientesNavigator from "./ClientesNavigator";
-import { AppDrawerParamList,} from "./types";
+import { AppDrawerParamList, } from "./types";
+import AgendaNavigator from "./AgendaNavigator";
+
 
 const Drawer = createDrawerNavigator<AppDrawerParamList>();
 
@@ -54,6 +56,16 @@ export default function AppNavigator() {
                 options={{
                     title: "Clientes",
                 }}
+            />
+
+            {/* =================================================
+               CLIENTES
+            ================================================= */}
+
+            <Drawer.Screen
+                name="Agenda"
+                component={AgendaNavigator}
+                options={{ title: "Agenda" }}
             />
 
         </Drawer.Navigator>

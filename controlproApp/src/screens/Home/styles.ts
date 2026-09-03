@@ -10,45 +10,54 @@ import {
 
 export const styles = StyleSheet.create({
 
-    /* FUNDO */
+    /* =====================================================
+       FUNDO
+    ===================================================== */
 
     background: {
         flex: 1,
     },
 
 
-    /* CONTAINER */
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
 
     container: {
         flex: 1,
 
-        backgroundColor: "rgba(5, 11, 44, 0.72)",
+        backgroundColor:
+            "rgba(5, 11, 44, 0.78)",
     },
 
 
     content: {
-        paddingBottom: 100,
+        paddingTop: 6,
+
+        paddingBottom: 110,
     },
 
 
-    /* HEADER */
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header: {
         flexDirection: "row",
 
         alignItems: "center",
 
-        justifyContent: "space-between",
-
         paddingHorizontal: Spacing.lg,
 
         paddingVertical: 14,
 
-        backgroundColor: "rgba(15, 27, 52, 0.90)",
+        backgroundColor:
+            "rgba(15, 27, 52, 0.94)",
 
         borderBottomWidth: 1,
 
-        borderBottomColor: "rgba(255, 255, 255, 0.08)",
+        borderBottomColor:
+            "rgba(255, 255, 255, 0.08)",
     },
 
 
@@ -63,11 +72,36 @@ export const styles = StyleSheet.create({
 
         borderRadius: Radius.md,
 
-        backgroundColor: "rgba(5, 11, 44, 0.65)",
+        backgroundColor:
+            "rgba(5, 11, 44, 0.72)",
 
         borderWidth: 1,
 
-        borderColor: "rgba(255, 255, 255, 0.08)",
+        borderColor:
+            "rgba(255, 255, 255, 0.09)",
+
+        position: "relative",
+    },
+
+
+    notificationDot: {
+        position: "absolute",
+
+        top: 9,
+
+        right: 9,
+
+        width: 7,
+
+        height: 7,
+
+        borderRadius: 10,
+
+        backgroundColor: "#4F8DF7",
+
+        borderWidth: 1,
+
+        borderColor: "#0F1B34",
     },
 
 
@@ -96,23 +130,86 @@ export const styles = StyleSheet.create({
     },
 
 
-    /* SEÇÕES */
+    /* =====================================================
+       SAUDAÇÃO
+    ===================================================== */
 
-    section: {
-        marginTop: Spacing.lg,
-    },
-
-
-    sectionHeader: {
+    greetingCard: {
         flexDirection: "row",
 
         alignItems: "center",
 
         justifyContent: "space-between",
 
-        paddingHorizontal: Spacing.lg,
+        marginHorizontal: Spacing.lg,
 
-        marginBottom: Spacing.md,
+        marginTop: Spacing.lg,
+
+        padding: 17,
+
+        borderRadius: 18,
+
+        backgroundColor:
+            "rgba(9, 27, 52, 0.88)",
+
+        borderWidth: 1,
+
+        borderColor:
+            "rgba(79, 141, 247, 0.18)",
+    },
+
+
+    greetingContent: {
+        flex: 1,
+
+        paddingRight: 10,
+    },
+
+
+    greetingTitle: {
+        fontSize: 17,
+
+        fontWeight: "700",
+
+        color: Colors.white,
+    },
+
+
+    greetingText: {
+        marginTop: 5,
+
+        fontSize: 12,
+
+        color: Colors.textSecondary,
+    },
+
+
+    dateContainer: {
+        alignItems: "center",
+
+        justifyContent: "center",
+
+        minWidth: 48,
+    },
+
+
+    dateText: {
+        marginTop: 4,
+
+        fontSize: 11,
+
+        fontWeight: "600",
+
+        color: Colors.textSecondary,
+    },
+
+
+    /* =====================================================
+       SEÇÕES
+    ===================================================== */
+
+    section: {
+        marginTop: 22,
     },
 
 
@@ -129,6 +226,19 @@ export const styles = StyleSheet.create({
     },
 
 
+    sectionHeader: {
+        flexDirection: "row",
+
+        alignItems: "center",
+
+        justifyContent: "space-between",
+
+        paddingHorizontal: Spacing.lg,
+
+        marginBottom: Spacing.md,
+    },
+
+
     sectionHeaderTitle: {
         fontSize: 18,
 
@@ -141,13 +251,15 @@ export const styles = StyleSheet.create({
     seeAll: {
         fontSize: 12,
 
-        fontWeight: "600",
+        fontWeight: "700",
 
         color: Colors.primary,
     },
 
 
-    /* INDICADORES */
+    /* =====================================================
+       INDICADORES
+    ===================================================== */
 
     indicators: {
         paddingHorizontal: Spacing.lg,
@@ -157,25 +269,36 @@ export const styles = StyleSheet.create({
 
 
     indicatorCard: {
-        width: 150,
+        width: 154,
 
-        height: 104,
+        minHeight: 148,
 
-        padding: Spacing.md,
+        padding: 15,
 
-        borderRadius: Radius.lg,
+        borderRadius: 18,
 
-        backgroundColor: "rgba(30, 41, 59, 0.94)",
+        backgroundColor:
+            "rgba(24, 39, 65, 0.95)",
 
         borderWidth: 1,
 
-        borderColor: "rgba(255, 255, 255, 0.08)",
+        borderColor:
+            "rgba(255, 255, 255, 0.08)",
+    },
 
-        flexDirection: "row",
 
-        alignItems: "flex-end",
+    indicatorIcon: {
+        width: 42,
 
-        justifyContent: "space-between",
+        height: 42,
+
+        alignItems: "center",
+
+        justifyContent: "center",
+
+        borderRadius: 13,
+
+        marginBottom: 12,
     },
 
 
@@ -189,9 +312,9 @@ export const styles = StyleSheet.create({
 
 
     indicatorValue: {
-        marginTop: 7,
+        marginTop: 2,
 
-        fontSize: 28,
+        fontSize: 29,
 
         fontWeight: "700",
 
@@ -199,37 +322,168 @@ export const styles = StyleSheet.create({
     },
 
 
-    iconContainer: {
+    indicatorDescription: {
+        marginTop: 2,
+
+        fontSize: 10,
+
+        color: "#64748B",
+    },
+
+
+    /* =====================================================
+       ACESSO RÁPIDO
+    ===================================================== */
+
+    quickGrid: {
+        flexDirection: "row",
+
+        flexWrap: "wrap",
+
+        paddingHorizontal: Spacing.lg,
+
+        gap: 10,
+    },
+
+
+    quickCard: {
+        width: "48.5%",
+
+        minHeight: 86,
+
+        flexDirection: "row",
+
+        alignItems: "center",
+
+        padding: 12,
+
+        borderRadius: 16,
+
+        backgroundColor:
+            "rgba(24, 39, 65, 0.94)",
+
+        borderWidth: 1,
+
+        borderColor:
+            "rgba(255, 255, 255, 0.07)",
+    },
+
+
+    quickIcon: {
         width: 42,
 
         height: 42,
-
-        borderRadius: Radius.md,
 
         alignItems: "center",
 
         justifyContent: "center",
 
-        backgroundColor: "rgba(79, 125, 243, 0.12)",
+        borderRadius: 13,
+
+        marginRight: 10,
     },
 
 
-    /* ATENDIMENTOS */
+    quickBlue: {
+        backgroundColor:
+            "rgba(79, 141, 247, 0.13)",
+    },
+
+
+    quickGreen: {
+        backgroundColor:
+            "rgba(52, 211, 153, 0.13)",
+    },
+
+
+    quickPurple: {
+        backgroundColor:
+            "rgba(167, 139, 250, 0.13)",
+    },
+
+
+    quickOrange: {
+        backgroundColor:
+            "rgba(245, 158, 11, 0.13)",
+    },
+
+
+    quickContent: {
+        flex: 1,
+    },
+
+
+    quickTitle: {
+        fontSize: 12,
+
+        fontWeight: "700",
+
+        color: Colors.white,
+    },
+
+
+    quickSubtitle: {
+        marginTop: 3,
+
+        fontSize: 10,
+
+        color: Colors.textSecondary,
+    },
+
+
+    /* =====================================================
+       ATENDIMENTOS
+    ===================================================== */
 
     attendanceCard: {
+        flexDirection: "row",
+
+        alignItems: "center",
+
         marginHorizontal: Spacing.lg,
 
-        marginBottom: 12,
+        marginBottom: 10,
 
-        padding: Spacing.md,
+        padding: 13,
 
-        borderRadius: Radius.lg,
+        borderRadius: 17,
 
-        backgroundColor: "rgba(30, 41, 59, 0.94)",
+        backgroundColor:
+            "rgba(24, 39, 65, 0.95)",
 
         borderWidth: 1,
 
-        borderColor: "rgba(255, 255, 255, 0.08)",
+        borderColor:
+            "rgba(255, 255, 255, 0.08)",
+    },
+
+
+    attendanceIconContainer: {
+        width: 44,
+
+        height: 44,
+
+        alignItems: "center",
+
+        justifyContent: "center",
+
+        borderRadius: 13,
+
+        marginRight: 12,
+
+        backgroundColor:
+            "rgba(79, 141, 247, 0.13)",
+    },
+
+
+    attendanceWaitingIcon: {
+        backgroundColor:
+            "rgba(245, 158, 11, 0.13)",
+    },
+
+
+    attendanceContent: {
+        flex: 1,
     },
 
 
@@ -239,11 +493,13 @@ export const styles = StyleSheet.create({
         alignItems: "center",
 
         justifyContent: "space-between",
+
+        marginBottom: 4,
     },
 
 
     attendanceNumber: {
-        fontSize: 12,
+        fontSize: 11,
 
         fontWeight: "700",
 
@@ -252,49 +508,49 @@ export const styles = StyleSheet.create({
 
 
     status: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 8,
 
-        paddingVertical: 5,
+        paddingVertical: 4,
 
         borderRadius: Radius.full,
 
-        backgroundColor: "rgba(34, 197, 94, 0.15)",
+        backgroundColor:
+            "rgba(34, 197, 94, 0.14)",
     },
 
 
     statusText: {
-        fontSize: 10,
+        fontSize: 9,
 
-        fontWeight: "600",
+        fontWeight: "700",
 
         color: Colors.success,
     },
 
 
     statusWaiting: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 8,
 
-        paddingVertical: 5,
+        paddingVertical: 4,
 
         borderRadius: Radius.full,
 
-        backgroundColor: "rgba(245, 158, 11, 0.15)",
+        backgroundColor:
+            "rgba(245, 158, 11, 0.14)",
     },
 
 
     statusWaitingText: {
-        fontSize: 10,
+        fontSize: 9,
 
-        fontWeight: "600",
+        fontWeight: "700",
 
         color: "#F59E0B",
     },
 
 
     attendanceTitle: {
-        marginTop: Spacing.sm,
-
-        fontSize: 15,
+        fontSize: 14,
 
         fontWeight: "700",
 
@@ -303,61 +559,71 @@ export const styles = StyleSheet.create({
 
 
     attendanceClient: {
-        marginTop: 5,
+        marginTop: 4,
 
-        fontSize: 12,
+        fontSize: 11,
 
         color: Colors.textSecondary,
     },
 
 
-    /* FOOTER */
+    /* =====================================================
+       ESPAÇO FINAL
+    ===================================================== */
 
-    footer: {
-        position: "absolute",
-
-        left: 0,
-
-        right: 0,
-
-        bottom: 0,
-
-        paddingHorizontal: Spacing.lg,
-
-        paddingTop: 10,
-
-        paddingBottom: 12,
-
-        backgroundColor: "rgba(5, 11, 44, 0.92)",
-
-        borderTopWidth: 1,
-
-        borderTopColor: "rgba(255, 255, 255, 0.08)",
+    bottomSpace: {
+        height: 30,
     },
-
-
-    logout: {
-        height: 48,
-
-        borderRadius: Radius.md,
-
-        flexDirection: "row",
-
+    loadingHome: {
         alignItems: "center",
-
         justifyContent: "center",
-
-        gap: 8,
-
-        backgroundColor: Colors.error,
+        paddingVertical: 25,
     },
 
+    loadingHomeText: {
+        marginTop: 8,
+        fontSize: 12,
+        color: Colors.textSecondary,
+    },
 
-    logoutText: {
+    emptyHome: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginHorizontal: Spacing.lg,
+        paddingVertical: 25,
+        paddingHorizontal: 20,
+        borderRadius: Radius.lg,
+        backgroundColor: "rgba(24, 39, 65, 0.75)",
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.07)",
+    },
+
+    emptyHomeTitle: {
+        marginTop: 8,
         fontSize: 14,
-
         fontWeight: "700",
+        color: Colors.white,
+    },
 
+    emptyHomeText: {
+        marginTop: 6,
+        fontSize: 11,
+        lineHeight: 17,
+        textAlign: "center",
+        color: Colors.textSecondary,
+    },
+
+    retryHomeButton: {
+        marginTop: 12,
+        paddingHorizontal: 18,
+        paddingVertical: 8,
+        borderRadius: Radius.md,
+        backgroundColor: "#2563EB",
+    },
+
+    retryHomeText: {
+        fontSize: 11,
+        fontWeight: "700",
         color: Colors.white,
     },
 
