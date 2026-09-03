@@ -1,7 +1,7 @@
 import React, {
     useMemo,
     useState,
-    useEffect,
+    useCallback,
 } from "react";
 import {
     ScrollView,
@@ -14,15 +14,13 @@ import {
     useNavigation,
     CommonActions,
     DrawerActions,
+    useFocusEffect,
 } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AgendaEvento, getAgenda, } from "@/services/agendaService";
 import { NativeStackNavigationProp, } from "@react-navigation/native-stack";
 import { AgendaStackParamList, } from "@/navigation/AgendaNavigator";
 import { styles } from "./styles";
-
-
-
 
 
 /* =========================================================
@@ -44,7 +42,6 @@ const meses = [
     "Dezembro",
 ];
 
-
 /* =========================================================
    DIAS DA SEMANA
 ========================================================= */
@@ -59,7 +56,6 @@ const diasSemana = [
     "SÁB",
 ];
 
-
 /* =========================================================
    FUNÇÃO PARA FORMATAR DATA
 ========================================================= */
@@ -68,14 +64,11 @@ function formatarData(
     data: Date
 ) {
 
-    const ano =
-        data.getFullYear();
-
+    const ano = data.getFullYear();
     const mes =
         String(
             data.getMonth() + 1
         ).padStart(2, "0");
-
     const dia =
         String(
             data.getDate()
@@ -169,90 +162,115 @@ export default function AgendaScreen() {
 
 
     /* =====================================================
-       CARREGAR AGENDA
+   CARREGAR AGENDA
+===================================================== */
+
+    const carregarAgenda = useCallback(
+        async () => {
+
+            try {
+
+                setCarregando(true);
+
+                setErro(false);
+
+
+                const primeiroDiaMes =
+                    new Date(
+                        ano,
+                        mes,
+                        1
+                    );
+
+
+                const ultimoDiaMes =
+                    new Date(
+                        ano,
+                        mes + 1,
+                        0
+                    );
+
+
+                const dataInicio =
+                    formatarData(
+                        primeiroDiaMes
+                    );
+
+
+                const dataFim =
+                    formatarData(
+                        ultimoDiaMes
+                    );
+
+
+                const resultado =
+                    await getAgenda(
+                        dataInicio,
+                        dataFim
+                    );
+
+
+                setEventos(
+                    Array.isArray(resultado)
+                        ? resultado
+                        : []
+                );
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Erro ao carregar agenda:",
+                    error
+                );
+
+                setErro(true);
+
+                setEventos([]);
+
+            }
+            finally {
+
+                setCarregando(false);
+
+            }
+
+        },
+        [
+            ano,
+            mes,
+        ]
+    );
+
+
+    /* =====================================================
+       CARREGAR QUANDO A TELA GANHAR FOCO
     ===================================================== */
 
-    async function carregarAgenda() {
+    useFocusEffect(
+        React.useCallback(() => {
 
-        try {
+            carregarAgenda();
 
-            setCarregando(true);
-
-            setErro(false);
-
-
-            const primeiroDiaMes =
-                new Date(
-                    ano,
-                    mes,
-                    1
-                );
-
-
-            const ultimoDiaMes =
-                new Date(
-                    ano,
-                    mes + 1,
-                    0
-                );
-
-
-            const dataInicio =
-                formatarData(
-                    primeiroDiaMes
-                );
-
-
-            const dataFim =
-                formatarData(
-                    ultimoDiaMes
-                );
-
-
-            const resultado =
-                await getAgenda(
-                    dataInicio,
-                    dataFim
-                );
-
-
-            setEventos(
-                Array.isArray(resultado)
-                    ? resultado
-                    : []
-            );
-
-        }
-        catch (error) {
-
-            console.log(
-                "Erro ao carregar agenda:",
-                error
-            );
-
-            setErro(true);
-
-            setEventos([]);
-
-        }
-        finally {
-
-            setCarregando(false);
-
-        }
-
-    }
+        }, [
+            carregarAgenda,
+        ])
+    );
 
 
     /* =====================================================
        CARREGAR QUANDO MUDAR O MÊS
     ===================================================== */
 
-    useEffect(() => {
+    useFocusEffect(
+        React.useCallback(() => {
 
-        carregarAgenda();
+            carregarAgenda();
 
-    }, [mesAtual]);
+        }, [
+            carregarAgenda,
+        ])
+    );
 
 
     /* =====================================================
@@ -1022,9 +1040,11 @@ export default function AgendaScreen() {
                                 }
                                 activeOpacity={0.85}
                                 onPress={() =>
-                                    console.log(
-                                        "Evento:",
-                                        evento.id
+                                    navigation.navigate(
+                                        "AgendaDetalhe",
+                                        {
+                                            id: evento.id,
+                                        }
                                     )
                                 }
                             >

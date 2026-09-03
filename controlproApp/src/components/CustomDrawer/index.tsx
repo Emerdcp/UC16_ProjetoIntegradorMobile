@@ -1,31 +1,16 @@
 import React from "react";
-
 import {
     View,
     Text,
     Image,
     TouchableOpacity,
 } from "react-native";
-
-import {
-    DrawerContentComponentProps,
-} from "@react-navigation/drawer";
-
-import {
-    Ionicons,
-} from "@expo/vector-icons";
-
-import {
-    useAuth,
-} from "@/context/AuthContext";
-
-import {
-    styles,
-} from "./styles";
-
-import type {
-    AppScreen,
-} from "@/navigation/types";
+import { DrawerContentComponentProps,} from "@react-navigation/drawer";
+import { Ionicons,} from "@expo/vector-icons";
+import { useAuth,} from "@/context/AuthContext";
+import { styles,} from "./styles";
+import type { AppScreen,} from "@/navigation/types";
+import { CommonActions,} from "@react-navigation/native";
 
 
 /* =====================================================
@@ -62,34 +47,15 @@ const menuItems: MenuItem[] = [
     },
 
     {
-        label: "Projetos",
-        icon: "folder-outline",
-    },
-
-    {
         label: "Clientes",
         icon: "people-outline",
         screen: "Clientes",
     },
 
     {
-        label: "Kanban",
-        icon: "grid-outline",
-    },
-
-    {
         label: "Agenda",
         icon: "calendar-outline",
-    },
-
-    {
-        label: "Perfil",
-        icon: "person-outline",
-    },
-
-    {
-        label: "Configurações",
-        icon: "settings-outline",
+        screen: "Agenda",
     },
 
 ];
@@ -124,6 +90,35 @@ export default function CustomDrawer({
             return;
 
         }
+
+
+        /* =============================================
+           AGENDA
+           
+           Como Agenda possui um Navigator interno,
+           precisamos informar explicitamente que
+           queremos abrir a tela principal da Agenda.
+        ============================================= */
+
+        if (screen === "Agenda") {
+
+            navigation.dispatch(
+                CommonActions.navigate({
+                    name: "Agenda",
+                    params: {
+                        screen: "Agenda",
+                    },
+                })
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           DEMAIS TELAS
+        ============================================= */
 
         navigation.navigate(screen);
 
@@ -247,7 +242,7 @@ export default function CustomDrawer({
                                 styles.menuItem,
 
                                 isActive &&
-                                    styles.menuItemActive,
+                                styles.menuItemActive,
                             ]}
                             activeOpacity={0.8}
                             onPress={() =>
@@ -278,7 +273,7 @@ export default function CustomDrawer({
                                     styles.menuText,
 
                                     isActive &&
-                                        styles.menuTextActive,
+                                    styles.menuTextActive,
                                 ]}
                             >
 

@@ -67,7 +67,8 @@ export interface SistemaCliente {
 
 export async function getClientes(
     search = "",
-    page = 1
+    page = 1,
+    limit = 100
 ) {
 
     const response =
@@ -77,6 +78,7 @@ export async function getClientes(
                 params: {
                     search,
                     page,
+                    limit,
                 },
             }
         );

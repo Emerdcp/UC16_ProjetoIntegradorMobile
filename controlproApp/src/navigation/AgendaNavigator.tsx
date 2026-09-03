@@ -1,13 +1,8 @@
 import React from "react";
-
-import {
-    createNativeStackNavigator,
-} from "@react-navigation/native-stack";
-
+import { createNativeStackNavigator, } from "@react-navigation/native-stack";
 import AgendaScreen from "@/screens/Agenda/AgendaScreen";
-
-import NovoCompromissoScreen
-    from "@/screens/Agenda/NovoCompromissoScreen";
+import NovoCompromissoScreen from "@/screens/Agenda/NovoCompromissoScreen";
+import AgendaDetalheScreen from "@/screens/Agenda/AgendaDetalheScreen";
 
 
 /* =====================================================
@@ -15,11 +10,13 @@ import NovoCompromissoScreen
 ===================================================== */
 
 export type AgendaStackParamList = {
-
     Agenda: undefined;
 
     NovoCompromisso: undefined;
 
+    AgendaDetalhe: {
+        id: number;
+    };
 };
 
 
@@ -57,6 +54,11 @@ export default function AgendaNavigator() {
                 component={
                     NovoCompromissoScreen
                 }
+            />
+
+            <Stack.Screen
+                name="AgendaDetalhe"
+                component={AgendaDetalheScreen}
             />
 
         </Stack.Navigator>

@@ -627,4 +627,241 @@ export const styles = StyleSheet.create({
         color: Colors.white,
     },
 
+    /* =====================================================
+   MINI AGENDA DA HOME
+===================================================== */
+
+    homeCalendar: {
+        marginHorizontal: Spacing.lg,
+        padding: 13,
+        borderRadius: 18,
+        backgroundColor: "rgba(24, 39, 65, 0.95)",
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.08)",
+    },
+
+
+    homeCalendarHeader: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 12,
+    },
+
+
+    homeCalendarButton: {
+        width: 34,
+        height: 34,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+        backgroundColor: "rgba(5, 11, 44, 0.65)",
+    },
+
+
+    homeCalendarMonth: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+
+    homeCalendarMonthText: {
+        fontSize: 15,
+        fontWeight: "700",
+        color: Colors.white,
+    },
+
+
+    homeCalendarYear: {
+        marginTop: 1,
+        fontSize: 9,
+        color: Colors.textSecondary,
+    },
+
+
+    homeWeekRow: {
+        flexDirection: "row",
+        marginBottom: 5,
+    },
+
+
+    homeWeekText: {
+        width: `${100 / 7}%`,
+        textAlign: "center",
+        fontSize: 8,
+        fontWeight: "700",
+        color: Colors.textSecondary,
+    },
+
+
+    homeDaysGrid: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+
+
+    homeDayContainer: {
+        width: `${100 / 7}%`,
+        height: 31,
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+    },
+
+
+    homeDay: {
+        width: 27,
+        height: 27,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 14,
+    },
+
+
+    homeDaySelected: {
+        backgroundColor: "#4F8DF7",
+    },
+
+
+    homeDayToday: {
+        borderWidth: 1,
+        borderColor: "#4F8DF7",
+    },
+
+
+    homeDayText: {
+        fontSize: 10,
+        fontWeight: "600",
+        color: Colors.white,
+    },
+
+
+    homeDayTextSelected: {
+        color: Colors.white,
+        fontWeight: "700",
+    },
+
+
+    homeEventDot: {
+        position: "absolute",
+        bottom: 1,
+        width: 3,
+        height: 3,
+        borderRadius: 3,
+        backgroundColor: "#4F8DF7",
+    },
+
+
+    homeAgendaDayHeader: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginHorizontal: Spacing.lg,
+        marginTop: 16,
+        marginBottom: 10,
+    },
+
+
+    homeAgendaDayTitle: {
+        fontSize: 16,
+        fontWeight: "700",
+        color: Colors.white,
+    },
+
+
+    homeAgendaDaySubtitle: {
+        marginTop: 3,
+        fontSize: 10,
+        color: Colors.textSecondary,
+        textTransform: "capitalize",
+    },
+
+
+    homeAgendaCount: {
+        width: 32,
+        height: 32,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 16,
+        backgroundColor: "rgba(79, 141, 247, 0.14)",
+    },
+
+
+    homeAgendaCountText: {
+        fontSize: 12,
+        fontWeight: "700",
+        color: "#4F8DF7",
+    },
+
+
+    homeAgendaCard: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal: Spacing.lg,
+        marginBottom: 8,
+        padding: 11,
+        borderRadius: 15,
+        backgroundColor: "rgba(24, 39, 65, 0.95)",
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.08)",
+    },
+
+
+    homeAgendaIcon: {
+        width: 40,
+        height: 40,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 12,
+        marginRight: 10,
+        backgroundColor: "rgba(245, 158, 11, 0.13)",
+    },
+
+
+    homeAgendaContent: {
+        flex: 1,
+    },
+
+
+    homeAgendaTime: {
+        fontSize: 9,
+        fontWeight: "700",
+        color: "#4F8DF7",
+    },
+
+
+    homeAgendaTitle: {
+        marginTop: 2,
+        fontSize: 12,
+        fontWeight: "700",
+        color: Colors.white,
+    },
+
+
+    homeAgendaClient: {
+        marginTop: 2,
+        fontSize: 9,
+        color: Colors.textSecondary,
+    },
+
+
+    homeAgendaEmpty: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginHorizontal: Spacing.lg,
+        paddingVertical: 16,
+        borderRadius: 15,
+        backgroundColor: "rgba(24, 39, 65, 0.75)",
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.07)",
+    },
+
+
+    homeAgendaEmptyText: {
+        marginLeft: 8,
+        fontSize: 10,
+        color: Colors.textSecondary,
+    },
+
 });

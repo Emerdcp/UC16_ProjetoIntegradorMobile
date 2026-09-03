@@ -1,8 +1,4 @@
-import React, {
-    useEffect,
-    useState,
-} from "react";
-
+import React, { useEffect, useState,} from "react";
 import {
     Alert,
     FlatList,
@@ -14,48 +10,16 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-
-import {
-    Ionicons,
-} from "@expo/vector-icons";
-
+import { Ionicons,} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
-import {
-    useNavigation,
-} from "@react-navigation/native";
-
-import {
-    NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
-import {
-    SafeAreaView,
-} from "react-native-safe-area-context";
-
-import {
-    AgendaStackParamList,
-} from "@/navigation/AgendaNavigator";
-
-import {
-    createAgenda,
-} from "@/services/agendaService";
-
-import {
-    getClientes,
-    getClienteById,
-    Cliente,
-    EnderecoCliente,
-} from "@/services/clienteService";
-
-import {
-    getProjetos,
-    Projeto,
-} from "@/services/projetoService";
-
-import {
-    styles,
-} from "./NovoCompromissoStyles";
+import { useNavigation,} from "@react-navigation/native";
+import { NativeStackNavigationProp,} from "@react-navigation/native-stack";
+import { SafeAreaView,} from "react-native-safe-area-context";
+import { AgendaStackParamList,} from "@/navigation/AgendaNavigator";
+import { createAgenda,} from "@/services/agendaService";
+import { getClientes, getClienteById, Cliente, EnderecoCliente,} from "@/services/clienteService";
+import { getProjetos, Projeto,} from "@/services/projetoService";
+import { styles,} from "./NovoCompromissoStyles";
 
 
 /* =====================================================
@@ -266,6 +230,12 @@ export default function NovoCompromissoScreen() {
     const [horaFim, setHoraFim] =
         useState("10:00");
 
+    const [mostrarHoraInicio, setMostrarHoraInicio] =
+        useState(false);
+
+    const [mostrarHoraFim, setMostrarHoraFim] =
+        useState(false);
+
 
     /* =================================================
        DIA INTEIRO
@@ -334,6 +304,64 @@ export default function NovoCompromissoScreen() {
 
     const [salvando, setSalvando] =
         useState(false);
+
+
+
+    /* =================================================
+       HORAS
+    ================================================= */
+
+    function formatarHora(
+        data: Date
+    ) {
+
+        const hora =
+            String(
+                data.getHours()
+            ).padStart(2, "0");
+
+        const minuto =
+            String(
+                data.getMinutes()
+            ).padStart(2, "0");
+
+        return `${hora}:${minuto}`;
+
+    }
+
+    function alterarHoraInicio(
+        event: any,
+        data?: Date
+    ) {
+
+        setMostrarHoraInicio(false);
+
+        if (data) {
+
+            setHoraInicio(
+                formatarHora(data)
+            );
+
+        }
+
+    }
+
+    function alterarHoraFim(
+        event: any,
+        data?: Date
+    ) {
+
+        setMostrarHoraFim(false);
+
+        if (data) {
+
+            setHoraFim(
+                formatarHora(data)
+            );
+
+        }
+
+    }
 
 
     /* =================================================
@@ -1180,23 +1208,21 @@ export default function NovoCompromissoScreen() {
                     >
 
                         <View
-                            style={
-                                styles.timeField
-                            }
+                            style={styles.timeField}
                         >
 
                             <Text
-                                style={
-                                    styles.label
-                                }
+                                style={styles.label}
                             >
                                 Início
                             </Text>
 
 
-                            <View
-                                style={
-                                    styles.inputContainer
+                            <TouchableOpacity
+                                style={styles.inputContainer}
+                                activeOpacity={0.8}
+                                onPress={() =>
+                                    setMostrarHoraInicio(true)
                                 }
                             >
 
@@ -1207,45 +1233,80 @@ export default function NovoCompromissoScreen() {
                                 />
 
 
-                                <TextInput
-                                    style={
-                                        styles.input
-                                    }
-                                    placeholder="09:00"
-                                    placeholderTextColor="#64748B"
-                                    keyboardType="numeric"
-                                    maxLength={5}
+                                <Text
+                                    style={[
+                                        styles.input,
+                                        {
+                                            paddingVertical: 15,
+                                            color: "#FFFFFF",
+                                        },
+                                    ]}
+                                >
+                                    {horaInicio}
+                                </Text>
+
+
+                                <Ionicons
+                                    name="chevron-forward-outline"
+                                    size={18}
+                                    color="#64748B"
+                                />
+
+                            </TouchableOpacity>
+
+
+                            {mostrarHoraInicio && (
+
+                                <DateTimePicker
                                     value={
-                                        horaInicio
+                                        (() => {
+
+                                            const [hora, minuto] =
+                                                horaInicio.split(":");
+
+                                            const data =
+                                                new Date();
+
+                                            data.setHours(
+                                                Number(hora)
+                                            );
+
+                                            data.setMinutes(
+                                                Number(minuto)
+                                            );
+
+                                            return data;
+
+                                        })()
                                     }
-                                    onChangeText={
-                                        setHoraInicio
+                                    mode="time"
+                                    display="clock"
+                                    is24Hour={true}
+                                    onChange={
+                                        alterarHoraInicio
                                     }
                                 />
 
-                            </View>
+                            )}
 
                         </View>
 
-
                         <View
-                            style={
-                                styles.timeField
-                            }
+                            style={styles.timeField}
                         >
 
                             <Text
-                                style={
-                                    styles.label
-                                }
+                                style={styles.label}
                             >
                                 Término
                             </Text>
 
 
-                            <View
-                                style={
-                                    styles.inputContainer
+                            <TouchableOpacity
+                                style={styles.inputContainer}
+                                activeOpacity={0.8}
+                                onPress={() =>
+                                    setMostrarHoraFim(true)
                                 }
                             >
 
@@ -1256,23 +1317,61 @@ export default function NovoCompromissoScreen() {
                                 />
 
 
-                                <TextInput
-                                    style={
-                                        styles.input
-                                    }
-                                    placeholder="10:00"
-                                    placeholderTextColor="#64748B"
-                                    keyboardType="numeric"
-                                    maxLength={5}
+                                <Text
+                                    style={[
+                                        styles.input,
+                                        {
+                                            paddingVertical: 15,
+                                            color: "#FFFFFF",
+                                        },
+                                    ]}
+                                >
+                                    {horaFim}
+                                </Text>
+
+
+                                <Ionicons
+                                    name="chevron-forward-outline"
+                                    size={18}
+                                    color="#64748B"
+                                />
+
+                            </TouchableOpacity>
+
+
+                            {mostrarHoraFim && (
+
+                                <DateTimePicker
                                     value={
-                                        horaFim
+                                        (() => {
+
+                                            const [hora, minuto] =
+                                                horaFim.split(":");
+
+                                            const data =
+                                                new Date();
+
+                                            data.setHours(
+                                                Number(hora)
+                                            );
+
+                                            data.setMinutes(
+                                                Number(minuto)
+                                            );
+
+                                            return data;
+
+                                        })()
                                     }
-                                    onChangeText={
-                                        setHoraFim
+                                    mode="time"
+                                    display="clock"
+                                    is24Hour={true}
+                                    onChange={
+                                        alterarHoraFim
                                     }
                                 />
 
-                            </View>
+                            )}
 
                         </View>
 
@@ -1281,775 +1380,775 @@ export default function NovoCompromissoScreen() {
                 )}
 
 
-                {/* =================================================
+            {/* =================================================
                     CLIENTE
                 ================================================= */}
 
-                <View style={styles.field}>
+            <View style={styles.field}>
 
-                    <Text style={styles.label}>
-                        Cliente
-                        <Text style={styles.optional}>
-                            {" "}opcional
-                        </Text>
+                <Text style={styles.label}>
+                    Cliente
+                    <Text style={styles.optional}>
+                        {" "}opcional
                     </Text>
+                </Text>
 
-
-                    <TouchableOpacity
-                        style={
-                            styles.inputContainer
-                        }
-                        activeOpacity={0.8}
-                        onPress={
-                            abrirClientes
-                        }
-                    >
-
-                        <Ionicons
-                            name="business-outline"
-                            size={19}
-                            color="#64748B"
-                        />
-
-
-                        <Text
-                            style={[
-                                styles.input,
-                                {
-                                    color:
-                                        nomeCliente
-                                            ? "#FFFFFF"
-                                            : "#64748B",
-                                    paddingVertical: 15,
-                                },
-                            ]}
-                            numberOfLines={1}
-                        >
-                            {
-                                nomeCliente ||
-                                "Selecionar cliente"
-                            }
-                        </Text>
-
-
-                        <Ionicons
-                            name="chevron-forward-outline"
-                            size={18}
-                            color="#64748B"
-                        />
-
-                    </TouchableOpacity>
-
-                </View>
-
-
-                {/* =================================================
-                    PROJETO
-                ================================================= */}
-
-                <View style={styles.field}>
-
-                    <Text style={styles.label}>
-                        Projeto
-                        <Text style={styles.optional}>
-                            {" "}opcional
-                        </Text>
-                    </Text>
-
-
-                    <TouchableOpacity
-                        style={[
-                            styles.inputContainer,
-
-                            !clienteSelecionado &&
-                            {
-                                opacity: 0.55,
-                            },
-                        ]}
-                        activeOpacity={0.8}
-                        onPress={
-                            abrirProjetos
-                        }
-                    >
-
-                        <Ionicons
-                            name="folder-outline"
-                            size={19}
-                            color="#64748B"
-                        />
-
-
-                        <Text
-                            style={[
-                                styles.input,
-                                {
-                                    color:
-                                        nomeProjeto
-                                            ? "#FFFFFF"
-                                            : "#64748B",
-                                    paddingVertical: 15,
-                                },
-                            ]}
-                            numberOfLines={1}
-                        >
-                            {
-                                nomeProjeto ||
-                                (
-                                    clienteSelecionado
-                                        ? "Selecionar projeto"
-                                        : "Selecione um cliente primeiro"
-                                )
-                            }
-                        </Text>
-
-
-                        <Ionicons
-                            name="chevron-forward-outline"
-                            size={18}
-                            color="#64748B"
-                        />
-
-                    </TouchableOpacity>
-
-                </View>
-
-
-                {/* =================================================
-                    ATENDIMENTO
-                ================================================= */}
-
-                <View style={styles.field}>
-
-                    <Text style={styles.label}>
-                        Atendimento
-                        <Text style={styles.optional}>
-                            {" "}opcional
-                        </Text>
-                    </Text>
-
-
-                    <View
-                        style={
-                            styles.inputContainer
-                        }
-                    >
-
-                        <Ionicons
-                            name="headset-outline"
-                            size={19}
-                            color="#64748B"
-                        />
-
-
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Selecionar atendimento"
-                            placeholderTextColor="#64748B"
-                            value={
-                                atendimento
-                            }
-                            onChangeText={
-                                setAtendimento
-                            }
-                        />
-
-                    </View>
-
-                </View>
-
-
-                {/* =================================================
-                    LOCAL
-                ================================================= */}
-
-                <View style={styles.field}>
-
-                    <Text style={styles.label}>
-                        Local
-                        <Text style={styles.optional}>
-                            {" "}preenchido pelo cliente
-                        </Text>
-                    </Text>
-
-
-                    <View
-                        style={
-                            styles.inputContainer
-                        }
-                    >
-
-                        <Ionicons
-                            name="location-outline"
-                            size={19}
-                            color="#64748B"
-                        />
-
-
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Endereço do compromisso"
-                            placeholderTextColor="#64748B"
-                            value={local}
-                            onChangeText={
-                                setLocal
-                            }
-                        />
-
-                    </View>
-
-                </View>
-
-
-                {/* =================================================
-                    OBSERVAÇÃO
-                ================================================= */}
-
-                <View style={styles.field}>
-
-                    <Text style={styles.label}>
-                        Observação
-                    </Text>
-
-
-                    <View
-                        style={[
-                            styles.inputContainer,
-                            styles.textAreaContainer,
-                        ]}
-                    >
-
-                        <Ionicons
-                            name="document-text-outline"
-                            size={19}
-                            color="#64748B"
-                            style={
-                                styles.textAreaIcon
-                            }
-                        />
-
-
-                        <TextInput
-                            style={[
-                                styles.input,
-                                styles.textArea,
-                            ]}
-                            placeholder="Descreva o compromisso..."
-                            placeholderTextColor="#64748B"
-                            multiline
-                            textAlignVertical="top"
-                            value={
-                                descricao
-                            }
-                            onChangeText={
-                                setDescricao
-                            }
-                        />
-
-                    </View>
-
-                </View>
-
-
-                {/* =================================================
-                    SALVAR
-                ================================================= */}
 
                 <TouchableOpacity
-                    style={[
-                        styles.saveButton,
-
-                        salvando && {
-                            opacity: 0.65,
-                        },
-                    ]}
-                    activeOpacity={0.85}
-                    disabled={salvando}
+                    style={
+                        styles.inputContainer
+                    }
+                    activeOpacity={0.8}
                     onPress={
-                        salvar
+                        abrirClientes
                     }
                 >
 
-                    {salvando ? (
-
-                        <Ionicons
-                            name="sync-outline"
-                            size={21}
-                            color="#FFFFFF"
-                        />
-
-                    ) : (
-
-                        <Ionicons
-                            name="checkmark-outline"
-                            size={21}
-                            color="#FFFFFF"
-                        />
-
-                    )}
+                    <Ionicons
+                        name="business-outline"
+                        size={19}
+                        color="#64748B"
+                    />
 
 
                     <Text
-                        style={
-                            styles.saveButtonText
-                        }
+                        style={[
+                            styles.input,
+                            {
+                                color:
+                                    nomeCliente
+                                        ? "#FFFFFF"
+                                        : "#64748B",
+                                paddingVertical: 15,
+                            },
+                        ]}
+                        numberOfLines={1}
                     >
-                        {salvando
-                            ? "Salvando..."
-                            : "Salvar compromisso"}
+                        {
+                            nomeCliente ||
+                            "Selecionar cliente"
+                        }
                     </Text>
 
+
+                    <Ionicons
+                        name="chevron-forward-outline"
+                        size={18}
+                        color="#64748B"
+                    />
+
                 </TouchableOpacity>
+
+            </View>
+
+
+            {/* =================================================
+                    PROJETO
+                ================================================= */}
+
+            <View style={styles.field}>
+
+                <Text style={styles.label}>
+                    Projeto
+                    <Text style={styles.optional}>
+                        {" "}opcional
+                    </Text>
+                </Text>
+
+
+                <TouchableOpacity
+                    style={[
+                        styles.inputContainer,
+
+                        !clienteSelecionado &&
+                        {
+                            opacity: 0.55,
+                        },
+                    ]}
+                    activeOpacity={0.8}
+                    onPress={
+                        abrirProjetos
+                    }
+                >
+
+                    <Ionicons
+                        name="folder-outline"
+                        size={19}
+                        color="#64748B"
+                    />
+
+
+                    <Text
+                        style={[
+                            styles.input,
+                            {
+                                color:
+                                    nomeProjeto
+                                        ? "#FFFFFF"
+                                        : "#64748B",
+                                paddingVertical: 15,
+                            },
+                        ]}
+                        numberOfLines={1}
+                    >
+                        {
+                            nomeProjeto ||
+                            (
+                                clienteSelecionado
+                                    ? "Selecionar projeto"
+                                    : "Selecione um cliente primeiro"
+                            )
+                        }
+                    </Text>
+
+
+                    <Ionicons
+                        name="chevron-forward-outline"
+                        size={18}
+                        color="#64748B"
+                    />
+
+                </TouchableOpacity>
+
+            </View>
+
+
+            {/* =================================================
+                    ATENDIMENTO
+                ================================================= */}
+
+            <View style={styles.field}>
+
+                <Text style={styles.label}>
+                    Atendimento
+                    <Text style={styles.optional}>
+                        {" "}opcional
+                    </Text>
+                </Text>
 
 
                 <View
                     style={
-                        styles.bottomSpace
+                        styles.inputContainer
                     }
-                />
+                >
 
-            </ScrollView>
+                    <Ionicons
+                        name="headset-outline"
+                        size={19}
+                        color="#64748B"
+                    />
+
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Selecionar atendimento"
+                        placeholderTextColor="#64748B"
+                        value={
+                            atendimento
+                        }
+                        onChangeText={
+                            setAtendimento
+                        }
+                    />
+
+                </View>
+
+            </View>
+
+
+            {/* =================================================
+                    LOCAL
+                ================================================= */}
+
+            <View style={styles.field}>
+
+                <Text style={styles.label}>
+                    Local
+                    <Text style={styles.optional}>
+                        {" "}preenchido pelo cliente
+                    </Text>
+                </Text>
+
+
+                <View
+                    style={
+                        styles.inputContainer
+                    }
+                >
+
+                    <Ionicons
+                        name="location-outline"
+                        size={19}
+                        color="#64748B"
+                    />
+
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Endereço do compromisso"
+                        placeholderTextColor="#64748B"
+                        value={local}
+                        onChangeText={
+                            setLocal
+                        }
+                    />
+
+                </View>
+
+            </View>
+
+
+            {/* =================================================
+                    OBSERVAÇÃO
+                ================================================= */}
+
+            <View style={styles.field}>
+
+                <Text style={styles.label}>
+                    Observação
+                </Text>
+
+
+                <View
+                    style={[
+                        styles.inputContainer,
+                        styles.textAreaContainer,
+                    ]}
+                >
+
+                    <Ionicons
+                        name="document-text-outline"
+                        size={19}
+                        color="#64748B"
+                        style={
+                            styles.textAreaIcon
+                        }
+                    />
+
+
+                    <TextInput
+                        style={[
+                            styles.input,
+                            styles.textArea,
+                        ]}
+                        placeholder="Descreva o compromisso..."
+                        placeholderTextColor="#64748B"
+                        multiline
+                        textAlignVertical="top"
+                        value={
+                            descricao
+                        }
+                        onChangeText={
+                            setDescricao
+                        }
+                    />
+
+                </View>
+
+            </View>
+
+
+            {/* =================================================
+                    SALVAR
+                ================================================= */}
+
+            <TouchableOpacity
+                style={[
+                    styles.saveButton,
+
+                    salvando && {
+                        opacity: 0.65,
+                    },
+                ]}
+                activeOpacity={0.85}
+                disabled={salvando}
+                onPress={
+                    salvar
+                }
+            >
+
+                {salvando ? (
+
+                    <Ionicons
+                        name="sync-outline"
+                        size={21}
+                        color="#FFFFFF"
+                    />
+
+                ) : (
+
+                    <Ionicons
+                        name="checkmark-outline"
+                        size={21}
+                        color="#FFFFFF"
+                    />
+
+                )}
+
+
+                <Text
+                    style={
+                        styles.saveButtonText
+                    }
+                >
+                    {salvando
+                        ? "Salvando..."
+                        : "Salvar compromisso"}
+                </Text>
+
+            </TouchableOpacity>
+
+
+            <View
+                style={
+                    styles.bottomSpace
+                }
+            />
+
+        </ScrollView>
 
 
             {/* =================================================
                 MODAL DE CLIENTES
             ================================================= */}
 
-            <Modal
-                visible={
-                    mostrarClientes
-                }
-                transparent
-                animationType="slide"
-                onRequestClose={() =>
-                    setMostrarClientes(false)
+    <Modal
+        visible={
+            mostrarClientes
+        }
+        transparent
+        animationType="slide"
+        onRequestClose={() =>
+            setMostrarClientes(false)
+        }
+    >
+
+        <View
+            style={
+                styles.modalOverlay
+            }
+        >
+
+            <View
+                style={
+                    styles.modalContainer
                 }
             >
 
                 <View
                     style={
-                        styles.modalOverlay
+                        styles.modalHeader
                     }
                 >
 
-                    <View
+                    <View>
+
+                        <Text
+                            style={
+                                styles.modalTitle
+                            }
+                        >
+                            Selecionar cliente
+                        </Text>
+
+
+                        <Text
+                            style={
+                                styles.modalSubtitle
+                            }
+                        >
+                            Clientes cadastrados
+                        </Text>
+
+                    </View>
+
+
+                    <TouchableOpacity
                         style={
-                            styles.modalContainer
+                            styles.modalClose
+                        }
+                        onPress={() =>
+                            setMostrarClientes(
+                                false
+                            )
                         }
                     >
 
-                        <View
+                        <Ionicons
+                            name="close-outline"
+                            size={23}
+                            color="#FFFFFF"
+                        />
+
+                    </TouchableOpacity>
+
+                </View>
+
+
+                {carregandoClientes ? (
+
+                    <View
+                        style={
+                            styles.modalLoading
+                        }
+                    >
+
+                        <Text
                             style={
-                                styles.modalHeader
+                                styles.modalLoadingText
                             }
                         >
+                            Carregando clientes...
+                        </Text>
 
-                            <View>
+                    </View>
 
-                                <Text
-                                    style={
-                                        styles.modalTitle
-                                    }
-                                >
-                                    Selecionar cliente
-                                </Text>
+                ) : (
 
-
-                                <Text
-                                    style={
-                                        styles.modalSubtitle
-                                    }
-                                >
-                                    Clientes cadastrados
-                                </Text>
-
-                            </View>
-
+                    <FlatList
+                        data={
+                            clientes
+                        }
+                        keyExtractor={
+                            (item) =>
+                                String(
+                                    item.id
+                                )
+                        }
+                        showsVerticalScrollIndicator={
+                            false
+                        }
+                        renderItem={({
+                            item,
+                        }) => (
 
                             <TouchableOpacity
                                 style={
-                                    styles.modalClose
+                                    styles.modalItem
+                                }
+                                activeOpacity={
+                                    0.8
                                 }
                                 onPress={() =>
-                                    setMostrarClientes(
-                                        false
+                                    selecionarCliente(
+                                        item
                                     )
                                 }
                             >
 
+                                <View
+                                    style={
+                                        styles.modalItemIcon
+                                    }
+                                >
+
+                                    <Ionicons
+                                        name="business-outline"
+                                        size={20}
+                                        color="#4F8DF7"
+                                    />
+
+                                </View>
+
+
+                                <View
+                                    style={
+                                        styles.modalItemContent
+                                    }
+                                >
+
+                                    <Text
+                                        style={
+                                            styles.modalItemTitle
+                                        }
+                                        numberOfLines={
+                                            1
+                                        }
+                                    >
+                                        {
+                                            item.cli_fantasia ||
+                                            item.cli_razaosocial
+                                        }
+                                    </Text>
+
+
+                                    <Text
+                                        style={
+                                            styles.modalItemSubtitle
+                                        }
+                                        numberOfLines={
+                                            1
+                                        }
+                                    >
+                                        {
+                                            item.cli_cnpjcpf ||
+                                            "Cliente"
+                                        }
+                                    </Text>
+
+                                </View>
+
+
                                 <Ionicons
-                                    name="close-outline"
-                                    size={23}
-                                    color="#FFFFFF"
+                                    name="chevron-forward-outline"
+                                    size={18}
+                                    color="#64748B"
                                 />
 
                             </TouchableOpacity>
 
-                        </View>
-
-
-                        {carregandoClientes ? (
+                        )}
+                        ListEmptyComponent={
 
                             <View
                                 style={
-                                    styles.modalLoading
+                                    styles.modalEmpty
                                 }
                             >
 
                                 <Text
                                     style={
-                                        styles.modalLoadingText
+                                        styles.modalEmptyText
                                     }
                                 >
-                                    Carregando clientes...
+                                    Nenhum cliente encontrado.
                                 </Text>
 
                             </View>
 
-                        ) : (
+                        }
+                    />
 
-                            <FlatList
-                                data={
-                                    clientes
-                                }
-                                keyExtractor={
-                                    (item) =>
-                                        String(
-                                            item.id
-                                        )
-                                }
-                                showsVerticalScrollIndicator={
-                                    false
-                                }
-                                renderItem={({
-                                    item,
-                                }) => (
+                )}
 
-                                    <TouchableOpacity
-                                        style={
-                                            styles.modalItem
-                                        }
-                                        activeOpacity={
-                                            0.8
-                                        }
-                                        onPress={() =>
-                                            selecionarCliente(
-                                                item
-                                            )
-                                        }
-                                    >
+            </View>
 
-                                        <View
-                                            style={
-                                                styles.modalItemIcon
-                                            }
-                                        >
+        </View>
 
-                                            <Ionicons
-                                                name="business-outline"
-                                                size={20}
-                                                color="#4F8DF7"
-                                            />
-
-                                        </View>
+    </Modal>
 
 
-                                        <View
-                                            style={
-                                                styles.modalItemContent
-                                            }
-                                        >
-
-                                            <Text
-                                                style={
-                                                    styles.modalItemTitle
-                                                }
-                                                numberOfLines={
-                                                    1
-                                                }
-                                            >
-                                                {
-                                                    item.cli_fantasia ||
-                                                    item.cli_razaosocial
-                                                }
-                                            </Text>
-
-
-                                            <Text
-                                                style={
-                                                    styles.modalItemSubtitle
-                                                }
-                                                numberOfLines={
-                                                    1
-                                                }
-                                            >
-                                                {
-                                                    item.cli_cnpjcpf ||
-                                                    "Cliente"
-                                                }
-                                            </Text>
-
-                                        </View>
-
-
-                                        <Ionicons
-                                            name="chevron-forward-outline"
-                                            size={18}
-                                            color="#64748B"
-                                        />
-
-                                    </TouchableOpacity>
-
-                                )}
-                                ListEmptyComponent={
-
-                                    <View
-                                        style={
-                                            styles.modalEmpty
-                                        }
-                                    >
-
-                                        <Text
-                                            style={
-                                                styles.modalEmptyText
-                                            }
-                                        >
-                                            Nenhum cliente encontrado.
-                                        </Text>
-
-                                    </View>
-
-                                }
-                            />
-
-                        )}
-
-                    </View>
-
-                </View>
-
-            </Modal>
-
-
-            {/* =================================================
+    {/* =================================================
                 MODAL DE PROJETOS
             ================================================= */}
 
-            <Modal
-                visible={
-                    mostrarProjetos
-                }
-                transparent
-                animationType="slide"
-                onRequestClose={() =>
-                    setMostrarProjetos(false)
+    <Modal
+        visible={
+            mostrarProjetos
+        }
+        transparent
+        animationType="slide"
+        onRequestClose={() =>
+            setMostrarProjetos(false)
+        }
+    >
+
+        <View
+            style={
+                styles.modalOverlay
+            }
+        >
+
+            <View
+                style={
+                    styles.modalContainer
                 }
             >
 
                 <View
                     style={
-                        styles.modalOverlay
+                        styles.modalHeader
                     }
                 >
 
-                    <View
+                    <View>
+
+                        <Text
+                            style={
+                                styles.modalTitle
+                            }
+                        >
+                            Selecionar projeto
+                        </Text>
+
+
+                        <Text
+                            style={
+                                styles.modalSubtitle
+                            }
+                        >
+                            Projetos do cliente
+                        </Text>
+
+                    </View>
+
+
+                    <TouchableOpacity
                         style={
-                            styles.modalContainer
+                            styles.modalClose
+                        }
+                        onPress={() =>
+                            setMostrarProjetos(
+                                false
+                            )
                         }
                     >
 
-                        <View
+                        <Ionicons
+                            name="close-outline"
+                            size={23}
+                            color="#FFFFFF"
+                        />
+
+                    </TouchableOpacity>
+
+                </View>
+
+
+                {carregandoProjetos ? (
+
+                    <View
+                        style={
+                            styles.modalLoading
+                        }
+                    >
+
+                        <Text
                             style={
-                                styles.modalHeader
+                                styles.modalLoadingText
                             }
                         >
+                            Carregando projetos...
+                        </Text>
 
-                            <View>
+                    </View>
 
-                                <Text
-                                    style={
-                                        styles.modalTitle
-                                    }
-                                >
-                                    Selecionar projeto
-                                </Text>
+                ) : (
 
-
-                                <Text
-                                    style={
-                                        styles.modalSubtitle
-                                    }
-                                >
-                                    Projetos do cliente
-                                </Text>
-
-                            </View>
-
+                    <FlatList
+                        data={
+                            projetos
+                        }
+                        keyExtractor={
+                            (item) =>
+                                String(
+                                    item.id
+                                )
+                        }
+                        showsVerticalScrollIndicator={
+                            false
+                        }
+                        renderItem={({
+                            item,
+                        }) => (
 
                             <TouchableOpacity
                                 style={
-                                    styles.modalClose
+                                    styles.modalItem
+                                }
+                                activeOpacity={
+                                    0.8
                                 }
                                 onPress={() =>
-                                    setMostrarProjetos(
-                                        false
+                                    selecionarProjeto(
+                                        item
                                     )
                                 }
                             >
 
+                                <View
+                                    style={
+                                        styles.modalItemIcon
+                                    }
+                                >
+
+                                    <Ionicons
+                                        name="folder-outline"
+                                        size={20}
+                                        color="#A78BFA"
+                                    />
+
+                                </View>
+
+
+                                <View
+                                    style={
+                                        styles.modalItemContent
+                                    }
+                                >
+
+                                    <Text
+                                        style={
+                                            styles.modalItemTitle
+                                        }
+                                        numberOfLines={
+                                            1
+                                        }
+                                    >
+                                        {
+                                            item.pj_codigo
+                                        }
+                                    </Text>
+
+
+                                    <Text
+                                        style={
+                                            styles.modalItemSubtitle
+                                        }
+                                        numberOfLines={
+                                            2
+                                        }
+                                    >
+                                        {
+                                            item.pj_descresumo ||
+                                            "Projeto"
+                                        }
+                                    </Text>
+
+                                </View>
+
+
                                 <Ionicons
-                                    name="close-outline"
-                                    size={23}
-                                    color="#FFFFFF"
+                                    name="chevron-forward-outline"
+                                    size={18}
+                                    color="#64748B"
                                 />
 
                             </TouchableOpacity>
 
-                        </View>
-
-
-                        {carregandoProjetos ? (
+                        )}
+                        ListEmptyComponent={
 
                             <View
                                 style={
-                                    styles.modalLoading
+                                    styles.modalEmpty
                                 }
                             >
 
                                 <Text
                                     style={
-                                        styles.modalLoadingText
+                                        styles.modalEmptyText
                                     }
                                 >
-                                    Carregando projetos...
+                                    Este cliente não possui
+                                    projetos cadastrados.
                                 </Text>
 
                             </View>
 
-                        ) : (
+                        }
+                    />
 
-                            <FlatList
-                                data={
-                                    projetos
-                                }
-                                keyExtractor={
-                                    (item) =>
-                                        String(
-                                            item.id
-                                        )
-                                }
-                                showsVerticalScrollIndicator={
-                                    false
-                                }
-                                renderItem={({
-                                    item,
-                                }) => (
+                )}
 
-                                    <TouchableOpacity
-                                        style={
-                                            styles.modalItem
-                                        }
-                                        activeOpacity={
-                                            0.8
-                                        }
-                                        onPress={() =>
-                                            selecionarProjeto(
-                                                item
-                                            )
-                                        }
-                                    >
+            </View>
 
-                                        <View
-                                            style={
-                                                styles.modalItemIcon
-                                            }
-                                        >
+        </View>
 
-                                            <Ionicons
-                                                name="folder-outline"
-                                                size={20}
-                                                color="#A78BFA"
-                                            />
+    </Modal>
 
-                                        </View>
-
-
-                                        <View
-                                            style={
-                                                styles.modalItemContent
-                                            }
-                                        >
-
-                                            <Text
-                                                style={
-                                                    styles.modalItemTitle
-                                                }
-                                                numberOfLines={
-                                                    1
-                                                }
-                                            >
-                                                {
-                                                    item.pj_codigo
-                                                }
-                                            </Text>
-
-
-                                            <Text
-                                                style={
-                                                    styles.modalItemSubtitle
-                                                }
-                                                numberOfLines={
-                                                    2
-                                                }
-                                            >
-                                                {
-                                                    item.pj_descresumo ||
-                                                    "Projeto"
-                                                }
-                                            </Text>
-
-                                        </View>
-
-
-                                        <Ionicons
-                                            name="chevron-forward-outline"
-                                            size={18}
-                                            color="#64748B"
-                                        />
-
-                                    </TouchableOpacity>
-
-                                )}
-                                ListEmptyComponent={
-
-                                    <View
-                                        style={
-                                            styles.modalEmpty
-                                        }
-                                    >
-
-                                        <Text
-                                            style={
-                                                styles.modalEmptyText
-                                            }
-                                        >
-                                            Este cliente não possui
-                                            projetos cadastrados.
-                                        </Text>
-
-                                    </View>
-
-                                }
-                            />
-
-                        )}
-
-                    </View>
-
-                </View>
-
-            </Modal>
-
-        </SafeAreaView>
+        </SafeAreaView >
 
     );
 
