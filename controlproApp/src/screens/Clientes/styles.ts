@@ -5,6 +5,7 @@ import {
     Radius,
     Spacing,
 } from "@/designSystem";
+import Button from "@/components/Button";
 
 
 export const styles = StyleSheet.create({
@@ -415,7 +416,7 @@ export const styles = StyleSheet.create({
         position: "absolute",
 
         right: 22,
-        bottom: 25,
+        bottom: 80,
 
         width: 60,
         height: 60,
@@ -437,5 +438,4 @@ export const styles = StyleSheet.create({
             height: 4,
         },
     },
-
 });

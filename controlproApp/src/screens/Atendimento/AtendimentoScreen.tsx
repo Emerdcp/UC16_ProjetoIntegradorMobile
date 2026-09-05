@@ -437,6 +437,26 @@ export default function AtendimentoScreen() {
 
                     </TouchableOpacity>
 
+                    {/* =================================================
+                        HOME
+                    ================================================= */}
+
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        activeOpacity={0.8}
+                        onPress={() =>
+                            navigation.getParent()?.navigate("Home")
+                        }
+                    >
+
+                        <Ionicons
+                            name="home-outline"
+                            size={22}
+                            color="#FFFFFF"
+                        />
+
+                    </TouchableOpacity>
+
                 </View>
 
 

@@ -572,9 +572,16 @@ export default function HomeScreen() {
                     <TouchableOpacity
                         style={styles.headerButton}
                         activeOpacity={0.8}
-                        onPress={() => {
-                            console.log("Notificações");
-                        }}
+                        onPress={() =>
+                            navigation.dispatch(
+                                CommonActions.navigate({
+                                    name: "Agenda",
+                                    params: {
+                                        screen: "Agenda",
+                                    },
+                                })
+                            )
+                        }
                     >
 
                         <Ionicons

@@ -1725,6 +1725,122 @@ export default function AtendimentoDetalheScreen() {
                        DIAGNÓSTICO / SOLUÇÃO
                     ================================================= */}
 
+                    {/* =================================================
+                       ATENDIMENTO FINALIZADO
+
+                       Quando o atendimento já foi finalizado,
+                       diagnóstico e solução ficam disponíveis
+                       somente para consulta.
+                    ================================================= */}
+
+                    {atendimento.at_status === "F" && (
+
+                        <>
+
+                            {/* =========================================
+                               DIAGNÓSTICO
+                            ========================================= */}
+
+                            <Text
+                                style={
+                                    styles.sectionTitle
+                                }
+                            >
+                                Diagnóstico
+                            </Text>
+
+                            <View
+                                style={styles.card}
+                            >
+
+                                <Text
+                                    style={
+                                        styles.inputLabel
+                                    }
+                                >
+                                    Causa identificada
+                                </Text>
+
+                                <Text
+                                    style={{
+                                        color: "#FFFFFF",
+                                        fontSize: 14,
+                                        lineHeight: 21,
+                                        marginTop: 8,
+                                    }}
+                                >
+                                    {causa.trim() ||
+                                        "Nenhuma causa informada."}
+                                </Text>
+
+
+                                <Text
+                                    style={[
+                                        styles.inputLabel,
+                                        styles.inputLabelSecond,
+                                    ]}
+                                >
+                                    Observações do diagnóstico
+                                </Text>
+
+                                <Text
+                                    style={{
+                                        color: "#FFFFFF",
+                                        fontSize: 14,
+                                        lineHeight: 21,
+                                        marginTop: 8,
+                                    }}
+                                >
+                                    {observacaoDiagnostico.trim() ||
+                                        "Nenhuma observação informada."}
+                                </Text>
+
+                            </View>
+
+
+                            {/* =========================================
+                               SOLUÇÃO
+                            ========================================= */}
+
+                            <Text
+                                style={
+                                    styles.sectionTitle
+                                }
+                            >
+                                Solução
+                            </Text>
+
+                            <View
+                                style={styles.card}
+                            >
+
+                                <Text
+                                    style={
+                                        styles.inputLabel
+                                    }
+                                >
+                                    Solução aplicada
+                                </Text>
+
+                                <Text
+                                    style={{
+                                        color: "#FFFFFF",
+                                        fontSize: 14,
+                                        lineHeight: 21,
+                                        marginTop: 8,
+                                    }}
+                                >
+                                    {solucao.trim() ||
+                                        "Nenhuma solução informada."}
+                                </Text>
+
+                            </View>
+
+                        </>
+
+                    )}
+
+
                     {podeEditar && (
 
                         <>

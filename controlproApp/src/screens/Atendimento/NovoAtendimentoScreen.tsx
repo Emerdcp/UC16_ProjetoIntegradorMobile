@@ -79,7 +79,9 @@ export default function NovoAtendimentoScreen() {
     const [clientes, setClientes] = useState<Cliente[]>([]);
     const [clienteId, setClienteId] = useState<number | null>(null);
     const [clienteNome, setClienteNome] = useState("");
-
+    const [carregandoClientes, setCarregandoClientes] = useState(false);
+    const [mostrarClientes, setMostrarClientes] = useState(false);
+    const [buscaCliente, setBuscaCliente] = useState("");
 
     /* =====================================================
        PROJETO
@@ -332,6 +334,42 @@ export default function NovoAtendimentoScreen() {
 
     }
 
+    /* =================================================
+        FILTRAR CLIENTES
+    ================================================= */
+
+    const clientesFiltrados =
+        clientes.filter((cliente) => {
+
+            const busca =
+                buscaCliente
+                    .toLowerCase()
+                    .trim();
+
+            if (!busca) {
+                return true;
+            }
+
+            const nomeFantasia =
+                cliente.cli_fantasia
+                    ?.toLowerCase() || "";
+
+            const razaoSocial =
+                cliente.cli_razaosocial
+                    ?.toLowerCase() || "";
+
+            const documento =
+                cliente.cli_cnpjcpf
+                    ?.toLowerCase() || "";
+
+            return (
+                nomeFantasia.includes(busca) ||
+                razaoSocial.includes(busca) ||
+                documento.includes(busca)
+            );
+
+        });
+
 
     /* =====================================================
        SALVAR ATENDIMENTO
@@ -513,7 +551,7 @@ export default function NovoAtendimentoScreen() {
                 return (
 
                     <FlatList
-                        data={clientes}
+                        data={clientesFiltrados}
                         keyExtractor={(item) =>
                             String(item.id)
                         }
@@ -1410,6 +1448,43 @@ export default function NovoAtendimentoScreen() {
                                     />
 
                                 </TouchableOpacity>
+
+                            </View>
+
+                            <View style={styles.modalSearchContainer}>
+
+                                <Ionicons
+                                    name="search-outline"
+                                    size={20}
+                                    color="#64748B"
+                                />
+
+                                <TextInput
+                                    value={buscaCliente}
+                                    onChangeText={setBuscaCliente}
+                                    placeholder="Buscar cliente..."
+                                    placeholderTextColor="#64748B"
+                                    style={styles.modalSearchInput}
+                                    autoCapitalize="none"
+                                />
+
+                                {buscaCliente.length > 0 && (
+
+                                    <TouchableOpacity
+                                        onPress={() =>
+                                            setBuscaCliente("")
+                                        }
+                                    >
+
+                                        <Ionicons
+                                            name="close-circle"
+                                            size={19}
+                                            color="#64748B"
+                                        />
+
+                                    </TouchableOpacity>
+
+                                )}
 
                             </View>
 

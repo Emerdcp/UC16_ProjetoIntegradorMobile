@@ -5,12 +5,13 @@ import {
     Image,
     TouchableOpacity,
 } from "react-native";
-import { DrawerContentComponentProps,} from "@react-navigation/drawer";
-import { Ionicons,} from "@expo/vector-icons";
-import { useAuth,} from "@/context/AuthContext";
-import { styles,} from "./styles";
-import type { AppScreen,} from "@/navigation/types";
-import { CommonActions,} from "@react-navigation/native";
+import { DrawerContentComponentProps, } from "@react-navigation/drawer";
+import { Ionicons, } from "@expo/vector-icons";
+import { useAuth, } from "@/context/AuthContext";
+import { styles, } from "./styles";
+import type { AppScreen, } from "@/navigation/types";
+import { CommonActions, } from "@react-navigation/native";
+import { useSafeAreaInsets, } from "react-native-safe-area-context";
 
 
 /* =====================================================
@@ -76,6 +77,7 @@ export default function CustomDrawer({
         signOut,
     } = useAuth();
 
+    const insets = useSafeAreaInsets();
 
     /* =================================================
        NAVEGAÇÃO
@@ -296,7 +298,14 @@ export default function CustomDrawer({
                FOOTER
             ================================================= */}
 
-            <View style={styles.footer}>
+            <View
+                style={[
+                    styles.footer,
+                    {
+                        paddingBottom: Math.max(insets.bottom, 12),
+                    },
+                ]}
+            >
 
 
                 <TouchableOpacity

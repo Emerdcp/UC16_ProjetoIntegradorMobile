@@ -1,9 +1,4 @@
-import React, {
-    useCallback,
-    useEffect,
-    useState,
-} from "react";
-
+import React, { useCallback, useState, } from "react";
 import {
     ImageBackground,
     ScrollView,
@@ -13,40 +8,15 @@ import {
     TouchableOpacity,
     ActivityIndicator,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Ionicons } from "@expo/vector-icons";
-
-import {
-    useNavigation,
-} from "@react-navigation/native";
-
-import type {
-    NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
-import {
-    ClientesStackParamList,
-} from "@/navigation/ClientesNavigator";
-
-import {
-    DrawerActions,
-} from "@react-navigation/native";
-
-import {
-    cpfMask,
-    cnpjMask,
-} from "@/utils/mask";
-
-import {
-    styles,
-} from "./styles";
-
-import {
-    Cliente,
-    getClientes,
-} from "@/services/clienteService";
+import { useNavigation, useFocusEffect, } from "@react-navigation/native";
+import type { NativeStackNavigationProp, } from "@react-navigation/native-stack";
+import { ClientesStackParamList, } from "@/navigation/ClientesNavigator";
+import { DrawerActions, } from "@react-navigation/native";
+import { cpfMask, cnpjMask, } from "@/utils/mask";
+import { styles, } from "./styles";
+import { Cliente, getClientes, } from "@/services/clienteService";
 
 
 export default function ClientesScreen() {
@@ -152,25 +122,34 @@ export default function ClientesScreen() {
 
 
     /* =====================================================
-       BUSCAR CLIENTES
+       BUSCAR / ATUALIZAR CLIENTES
+
+       Atualiza:
+       - quando a tela recebe foco;
+       - quando o usuário altera a busca.
+
+       Isso faz com que, ao voltar de NovoCliente,
+       a lista seja carregada novamente automaticamente.
     ===================================================== */
 
-    useEffect(() => {
+    useFocusEffect(
+        useCallback(() => {
 
-        const timer =
-            setTimeout(() => {
+            const timer =
+                setTimeout(() => {
 
-                carregarClientes();
+                    carregarClientes();
 
-            }, 300);
+                }, 300);
 
 
-        return () =>
-            clearTimeout(timer);
+            return () =>
+                clearTimeout(timer);
 
-    }, [
-        carregarClientes
-    ]);
+        }, [
+            carregarClientes
+        ])
+    );
 
 
     /* =====================================================
@@ -296,6 +275,26 @@ export default function ClientesScreen() {
                         </Text>
 
                     </View>
+
+                    {/* =================================================
+                        HOME
+                    ================================================= */}
+
+                    <TouchableOpacity
+                        style={styles.menuButton}
+                        activeOpacity={0.8}
+                        onPress={() =>
+                            navigation.getParent()?.navigate("Home")
+                        }
+                    >
+
+                        <Ionicons
+                            name="home-outline"
+                            size={22}
+                            color="#FFFFFF"
+                        />
+
+                    </TouchableOpacity>
 
                 </View>
 

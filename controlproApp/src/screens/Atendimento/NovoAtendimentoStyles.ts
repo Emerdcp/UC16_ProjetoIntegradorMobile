@@ -475,4 +475,37 @@ export const styles = StyleSheet.create({
         color: "#8FA1B8",
     },
 
+    /* =====================================================
+   PESQUISA DE CLIENTE
+===================================================== */
+
+    modalSearchContainer: {
+        height: 48,
+
+        flexDirection: "row",
+        alignItems: "center",
+
+        marginHorizontal: 18,
+        marginBottom: 10,
+
+        paddingHorizontal: 13,
+
+        backgroundColor: "#10253D",
+
+        borderWidth: 1,
+        borderColor: "#29415C",
+
+        borderRadius: 12,
+    },
+
+    modalSearchInput: {
+        flex: 1,
+
+        marginLeft: 9,
+
+        fontSize: 13,
+
+        color: "#FFFFFF",
+    },
+
 });

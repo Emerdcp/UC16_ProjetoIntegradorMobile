@@ -60,6 +60,8 @@ export const styles = StyleSheet.create({
 
         borderWidth: 1,
         borderColor: "#33445F",
+
+        marginLeft: 5,
     },
 
 
@@ -515,7 +517,7 @@ export const styles = StyleSheet.create({
         position: "absolute",
 
         right: 20,
-        bottom: 38,
+        bottom: 80,
 
         width: 58,
         height: 58,

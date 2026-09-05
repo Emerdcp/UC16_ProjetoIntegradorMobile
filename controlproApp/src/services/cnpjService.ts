@@ -1,14 +1,10 @@
 export interface CnpjResponse {
     cnpj?: string;
-
     razao_social?: string;
     nome_fantasia?: string;
-
     email?: string;
-
     ddd_telefone_1?: string;
     ddd_telefone_2?: string;
-
     cep?: string;
     logradouro?: string;
     numero?: string;
@@ -18,28 +14,20 @@ export interface CnpjResponse {
     uf?: string;
 }
 
-
 export async function buscarCnpj(
     cnpj: string
 ): Promise<CnpjResponse | null> {
 
-    const cnpjLimpo =
-        cnpj.replace(/\D/g, "");
-
+    const cnpjLimpo =  cnpj.replace(/\D/g, "");
     if (cnpjLimpo.length !== 14) {
         return null;
     }
-
     try {
-
-        const url =
-            `https://brasilapi.com.br/api/cnpj/v1/${cnpjLimpo}`;
-
+        const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpjLimpo}`;
         console.log(
-            "Consultando CNPJ:",
+                "Consultando CNPJ:",
             url
         );
-
         const response =
             await fetch(url, {
                 method: "GET",
@@ -47,7 +35,6 @@ export async function buscarCnpj(
                     Accept: "application/json",
                 },
             });
-
         console.log(
             "Status BrasilAPI:",
             response.status
@@ -63,8 +50,7 @@ export async function buscarCnpj(
             return null;
         }
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         console.log(
             "Dados CNPJ:",

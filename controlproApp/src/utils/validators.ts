@@ -2,7 +2,6 @@ export function validarEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-
 export function validarCPF(cpf: string): boolean {
 
     cpf = cpf.replace(/\D/g, "");

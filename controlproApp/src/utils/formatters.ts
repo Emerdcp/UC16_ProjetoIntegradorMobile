@@ -2,16 +2,13 @@ export function somenteNumeros(valor: string): string {
     return valor.replace(/\D/g, "");
 }
 
-
 export function removerMascaraCpf(cpf: string): string {
     return cpf.replace(/\D/g, "");
 }
 
-
 export function removerMascaraCnpj(cnpj: string): string {
     return cnpj.replace(/\D/g, "");
 }
-
 
 export function removerMascaraTelefone(
     telefone: string
@@ -19,13 +16,11 @@ export function removerMascaraTelefone(
     return telefone.replace(/\D/g, "");
 }
 
-
 export function removerMascaraCep(
     cep: string
 ): string {
     return cep.replace(/\D/g, "");
 }
-
 
 export function formatCpfCnpj(
     valor: string,
@@ -52,7 +47,6 @@ export function formatCpfCnpj(
     );
 }
 
-
 export function formatCep(cep: string) {
 
     if (!cep) {
@@ -65,7 +59,6 @@ export function formatCep(cep: string) {
     );
 }
 
-
 export function formatData(data: string): string {
 
     if (!data) {
@@ -76,7 +69,6 @@ export function formatData(data: string): string {
 
     return `${dia}/${mes}/${ano}`;
 }
-
 
 export function formatStatus(
     value: string,
@@ -95,7 +87,6 @@ export function formatStatus(
         : value;
 }
 
-
 export function formatMoeda(valor: number): string {
 
     return Number(valor || 0)
@@ -108,12 +99,10 @@ export function formatMoeda(valor: number): string {
         );
 }
 
-
 export function formatHoras(horas: number): string {
 
     return `${Number(horas || 0)} h`;
 }
-
 
 export function formatPessoa(pessoa: string): string {
 
@@ -122,14 +111,12 @@ export function formatPessoa(pessoa: string): string {
         : "Jurídica";
 }
 
-
 export function formatBoolean(valor: string): string {
 
     return valor === "S"
         ? "Sim"
         : "Não";
 }
-
 
 export function formatStatusRegistro(
     status: string

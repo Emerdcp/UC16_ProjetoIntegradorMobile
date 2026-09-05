@@ -8,7 +8,6 @@ export function cpfMask(value: string) {
         .slice(0, 14);
 }
 
-
 export function cnpjMask(value: string) {
 
     return value
@@ -19,7 +18,6 @@ export function cnpjMask(value: string) {
         .replace(/(\d{4})(\d)/, "$1-$2")
         .slice(0, 18);
 }
-
 
 export function cpfCnpjMask(
     value: string,
@@ -32,7 +30,6 @@ export function cpfCnpjMask(
 
     return cnpjMask(value);
 }
-
 
 export function telefoneMask(value: string) {
 
@@ -52,7 +49,6 @@ export function telefoneMask(value: string) {
         "($1) $2-$3"
     );
 }
-
 
 export function cepMask(value: string) {
 
