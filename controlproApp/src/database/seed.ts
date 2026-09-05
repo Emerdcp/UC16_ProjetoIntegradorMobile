@@ -1,6 +1,5 @@
 import { getDatabase } from "./database";
 
-
 /* =====================================================
    SEED
 ===================================================== */
@@ -8,7 +7,6 @@ import { getDatabase } from "./database";
 export async function runSeed() {
 
     const db = await getDatabase();
-
 
     /* =================================================
        VERIFICA SE JÁ EXISTEM CLIENTES
@@ -25,7 +23,6 @@ export async function runSeed() {
     if (result && result.total > 0) {
         return;
     }
-
 
     /* =================================================
        EMPRESA XYZ
@@ -69,7 +66,6 @@ export async function runSeed() {
         "A"
     );
 
-
     /* =================================================
        CLIENTE ABC
     ================================================= */
@@ -112,7 +108,6 @@ export async function runSeed() {
         "A"
     );
 
-
     /* =================================================
        CONTROLPRO
     ================================================= */
@@ -154,5 +149,4 @@ export async function runSeed() {
         "",
         "I"
     );
-
 }

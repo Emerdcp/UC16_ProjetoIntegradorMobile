@@ -13,54 +13,42 @@ import type { AppScreen, } from "@/navigation/types";
 import { CommonActions, } from "@react-navigation/native";
 import { useSafeAreaInsets, } from "react-native-safe-area-context";
 
-
 /* =====================================================
    ITEM DO MENU
 ===================================================== */
 
 interface MenuItem {
-
     label: string;
-
     icon: keyof typeof Ionicons.glyphMap;
-
     screen?: AppScreen;
-
 }
-
 
 /* =====================================================
    MENU
 ===================================================== */
 
 const menuItems: MenuItem[] = [
-
     {
         label: "Início",
         icon: "home-outline",
         screen: "Home",
     },
-
     {
         label: "Atendimento",
         icon: "headset-outline",
         screen: "Atendimento",
     },
-
     {
         label: "Clientes",
         icon: "people-outline",
         screen: "Clientes",
     },
-
     {
         label: "Agenda",
         icon: "calendar-outline",
         screen: "Agenda",
     },
-
 ];
-
 
 /* =====================================================
    DRAWER
@@ -70,8 +58,6 @@ export default function CustomDrawer({
     navigation,
     state,
 }: DrawerContentComponentProps) {
-
-
     const {
         user,
         signOut,
@@ -90,20 +76,13 @@ export default function CustomDrawer({
         if (!screen) {
 
             return;
-
         }
-
 
         /* =============================================
            AGENDA
-           
-           Como Agenda possui um Navigator interno,
-           precisamos informar explicitamente que
-           queremos abrir a tela principal da Agenda.
         ============================================= */
 
         if (screen === "Agenda") {
-
             navigation.dispatch(
                 CommonActions.navigate({
                     name: "Agenda",
@@ -112,31 +91,23 @@ export default function CustomDrawer({
                     },
                 })
             );
-
             return;
-
         }
-
 
         /* =============================================
            DEMAIS TELAS
         ============================================= */
 
         navigation.navigate(screen);
-
     }
-
 
     /* =================================================
        SAIR
     ================================================= */
 
     async function handleSignOut() {
-
         await signOut();
-
     }
-
 
     /* =================================================
        ROTA ATUAL
@@ -145,15 +116,12 @@ export default function CustomDrawer({
     const currentRoute =
         state.routes[state.index]?.name;
 
-
     /* =================================================
        TELA
     ================================================= */
 
     return (
-
         <View style={styles.container}>
-
 
             {/* =================================================
                HEADER
@@ -161,43 +129,30 @@ export default function CustomDrawer({
 
             <View style={styles.header}>
 
-
                 {/* LOGO */}
-
                 <Image
                     source={require("../../assets/images/logo/logo.png")}
                     style={styles.logo}
                     resizeMode="contain"
                 />
 
-
                 {/* USUÁRIO */}
-
                 <View style={styles.userContainer}>
 
-
                     {/* AVATAR */}
-
                     <View style={styles.avatar}>
-
                         <Text style={styles.avatarText}>
-
                             {
                                 user?.nome
                                     ?.charAt(0)
                                     .toUpperCase()
                                 || "A"
                             }
-
                         </Text>
-
                     </View>
 
-
                     {/* INFORMAÇÕES */}
-
                     <View style={styles.userInfo}>
-
                         <Text
                             style={styles.userName}
                             numberOfLines={1}
@@ -208,41 +163,27 @@ export default function CustomDrawer({
                             }
                         </Text>
 
-
                         <Text style={styles.userRole}>
-
                             Administrador
-
                         </Text>
-
                     </View>
-
                 </View>
-
             </View>
-
 
             {/* =================================================
                MENU
             ================================================= */}
 
             <View style={styles.menu}>
-
-
                 {menuItems.map((item) => {
-
-
                     const isActive =
                         item.screen === currentRoute;
 
-
                     return (
-
                         <TouchableOpacity
                             key={item.label}
                             style={[
                                 styles.menuItem,
-
                                 isActive &&
                                 styles.menuItemActive,
                             ]}
@@ -254,9 +195,7 @@ export default function CustomDrawer({
                             }
                         >
 
-
                             {/* ÍCONE */}
-
                             <Ionicons
                                 name={item.icon}
                                 size={21}
@@ -267,32 +206,22 @@ export default function CustomDrawer({
                                 }
                             />
 
-
                             {/* TEXTO */}
-
                             <Text
                                 style={[
                                     styles.menuText,
-
                                     isActive &&
                                     styles.menuTextActive,
                                 ]}
+                                
                             >
 
                                 {item.label}
-
                             </Text>
-
-
                         </TouchableOpacity>
-
                     );
-
                 })}
-
-
             </View>
-
 
             {/* =================================================
                FOOTER
@@ -307,36 +236,23 @@ export default function CustomDrawer({
                 ]}
             >
 
-
                 <TouchableOpacity
                     style={styles.logout}
                     activeOpacity={0.8}
                     onPress={handleSignOut}
                 >
-
-
                     <Ionicons
                         name="log-out-outline"
                         size={21}
                         color="#F87171"
                     />
 
-
                     <Text style={styles.logoutText}>
-
                         Sair
-
                     </Text>
 
-
                 </TouchableOpacity>
-
-
             </View>
-
-
         </View>
-
     );
-
 }

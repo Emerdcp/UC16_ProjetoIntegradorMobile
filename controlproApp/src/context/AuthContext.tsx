@@ -8,7 +8,6 @@ import { User } from "@/types/User";
 import { login, } from "@/services/authService";
 import { api } from "@/services/api";
 
-
 interface AuthContextData {
     user: User | null;
     token: string | null;
@@ -31,7 +30,6 @@ const AuthContext = createContext<AuthContextData>(
 export function AuthProvider({
     children,
 }: AuthProviderProps) {
-
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -39,7 +37,6 @@ export function AuthProvider({
     /* =====================================================
        LOGIN
     ===================================================== */
-
     async function signIn(
         email: string,
         senha: string
@@ -86,20 +83,14 @@ export function AuthProvider({
     ===================================================== */
 
     async function signOut(): Promise<void> {
-
         setUser(null);
-
         setToken(null);
-
         delete api.defaults.headers.common[
             "Authorization"
         ];
-
     }
 
-
     return (
-
         <AuthContext.Provider
             value={{
                 user,
@@ -109,22 +100,15 @@ export function AuthProvider({
                 signOut,
             }}
         >
-
             {children}
-
         </AuthContext.Provider>
-
     );
-
 }
-
 
 /* =========================================================
    HOOK
 ========================================================= */
 
 export function useAuth(): AuthContextData {
-
     return useContext(AuthContext);
-
 }

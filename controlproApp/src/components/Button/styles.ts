@@ -1,9 +1,7 @@
 import { StyleSheet } from "react-native";
-
 import { Colors, Radius, Spacing, Typography, } from "@/designSystem";
 
 export const styles = StyleSheet.create({
-
     button: {
         height: 56,
         borderRadius: Radius.lg,

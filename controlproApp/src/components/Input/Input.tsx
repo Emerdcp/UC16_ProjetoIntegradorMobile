@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
 import { styles } from "./styles";
 import { InputProps } from "./types";
 
@@ -36,9 +35,7 @@ export default function Input({
           placeholderTextColor="#94A3B8"
           {...rest}
         />
-
       </View>
-
     </View>
   );
 }
