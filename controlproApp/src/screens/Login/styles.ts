@@ -1,74 +1,139 @@
 import { StyleSheet } from "react-native";
 
-import { Colors, Spacing, } from "@/designSystem";
+import {
+    Colors,
+    Spacing,
+} from "@/designSystem";
+
 
 export const styles = StyleSheet.create({
 
-    /* Fundo */
+    /* =====================================================
+       FUNDO
+    ===================================================== */
+
     background: {
         flex: 1,
     },
 
-    /* Container principal */
+
+    /* =====================================================
+       CONTAINER PRINCIPAL
+    ===================================================== */
+
     container: {
         flex: 1,
+
         paddingHorizontal: Spacing.xl,
     },
 
-    /* Cabeçalho */
+
+    /* =====================================================
+       CABEÇALHO / LOGO
+    ===================================================== */
+
     header: {
-        flex: 0.30,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+        flex: 0.34,
 
-    /* Área do Login */
-    body: {
-        flex: 0.55,
-        justifyContent: "flex-start",
-        paddingTop:20,
-    },
-
-    /* Rodapé */
-    footer: {
-        flex: 0.20,
         justifyContent: "flex-end",
         alignItems: "center",
-        paddingBottom: 30,
+
+        paddingBottom: 12,
     },
 
-    /* Logo */
+
+    /* =====================================================
+       ÁREA DO LOGIN
+    ===================================================== */
+
+    body: {
+        flex: 0.46,
+
+        justifyContent: "flex-start",
+
+        paddingTop: 8,
+    },
+
+
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
+
+    footer: {
+        flex: 0.20,
+
+        justifyContent: "flex-end",
+        alignItems: "center",
+
+        paddingBottom: 28,
+    },
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
     logo: {
-        width: 350,
-        height: 200,
-        marginBottom: 1,
+        width: 320,
+        height: 170,
+
+        marginBottom: 0,
     },
 
-    /* Nome do sistema */
+
+    /* =====================================================
+       TÍTULO
+    ===================================================== */
+
     title: {
         fontSize: 40,
+
         fontWeight: "700",
+
         color: Colors.white,
     },
 
-    /* Slogan */
+
+    /* =====================================================
+       SUBTÍTULO
+    ===================================================== */
+
     subtitle: {
         marginTop: 6,
+
         color: Colors.textSecondary,
+
         fontSize: 13,
+
         letterSpacing: 2.5,
     },
 
-    /* Rodapé */
+
+    /* =====================================================
+       TEXTO DO RODAPÉ
+    ===================================================== */
+
     footerText: {
         color: Colors.textSecondary,
-        fontSize: 12,
+
+        fontSize: 11,
+
+        opacity: 0.9,
     },
 
+
+    /* =====================================================
+       VERSÃO
+    ===================================================== */
+
     version: {
-        marginTop: 4,
+        marginTop: 3,
+
         color: Colors.textSecondary,
-        fontSize: 11,
+
+        fontSize: 10,
+
+        opacity: 0.75,
     },
 
 });

@@ -11,7 +11,7 @@ export default function Input({
 }: InputProps) {
 
   return (
-    <View>
+    <View style={styles.wrapper}>
 
       {label && (
         <Text style={styles.label}>

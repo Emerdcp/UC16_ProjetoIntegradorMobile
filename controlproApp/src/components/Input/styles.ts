@@ -3,8 +3,10 @@ import { Colors, Radius, Spacing, Typography } from "@/designSystem";
 
 export const styles = StyleSheet.create({
     container: {
-        marginBottom: Spacing.lg,
-        marginTop: 18,
+        // marginBottom: Spacing.lg,
+        // marginTop: 18,
+        marginBottom: 18,
+        marginTop: 0,
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#FFF",
@@ -40,5 +42,8 @@ export const styles = StyleSheet.create({
     },
     icon: {
         marginRight: 12,
-    }
+    },
+    wrapper: {
+        marginBottom: 18,
+    },
 })

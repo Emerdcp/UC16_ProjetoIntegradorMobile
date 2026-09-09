@@ -1,25 +1,27 @@
 import { StyleSheet } from "react-native";
-import { Colors, Radius, Shadows, Spacing} from "@/designSystem"
+import { Colors, Radius, Shadows, Spacing } from "@/designSystem"
 
 export const styles = StyleSheet.create({
     container: {
-    marginHorizontal: 8,
+        marginHorizontal: 8,
 
-    /* Fundo semi-transparente */
-    backgroundColor: "rgba(30, 41, 59, 0.95)",
+        /* Fundo semi-transparente */
+        backgroundColor: "rgba(30, 41, 59, 0.95)",
 
-    /* Cantos arredondados */
-    borderRadius: 22,
+        /* Cantos arredondados */
+        borderRadius: 22,
 
-    /* Espaçamento interno */
-    padding: Spacing.lg,
+        /* Espaçamento interno */
+        // padding: Spacing.lg,
+        paddingHorizontal: Spacing.lg,
+        paddingVertical: 22,
 
-    /* Borda discreta */
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+        /* Borda discreta */
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.08)",
 
-    /* Sombra */
-    ...Shadows.card,
+        /* Sombra */
+        ...Shadows.card,
     },
 })
 
