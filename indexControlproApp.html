@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="ControlPro — entrega do projeto">
+    <title>ControlPro | Entrega do Projeto</title>
+    <style>
+        :root {
+            --bg: #050b2c;
+            --panel: #0c2340;
+            --panel2: #102944;
+            --blue: #3b82f6;
+            --purple: #7c3aed;
+            --cyan: #22d3ee;
+            --green: #22c55e;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --line: rgba(148, 163, 184, .15)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 15% 10%, #153a78 0, transparent 30%), radial-gradient(circle at 90% 15%, #3b176d 0, transparent 25%), var(--bg);
+            min-height: 100vh
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(5, 11, 44, .78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav,
+        main,
+        .foot {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto
+        }
+
+        .nav {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 21px;
+            font-weight: 850
+        }
+
+        .mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, #1685ff, #5b21d8);
+            font-style: italic
+        }
+
+        .brand b {
+            color: #60a5fa
+        }
+
+        .ok {
+            font-size: 12px;
+            font-weight: 750;
+            color: #bbf7d0;
+            border: 1px solid #22c55e38;
+            background: #22c55e12;
+            padding: 9px 13px;
+            border-radius: 99px
+        }
+
+        .ok i {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            margin-right: 7px
+        }
+
+        .hero {
+            min-height: 570px;
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 70px;
+            align-items: center;
+            padding: 75px 0
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: #bfdbfe;
+            background: #3b82f612;
+            border: 1px solid #60a5fa33;
+            border-radius: 99px;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .8px
+        }
+
+        h1 {
+            font-size: clamp(45px, 6vw, 75px);
+            line-height: .98;
+            letter-spacing: -4px;
+            margin-top: 22px
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #fff, #60a5fa, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--muted);
+            line-height: 1.75;
+            font-size: 16px;
+            margin-top: 25px
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            max-width: 700px;
+        }
+
+        .actions .btn {
+            flex: 1 1 180px;
+        }
+
+        .btn {
+            min-height: 50px;
+
+            padding: 0 14px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            white-space: nowrap;
+
+            border-radius: 13px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            border: 1px solid transparent;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                background .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .primary {
+            background: linear-gradient(135deg,
+                    #2563eb,
+                    #4f46e5);
+
+            box-shadow:
+                0 15px 35px #2563eb35;
+        }
+
+        .actions .secondary:nth-child(2) {
+            background: linear-gradient(135deg,
+                    #7c3aed,
+                    #9333ea);
+
+            border-color: #a78bfa30;
+
+            box-shadow:
+                0 15px 35px #7c3aed30;
+        }
+
+        .actions .secondary:nth-child(3) {
+            background: linear-gradient(135deg,
+                    #0891b2,
+                    #06b6d4);
+
+            border-color: #22d3ee30;
+
+            box-shadow:
+                0 15px 35px #06b6d430;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .primary:hover {
+            box-shadow:
+                0 18px 40px #2563eb50;
+        }
+
+        .actions .secondary:nth-child(2):hover {
+            box-shadow:
+                0 18px 40px #7c3aed50;
+        }
+
+        .actions .secondary:nth-child(3):hover {
+            box-shadow:
+                0 18px 40px #06b6d450;
+        }
+
+        .btn:hover,
+        .card:hover {
+            transform: translateY(-4px)
+        }
+
+
+        .primary:hover {
+            box-shadow: 0 18px 40px #2563eb45
+        }
+
+        .secondary:hover {
+            border-color: #60a5fa45;
+            background: #3b82f610
+        }
+
+        .visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-height: 430px
+        }
+
+        .phone {
+            width: 245px;
+            height: 465px;
+            padding: 8px;
+            border-radius: 38px;
+            background: linear-gradient(145deg, #243750, #020617);
+            border: 1px solid #ffffff25;
+            box-shadow: 0 35px 90px #0009;
+            transform: rotate(4deg)
+        }
+
+        .screen {
+            height: 100%;
+            border-radius: 31px;
+            background: #050b2c;
+            padding: 25px 13px;
+            overflow: hidden
+        }
+
+        .minihead {
+            display: flex;
+            justify-content: space-between;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 15px
+        }
+
+        .greet,
+        .mcard,
+        .agenda,
+        .event {
+            background: #122945;
+            border: 1px solid #ffffff0e;
+            border-radius: 15px
+        }
+
+        .greet {
+            padding: 14px;
+            margin-bottom: 10px
+        }
+
+        .greet strong {
+            font-size: 11px
+        }
+
+        .greet small {
+            display: block;
+            color: var(--muted);
+            font-size: 7px;
+            margin-top: 5px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+
+        .mcard {
+            padding: 10px;
+            min-height: 80px
+        }
+
+        .mcard small {
+            color: var(--muted);
+            font-size: 7px
+        }
+
+        .mcard strong {
+            display: block;
+            font-size: 22px;
+            margin-top: 5px
+        }
+
+        .agenda {
+            padding: 12px;
+            margin-top: 10px
+        }
+
+        .agendahead {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            font-weight: 800
+        }
+
+        .cal {
+            height: 6px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #3b82f6 0 40%, #243b5a 40%);
+            margin: 12px 0
+        }
+
+        .event {
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            margin-top: 7px
+        }
+
+        .event i {
+            width: 22px;
+            height: 22px;
+            border-radius: 7px;
+            background: #3b82f625
+        }
+
+        .event strong {
+            font-size: 8px
+        }
+
+        .event small {
+            display: block;
+            color: var(--muted);
+            font-size: 7px
+        }
+
+        .float {
+            position: absolute;
+            right: -5px;
+            bottom: 45px;
+            background: #0d223dcc;
+            border: 1px solid #ffffff18;
+            border-radius: 16px;
+            padding: 14px;
+            width: 165px;
+            box-shadow: 0 20px 50px #0007
+        }
+
+        .float small {
+            color: var(--muted);
+            font-size: 8px
+        }
+
+        .float strong {
+            display: block;
+            font-size: 24px;
+            margin-top: 4px
+        }
+
+        .float em {
+            font-style: normal;
+            color: #86efac;
+            font-size: 8px
+        }
+
+        .section {
+            padding: 65px 0
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: end;
+            margin-bottom: 25px
+        }
+
+        .kicker {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            color: #60a5fa;
+            text-transform: uppercase
+        }
+
+        h2 {
+            font-size: 32px;
+            letter-spacing: -1.5px;
+            margin-top: 7px
+        }
+
+        .head p {
+            max-width: 480px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.65
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .card {
+            min-height: 270px;
+            padding: 25px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: linear-gradient(160deg, #122d4bde, #081530d9);
+            transition: .25s;
+            box-shadow: 0 18px 45px #0003
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+            font-weight: 900;
+            background: #3b82f61a;
+            color: var(--accent)
+        }
+
+        .card h3 {
+            font-size: 19px;
+            margin-top: 21px
+        }
+
+        .card p {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--muted);
+            margin-top: 9px
+        }
+
+        .open {
+            display: inline-block;
+            color: #bfdbfe;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 20px
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 16px
+        }
+
+        .aboutbox {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: #091b34b3
+        }
+
+        .aboutbox p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+            margin-top: 11px
+        }
+
+        .techs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 18px
+        }
+
+        .tech {
+            padding: 13px;
+            border-radius: 13px;
+            background: #ffffff06;
+            border: 1px solid #ffffff0b
+        }
+
+        .tech strong {
+            font-size: 12px
+        }
+
+        .tech small {
+            display: block;
+            color: var(--muted);
+            margin-top: 4px
+        }
+
+        .flow {
+            display: grid;
+            gap: 11px;
+            margin-top: 18px
+        }
+
+        .flow div {
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 11px;
+            align-items: center
+        }
+
+        .num {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #3b82f620;
+            color: #93c5fd;
+            font-size: 11px;
+            font-weight: 800
+        }
+
+        .flow strong {
+            font-size: 12px
+        }
+
+        .flow small {
+            display: block;
+            color: var(--muted);
+            margin-top: 3px
+        }
+
+        .foot {
+            border-top: 1px solid var(--line);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 11px
+        }
+
+        .foot b {
+            color: #60a5fa;
+            font-size: 18px
+        }
+
+        .foot span {
+            text-align: right
+        }
+
+        @media(max-width:900px) {
+
+            .hero,
+            .about {
+                grid-template-columns: 1fr
+            }
+
+            .hero {
+                gap: 25px
+            }
+
+            .cards {
+                grid-template-columns: 1fr
+            }
+
+            .visual {
+                min-height: 500px
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .nav,
+            main,
+            .foot {
+                width: calc(100% - 28px)
+            }
+
+            .ok {
+                display: none
+            }
+
+            h1 {
+                font-size: 48px;
+                letter-spacing: -3px
+            }
+
+            .actions {
+                display: grid;
+                grid-template-columns: 1fr;
+                max-width: none
+            }
+
+            .actions .btn {
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center
+            }
+
+            .head {
+                display: block
+            }
+
+            .head p {
+                margin-top: 10px
+            }
+
+            .techs {
+                grid-template-columns: 1fr
+            }
+
+            .foot {
+                padding: 25px 0;
+                align-items: flex-start;
+                flex-direction: column
+            }
+
+            .foot span {
+                text-align: left;
+                margin-top: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav"><a class="brand" href="#">
+                <div class="mark">CP</div>
+                <div>Control<b>Pro</b></div>
+            </a>
+            <div class="ok"><i></i>Projeto concluído</div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div>
+                <div class="eyebrow">Projeto Integrador • Aplicativo Mobile</div>
+                <h1>Controle, gestão e resultados <span>na palma da mão.</span></h1>
+                <p>O <strong>ControlPro</strong> é um aplicativo desenvolvido para facilitar o acompanhamento de
+                    clientes, atendimentos e compromissos, oferecendo uma experiência simples, organizada e voltada para
+                    a operação do dia a dia.</p>
+                <div class="actions">
+                    <a class="btn primary"
+                        href="https://www.figma.com/design/3YLXTgVjqcVDCMjy76spca/ControProApp?node-id=0-1"
+                        target="_blank">✦ Figma | Telas APP
+                    </a>
+                    <a class="btn secondary"
+                        href="https://github.com/Emerdcp/UC16_ProjetoIntegradorMobile/tree/main/controlproApp"
+                        target="_blank">↗ Git | Código fonte
+                    </a>
+                    <a class="btn secondary"
+                        href="https://www.figma.com/board/Rj8kY1VCpG8VQZRf9nBsl1/Sem-t%C3%ADtulo?node-id=0-1&p=f&t=dzUeD5X6fdcpxuBW-0"
+                        target="_blank">↗ Figma | UML
+                    </a>
+                </div>
+
+            </div>
+            <div class="visual">
+                <div class="phone">
+                    <div class="screen">
+                        <div class="minihead"><span>ControlPro</span><span>⌁</span></div>
+                        <div class="greet"><strong>Boa noite, Administrador! 👋</strong><small>Aqui está o resumo do seu
+                                dia.</small></div>
+                        <div class="grid">
+                            <div class="mcard"><small>Atendimentos</small><strong>6</strong><small>Em andamento</small>
+                            </div>
+                            <div class="mcard"><small>Clientes</small><strong>7</strong><small>Cadastrados</small></div>
+                            <div class="mcard"><small>Agenda</small><strong>9</strong><small>Compromissos</small></div>
+                            <div class="mcard"><small>Projetos</small><strong>1</strong><small>Cadastrado</small></div>
+                        </div>
+                        <div class="agenda">
+                            <div class="agendahead"><span>Agenda</span><span style="color:#60a5fa">Ver agenda</span>
+                            </div>
+                            <div class="cal"></div>
+                            <div class="event"><i></i>
+                                <div><strong>Reunião</strong><small>12:00 • CIRPLAC</small></div>
+                            </div>
+                            <div class="event"><i></i>
+                                <div><strong>Atendimento</strong><small>14:00 • SUPERFINE STEEL</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="float"><small>Atendimentos ativos</small><strong>6</strong><em>● Sistema conectado</em>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="head">
+                <div>
+                    <div class="kicker">Materiais da entrega</div>
+                    <h2>Explore o projeto</h2>
+                </div>
+                <p>Os principais materiais da entrega estão organizados abaixo. Cada botão abre o conteúdo
+                    correspondente em uma nova aba.</p>
+            </div>
+            <div class="cards">
+                <a class="card" style="--accent:#a78bfa"
+                    href="https://www.figma.com/design/3YLXTgVjqcVDCMjy76spca/ControProApp?node-id=0-1" target="_blank">
+                    <div class="icon">✦</div>
+                    <h3>Protótipo das telas</h3>
+                    <p>Interface visual do aplicativo ControlPro, organizada no Figma para apresentação e edição.</p>
+                    <span class="open">Abrir no Figma →</span>
+                </a>
+                <a class="card" style="--accent:#60a5fa"
+                    href="https://github.com/Emerdcp/UC16_ProjetoIntegradorMobile/tree/main/controlproApp"
+                    target="_blank">
+                    <div class="icon">⌘</div>
+                    <h3>Código-fonte</h3>
+                    <p>Repositório com o código-fonte do projeto e os arquivos utilizados durante o desenvolvimento.</p>
+                    <span class="open">Abrir repositório →</span>
+                </a>
+                <a class="card" style="--accent:#22d3ee"
+                    href="https://www.figma.com/board/Rj8kY1VCpG8VQZRf9nBsl1/Sem-t%C3%ADtulo?node-id=0-1&p=f&t=dzUeD5X6fdcpxuBW-0"
+                    target="_blank">
+                    <div class="icon">◇</div>
+                    <h3>Modelagem UML</h3>
+                    <p>Diagramas utilizados para representar a estrutura, os processos e o funcionamento do sistema.</p>
+                    <span class="open">Abrir UML →</span>
+                </a>
+            </div>
+        </section>
+        <section class="section">
+            <div class="head">
+                <div>
+                    <div class="kicker">Sobre o sistema</div>
+                    <h2>Um projeto pensado para operação</h2>
+                </div>
+                <p>Uma solução mobile para consultar informações e acompanhar as principais atividades do ControlPro de
+                    forma rápida.</p>
+            </div>
+            <div class="about">
+                <div class="aboutbox">
+                    <h3>O que é o ControlPro?</h3>
+                    <p>O ControlPro centraliza informações importantes para o acompanhamento de clientes, atendimentos e
+                        compromissos. O aplicativo foi pensado para facilitar o acesso às informações durante a rotina
+                        de trabalho.</p>
+                    <div class="techs">
+                        <div class="tech"><strong>React Native</strong><small>Aplicativo mobile</small></div>
+                        <div class="tech"><strong>TypeScript</strong><small>Desenvolvimento tipado</small></div>
+                        <div class="tech"><strong>Node.js</strong><small>API e regras de negócio</small></div>
+                        <div class="tech"><strong>MariaDB</strong><small>Banco de dados</small></div>
+                    </div>
+                </div>
+                <div class="aboutbox">
+                    <h3>Principais módulos</h3>
+                    <div class="flow">
+                        <div><span class="num">01</span><span><strong>Autenticação</strong><small>Acesso seguro ao
+                                    aplicativo.</small></span></div>
+                        <div><span class="num">02</span><span><strong>Atendimentos</strong><small>Consulta e
+                                    acompanhamento do ciclo de atendimento.</small></span></div>
+                        <div><span class="num">03</span><span><strong>Clientes</strong><small>Consulta e gerenciamento
+                                    das informações dos clientes.</small></span></div>
+                        <div><span class="num">04</span><span><strong>Agenda</strong><small>Visualização de compromissos
+                                    e calendário.</small></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="foot">
+            <div><b>ControlPro</b></div><span>Projeto Integrador • Aplicativo Mobile<br>Controle • Gestão •
+                Resultados</span>
+        </div>
+    </footer>
+</body>
+
+</html>
