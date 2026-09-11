@@ -1,8 +1,4 @@
-import React, {
-    useCallback,
-    useState,
-} from "react";
-
+import React, { useCallback, useState,} from "react";
 import {
     ImageBackground,
     ScrollView,
@@ -14,46 +10,23 @@ import {
     Alert,
     Modal,
 } from "react-native";
-
-import {
-    SafeAreaView,
-} from "react-native-safe-area-context";
-
-import {
-    Ionicons,
-} from "@expo/vector-icons";
-
-import {
-    useFocusEffect,
-    useNavigation,
-    useRoute,
-} from "@react-navigation/native";
-
-import {
-    NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
+import { SafeAreaView,} from "react-native-safe-area-context";
+import { Ionicons,} from "@expo/vector-icons";
+import { useFocusEffect, useNavigation, useRoute,} from "@react-navigation/native";
+import { NativeStackNavigationProp,} from "@react-navigation/native-stack";
 import {
     Atendimento,
     AtendimentoStatus,
     getAtendimentoById,
     updateAtendimento,
 } from "@/services/atendimentoService";
-
-import {
-    AtendimentoStackParamList,
-} from "@/navigation/AtendimentoNavigator";
-
-import {
-    styles,
-} from "./AtendimentoDetalheStyles";
-
+import { AtendimentoStackParamList,} from "@/navigation/AtendimentoNavigator";
+import { styles,} from "./AtendimentoDetalheStyles";
 
 type NavigationProp =
     NativeStackNavigationProp<
         AtendimentoStackParamList
     >;
-
 
 export default function AtendimentoDetalheScreen() {
 
@@ -74,7 +47,6 @@ export default function AtendimentoDetalheScreen() {
     const { id } =
         route.params;
 
-
     /* =====================================================
        ESTADOS
     ===================================================== */
@@ -90,7 +62,6 @@ export default function AtendimentoDetalheScreen() {
 
     const [erro, setErro] =
         useState("");
-
 
     /* =====================================================
        CAMPOS DE ACOMPANHAMENTO
@@ -110,7 +81,6 @@ export default function AtendimentoDetalheScreen() {
 
     const [motivoCancelamento, setMotivoCancelamento] =
         useState("");
-
 
     /* =====================================================
        CARREGAR ATENDIMENTO
@@ -169,7 +139,6 @@ export default function AtendimentoDetalheScreen() {
 
     }
 
-
     /* =====================================================
        CARREGAR AO ENTRAR
     ===================================================== */
@@ -181,7 +150,6 @@ export default function AtendimentoDetalheScreen() {
 
         }, [id])
     );
-
 
     /* =====================================================
        STATUS
@@ -215,7 +183,6 @@ export default function AtendimentoDetalheScreen() {
 
     }
 
-
     function getStatusColor(
         status?: AtendimentoStatus
     ) {
@@ -244,7 +211,6 @@ export default function AtendimentoDetalheScreen() {
 
     }
 
-
     /* =====================================================
        DATA
     ===================================================== */
@@ -272,7 +238,6 @@ export default function AtendimentoDetalheScreen() {
         }
 
     }
-
 
     /* =====================================================
        INICIAR ATENDIMENTO
@@ -346,9 +311,7 @@ export default function AtendimentoDetalheScreen() {
                 }
             );
 
-
             await carregarAtendimento();
-
 
         } catch (error) {
 
@@ -364,11 +327,9 @@ export default function AtendimentoDetalheScreen() {
         } finally {
 
             setSalvando(false);
-
         }
 
     }
-
 
     /* =====================================================
        SALVAR ACOMPANHAMENTO
@@ -385,7 +346,6 @@ export default function AtendimentoDetalheScreen() {
             setSalvando(true);
 
             setErro("");
-
 
             await updateAtendimento(
                 atendimento.id,
@@ -442,15 +402,12 @@ export default function AtendimentoDetalheScreen() {
                 }
             );
 
-
             await carregarAtendimento();
-
 
             Alert.alert(
                 "Salvo",
                 "As informações do atendimento foram atualizadas."
             );
-
 
         } catch (error) {
 
@@ -466,11 +423,9 @@ export default function AtendimentoDetalheScreen() {
         } finally {
 
             setSalvando(false);
-
         }
 
     }
-
 
     /* =====================================================
        FINALIZAR ATENDIMENTO
@@ -492,9 +447,7 @@ export default function AtendimentoDetalheScreen() {
                 },
             ]
         );
-
     }
-
 
     async function finalizarAtendimento() {
 
@@ -511,7 +464,6 @@ export default function AtendimentoDetalheScreen() {
             return;
 
         }
-
 
         try {
 
@@ -575,15 +527,12 @@ export default function AtendimentoDetalheScreen() {
                 }
             );
 
-
             await carregarAtendimento();
-
 
             Alert.alert(
                 "Atendimento finalizado",
                 "O atendimento foi finalizado com sucesso."
             );
-
 
         } catch (error) {
 
@@ -601,7 +550,6 @@ export default function AtendimentoDetalheScreen() {
             setSalvando(false);
 
         }
-
     }
 
     /* =====================================================
@@ -615,7 +563,6 @@ export default function AtendimentoDetalheScreen() {
         setModalCancelamento(true);
 
     }
-
 
     async function cancelarAtendimento() {
 
@@ -633,7 +580,6 @@ export default function AtendimentoDetalheScreen() {
             return;
 
         }
-
 
         try {
 
@@ -699,7 +645,6 @@ export default function AtendimentoDetalheScreen() {
                 }
             );
 
-
             await carregarAtendimento();
 
 
@@ -707,7 +652,6 @@ export default function AtendimentoDetalheScreen() {
                 "Atendimento cancelado",
                 "O atendimento foi cancelado com sucesso."
             );
-
 
         } catch (error) {
 
@@ -727,7 +671,6 @@ export default function AtendimentoDetalheScreen() {
         }
 
     }
-
 
     /* =====================================================
        LOADING
@@ -894,8 +837,8 @@ export default function AtendimentoDetalheScreen() {
 
 
                                 {/* =====================================
-               BOTÕES
-            ===================================== */}
+                                    BOTÕES
+                                ===================================== */}
 
                                 <View
                                     style={
@@ -977,7 +920,6 @@ export default function AtendimentoDetalheScreen() {
         );
 
     }
-
 
     /* =====================================================
        ERRO
@@ -1094,7 +1036,6 @@ export default function AtendimentoDetalheScreen() {
 
     }
 
-
     if (!atendimento) {
         return null;
     }
@@ -1112,7 +1053,6 @@ export default function AtendimentoDetalheScreen() {
     const podeFinalizar =
         atendimento.at_status === "E" ||
         atendimento.at_status === "D";
-
 
     /* =====================================================
        RENDER
@@ -1162,7 +1102,6 @@ export default function AtendimentoDetalheScreen() {
 
                     </TouchableOpacity>
 
-
                     <View
                         style={styles.headerTextArea}
                     >
@@ -1184,7 +1123,6 @@ export default function AtendimentoDetalheScreen() {
 
                 </View>
 
-
                 {/* =================================================
                    CONTEÚDO
                 ================================================= */}
@@ -1201,44 +1139,23 @@ export default function AtendimentoDetalheScreen() {
                        CABEÇALHO
                     ================================================= */}
 
-                    <View
-                        style={
-                            styles.mainCard
-                        }
-                    >
+                    <View style={styles.mainCard}>
 
-                        <View
-                            style={
-                                styles.mainCardTop
-                            }
-                        >
+                        {/* =================================================
+                            TOPO DO CARD
+                        ================================================= */}
 
-                            <View
-                                style={
-                                    styles.mainCardInfo
-                                }
-                            >
+                        <View style={styles.mainCardTop}>
 
-                                <Text
-                                    style={
-                                        styles.code
-                                    }
-                                >
-                                    {atendimento.at_codigo ||
-                                        `#${atendimento.id}`}
-                                </Text>
+                            {/* CÓDIGO */}
 
-                                <Text
-                                    style={
-                                        styles.description
-                                    }
-                                >
-                                    {atendimento.at_descricao ||
-                                        "Sem descrição"}
-                                </Text>
+                            <Text style={styles.code}>
+                                {atendimento.at_codigo ||
+                                    `#${atendimento.id}`}
+                            </Text>
 
-                            </View>
 
+                            {/* STATUS */}
 
                             <View
                                 style={[
@@ -1263,16 +1180,24 @@ export default function AtendimentoDetalheScreen() {
                                         },
                                     ]}
                                 >
-                                    {
-                                        getStatusLabel(
-                                            atendimento.at_status
-                                        )
-                                    }
+                                    {getStatusLabel(
+                                        atendimento.at_status
+                                    )}
                                 </Text>
 
                             </View>
 
                         </View>
+
+
+                        {/* =================================================
+                            DESCRIÇÃO
+                        ================================================= */}
+
+                        <Text style={styles.description}>
+                            {atendimento.at_descricao ||
+                                "Sem descrição"}
+                        </Text>
 
                     </View>
 
@@ -1723,14 +1648,6 @@ export default function AtendimentoDetalheScreen() {
 
                     {/* =================================================
                        DIAGNÓSTICO / SOLUÇÃO
-                    ================================================= */}
-
-                    {/* =================================================
-                       ATENDIMENTO FINALIZADO
-
-                       Quando o atendimento já foi finalizado,
-                       diagnóstico e solução ficam disponíveis
-                       somente para consulta.
                     ================================================= */}
 
                     {atendimento.at_status === "F" && (

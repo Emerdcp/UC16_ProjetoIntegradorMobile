@@ -122,10 +122,9 @@ export const styles = StyleSheet.create({
 
     mainCardTop: {
         flexDirection: "row",
-
+        alignItems: "center",
         justifyContent: "space-between",
-
-        gap: 12,
+        gap: 10,
     },
 
 
@@ -141,7 +140,9 @@ export const styles = StyleSheet.create({
 
 
     description: {
-        flex: 1,
+        marginTop: 8,
+
+        // flex: 1,
 
         fontSize: 17,
 
@@ -379,12 +380,12 @@ export const styles = StyleSheet.create({
         color: "#FFFFFF",
     },
     /* =====================================================
-   ÁREA PRINCIPAL DO CARD
-===================================================== */
+        ÁREA PRINCIPAL DO CARD
+    ===================================================== */
 
-    mainCardInfo: {
-        flex: 1,
-    },
+    // mainCardInfo: {
+    //     flex: 1,
+    // },
 
 
     /* =====================================================
@@ -518,8 +519,8 @@ export const styles = StyleSheet.create({
     },
 
     /* =====================================================
-   MENSAGEM DE ERRO
-===================================================== */
+        MENSAGEM DE ERRO
+    ===================================================== */
 
     errorContainer: {
         flexDirection: "row",
@@ -555,8 +556,8 @@ export const styles = StyleSheet.create({
     },
 
     /* =====================================================
-   BOTÃO CANCELAR
-===================================================== */
+        BOTÃO CANCELAR
+    ===================================================== */
 
     cancelActionButton: {
         flexDirection: "row",
