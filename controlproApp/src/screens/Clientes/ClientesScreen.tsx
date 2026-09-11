@@ -18,7 +18,6 @@ import { cpfMask, cnpjMask, } from "@/utils/mask";
 import { styles, } from "./styles";
 import { Cliente, getClientes, } from "@/services/clienteService";
 
-
 export default function ClientesScreen() {
 
     const navigation =
@@ -28,40 +27,15 @@ export default function ClientesScreen() {
             >
         >();
 
-
     /* =====================================================
        ESTADOS
     ===================================================== */
 
-    const [
-        busca,
-        setBusca
-    ] = useState("");
-
-
-    const [
-        clientes,
-        setClientes
-    ] = useState<Cliente[]>([]);
-
-
-    const [
-        loading,
-        setLoading
-    ] = useState(false);
-
-
-    const [
-        erro,
-        setErro
-    ] = useState(false);
-
-
-    const [
-        total,
-        setTotal
-    ] = useState(0);
-
+    const [busca, setBusca] = useState("");
+    const [clientes, setClientes] = useState<Cliente[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [erro, setErro] = useState(false);
+    const [total, setTotal] = useState(0);
 
     /* =====================================================
        CARREGAR CLIENTES
@@ -120,16 +94,8 @@ export default function ClientesScreen() {
             [busca]
         );
 
-
     /* =====================================================
        BUSCAR / ATUALIZAR CLIENTES
-
-       Atualiza:
-       - quando a tela recebe foco;
-       - quando o usuário altera a busca.
-
-       Isso faz com que, ao voltar de NovoCliente,
-       a lista seja carregada novamente automaticamente.
     ===================================================== */
 
     useFocusEffect(
@@ -151,7 +117,6 @@ export default function ClientesScreen() {
         ])
     );
 
-
     /* =====================================================
        DOCUMENTO
     ===================================================== */
@@ -168,7 +133,6 @@ export default function ClientesScreen() {
 
         }
 
-
         if (
             cliente.cli_pessoa === "F"
         ) {
@@ -181,7 +145,6 @@ export default function ClientesScreen() {
 
         }
 
-
         return (
             `CNPJ: ${cnpjMask(
                 cliente.cli_cnpjcpf
@@ -189,7 +152,6 @@ export default function ClientesScreen() {
         );
 
     }
-
 
     /* =====================================================
        ABRIR CLIENTE
@@ -207,7 +169,6 @@ export default function ClientesScreen() {
         );
 
     }
-
 
     /* =====================================================
        RENDER
@@ -233,7 +194,6 @@ export default function ClientesScreen() {
                 ]}
             >
 
-
                 {/* =================================================
                    HEADER
                 ================================================= */}
@@ -257,7 +217,6 @@ export default function ClientesScreen() {
                         />
 
                     </TouchableOpacity>
-
 
                     <View style={styles.headerText}>
 
@@ -298,7 +257,6 @@ export default function ClientesScreen() {
 
                 </View>
 
-
                 {/* =================================================
                    CONTEÚDO
                 ================================================= */}
@@ -309,7 +267,6 @@ export default function ClientesScreen() {
                         styles.content
                     }
                 >
-
 
                     {/* =================================================
                        BUSCA
@@ -326,7 +283,6 @@ export default function ClientesScreen() {
                             size={21}
                             color="#64748B"
                         />
-
 
                         <TextInput
                             value={busca}
@@ -345,7 +301,6 @@ export default function ClientesScreen() {
                             autoCapitalize="none"
                             autoCorrect={false}
                         />
-
 
                         {busca.length > 0 && (
 
@@ -367,7 +322,6 @@ export default function ClientesScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        CONTADOR
                     ================================================= */}
@@ -388,7 +342,6 @@ export default function ClientesScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        CARREGANDO
                     ================================================= */}
@@ -406,7 +359,6 @@ export default function ClientesScreen() {
                                 color="#4F7DF3"
                             />
 
-
                             <Text
                                 style={
                                     styles.emptyText
@@ -418,7 +370,6 @@ export default function ClientesScreen() {
                         </View>
 
                     )}
-
 
                     {/* =================================================
                        ERRO
@@ -485,7 +436,6 @@ export default function ClientesScreen() {
 
                     )}
 
-
                     {/* =================================================
                        LISTA
                     ================================================= */}
@@ -522,7 +472,6 @@ export default function ClientesScreen() {
                                             }
                                         >
 
-
                                             {/* ÍCONE */}
 
                                             <View
@@ -542,7 +491,6 @@ export default function ClientesScreen() {
                                                 />
 
                                             </View>
-
 
                                             {/* INFORMAÇÕES */}
 
@@ -565,7 +513,6 @@ export default function ClientesScreen() {
                                                     }
                                                 </Text>
 
-
                                                 <Text
                                                     style={
                                                         styles.clientCompany
@@ -579,7 +526,6 @@ export default function ClientesScreen() {
                                                     }
                                                 </Text>
 
-
                                                 <Text
                                                     style={
                                                         styles.clientDocument
@@ -591,7 +537,6 @@ export default function ClientesScreen() {
                                                         )
                                                     }
                                                 </Text>
-
 
                                                 <Text
                                                     style={
@@ -606,7 +551,6 @@ export default function ClientesScreen() {
 
                                             </View>
 
-
                                             {/* DIREITA */}
 
                                             <View
@@ -614,7 +558,6 @@ export default function ClientesScreen() {
                                                     styles.clientRight
                                                 }
                                             >
-
 
                                                 {/* STATUS */}
 
@@ -638,7 +581,6 @@ export default function ClientesScreen() {
                                                         ]}
                                                     />
 
-
                                                     <Text
                                                         style={[
                                                             styles.statusText,
@@ -659,7 +601,6 @@ export default function ClientesScreen() {
 
                                                 </View>
 
-
                                                 <Ionicons
                                                     name="chevron-forward"
                                                     size={20}
@@ -676,7 +617,6 @@ export default function ClientesScreen() {
                             </View>
 
                         )}
-
 
                     {/* =================================================
                        NENHUM CLIENTE
@@ -698,7 +638,6 @@ export default function ClientesScreen() {
                                     color="#64748B"
                                 />
 
-
                                 <Text
                                     style={
                                         styles.emptyTitle
@@ -706,7 +645,6 @@ export default function ClientesScreen() {
                                 >
                                     Nenhum cliente encontrado
                                 </Text>
-
 
                                 <Text
                                     style={
@@ -724,7 +662,6 @@ export default function ClientesScreen() {
                         )}
 
                 </ScrollView>
-
 
                 {/* =================================================
                    FAB

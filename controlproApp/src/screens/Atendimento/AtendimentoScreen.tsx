@@ -21,7 +21,6 @@ import { AtendimentoStackParamList, } from "@/navigation/AtendimentoNavigator";
 // import { DrawerNavigationProp, } from "@react-navigation/drawer";
 // import { AppDrawerParamList, } from "@/navigation/types";
 
-
 /* =====================================================
    STATUS
 ===================================================== */
@@ -29,7 +28,6 @@ import { AtendimentoStackParamList, } from "@/navigation/AtendimentoNavigator";
 type FiltroStatus =
     | "Todos"
     | AtendimentoStatus;
-
 
 /* =====================================================
    TELA
@@ -65,7 +63,6 @@ export default function AtendimentoScreen() {
 
     const [erro, setErro] =
         useState("");
-
 
     /* =================================================
        CARREGAR ATENDIMENTOS
@@ -114,7 +111,6 @@ export default function AtendimentoScreen() {
 
     }
 
-
     /* =================================================
        ATUALIZAR
     ================================================= */
@@ -127,7 +123,6 @@ export default function AtendimentoScreen() {
 
     }
 
-
     /* =================================================
        CARREGAR AO ENTRAR NA TELA
     ================================================= */
@@ -139,7 +134,6 @@ export default function AtendimentoScreen() {
 
         }, [])
     );
-
 
     /* =================================================
        FILTRO
@@ -200,7 +194,6 @@ export default function AtendimentoScreen() {
             }
         );
 
-
     /* =================================================
        LABEL DO STATUS
     ================================================= */
@@ -232,7 +225,6 @@ export default function AtendimentoScreen() {
         }
 
     }
-
 
     /* =================================================
        ESTILO DO STATUS
@@ -266,7 +258,6 @@ export default function AtendimentoScreen() {
 
     }
 
-
     /* =================================================
        ÍCONE DO STATUS
     ================================================= */
@@ -299,7 +290,6 @@ export default function AtendimentoScreen() {
 
     }
 
-
     /* =================================================
        DATA
     ================================================= */
@@ -328,7 +318,6 @@ export default function AtendimentoScreen() {
 
     }
 
-
     /* =================================================
        ABRIR DETALHE
     ================================================= */
@@ -345,7 +334,6 @@ export default function AtendimentoScreen() {
         );
 
     }
-
 
     /* =================================================
        RENDER
@@ -397,7 +385,6 @@ export default function AtendimentoScreen() {
 
                     </TouchableOpacity>
 
-
                     <View
                         style={
                             styles.headerTitleArea
@@ -421,7 +408,6 @@ export default function AtendimentoScreen() {
                         </Text>
 
                     </View>
-
 
                     <TouchableOpacity
                         style={styles.headerButton}
@@ -458,7 +444,6 @@ export default function AtendimentoScreen() {
                     </TouchableOpacity>
 
                 </View>
-
 
                 {/* =================================================
                    CONTEÚDO
@@ -529,7 +514,6 @@ export default function AtendimentoScreen() {
                         )}
 
                     </View>
-
 
                     {/* =================================================
                        FILTROS
@@ -618,7 +602,6 @@ export default function AtendimentoScreen() {
 
                     </ScrollView>
 
-
                     {/* =================================================
                        CABEÇALHO DA LISTA
                     ================================================= */}
@@ -649,7 +632,6 @@ export default function AtendimentoScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        CARREGANDO
                     ================================================= */}
@@ -678,7 +660,6 @@ export default function AtendimentoScreen() {
                         </View>
 
                     )}
-
 
                     {/* =================================================
                        ERRO
@@ -738,7 +719,6 @@ export default function AtendimentoScreen() {
 
                         )}
 
-
                     {/* =================================================
                        LISTA
                     ================================================= */}
@@ -788,7 +768,6 @@ export default function AtendimentoScreen() {
 
                                         </View>
 
-
                                         <View
                                             style={[
                                                 styles.status,
@@ -823,7 +802,6 @@ export default function AtendimentoScreen() {
 
                                     </View>
 
-
                                     {/* =================================
                                        DESCRIÇÃO
                                     ================================= */}
@@ -837,7 +815,6 @@ export default function AtendimentoScreen() {
                                         {item.at_descricao ||
                                             "Sem descrição"}
                                     </Text>
-
 
                                     {/* =================================
                                        CLIENTE
@@ -866,7 +843,6 @@ export default function AtendimentoScreen() {
                                         </Text>
 
                                     </View>
-
 
                                     {/* =================================
                                        INFORMAÇÕES
@@ -909,7 +885,6 @@ export default function AtendimentoScreen() {
 
                                         )}
 
-
                                         {item.ca_descricao && (
 
                                             <View
@@ -943,7 +918,6 @@ export default function AtendimentoScreen() {
 
                                     </View>
 
-
                                     {/* =================================
                                        RODAPÉ
                                     ================================= */}
@@ -953,7 +927,6 @@ export default function AtendimentoScreen() {
                                             styles.attendanceFooter
                                         }
                                     >
-
                                         <View
                                             style={
                                                 styles.dateArea
@@ -980,7 +953,6 @@ export default function AtendimentoScreen() {
 
                                         </View>
 
-
                                         <Ionicons
                                             name="chevron-forward"
                                             size={20}
@@ -993,7 +965,6 @@ export default function AtendimentoScreen() {
 
                             )
                         )}
-
 
                     {/* =================================================
                        VAZIO
@@ -1037,7 +1008,6 @@ export default function AtendimentoScreen() {
                         )}
 
                 </ScrollView>
-
 
                 {/* =================================================
                    BOTÃO NOVO

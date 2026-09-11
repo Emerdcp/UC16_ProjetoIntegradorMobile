@@ -7,7 +7,6 @@ import ClientesNavigator from "./ClientesNavigator";
 import { AppDrawerParamList, } from "./types";
 import AgendaNavigator from "./AgendaNavigator";
 
-
 const Drawer = createDrawerNavigator<AppDrawerParamList>();
 
 export default function AppNavigator() {
@@ -59,7 +58,7 @@ export default function AppNavigator() {
             />
 
             {/* =================================================
-               CLIENTES
+               Agenda
             ================================================= */}
 
             <Drawer.Screen

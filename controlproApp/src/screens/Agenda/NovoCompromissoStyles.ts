@@ -8,7 +8,6 @@ import {
     Spacing,
 } from "@/designSystem";
 
-
 export const styles =
     StyleSheet.create({
 
@@ -38,7 +37,6 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         headerButton: {
             width: 44,
             height: 44,
@@ -52,12 +50,10 @@ export const styles =
                 "rgba(255,255,255,0.09)",
         },
 
-
         headerContent: {
             flex: 1,
             marginLeft: 14,
         },
-
 
         headerTitle: {
             fontSize: 20,
@@ -65,13 +61,11 @@ export const styles =
             color: Colors.white,
         },
 
-
         headerSubtitle: {
             marginTop: 2,
             fontSize: 11,
             color: Colors.textSecondary,
         },
-
 
         /* =====================================================
            CONTEÚDO
@@ -83,7 +77,6 @@ export const styles =
             paddingBottom: 100,
         },
 
-
         /* =====================================================
            CAMPOS
         ===================================================== */
@@ -92,7 +85,6 @@ export const styles =
             marginBottom: 18,
         },
 
-
         label: {
             marginBottom: 8,
             fontSize: 12,
@@ -100,13 +92,11 @@ export const styles =
             color: Colors.white,
         },
 
-
         optional: {
             fontSize: 10,
             fontWeight: "400",
             color: Colors.textSecondary,
         },
-
 
         inputContainer: {
             minHeight: 50,
@@ -121,7 +111,6 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         input: {
             flex: 1,
             marginLeft: 10,
@@ -130,7 +119,6 @@ export const styles =
             color: Colors.white,
         },
 
-
         /* =====================================================
            TIPOS
         ===================================================== */
@@ -138,7 +126,6 @@ export const styles =
         tipoGrid: {
             gap: 9,
         },
-
 
         tipoCard: {
             minHeight: 64,
@@ -153,14 +140,12 @@ export const styles =
                 "rgba(255,255,255,0.07)",
         },
 
-
         tipoCardSelected: {
             borderColor:
                 "rgba(79,141,247,0.55)",
             backgroundColor:
                 "rgba(79,141,247,0.10)",
         },
-
 
         tipoIcon: {
             width: 42,
@@ -170,12 +155,10 @@ export const styles =
             borderRadius: 13,
         },
 
-
         tipoContent: {
             flex: 1,
             marginLeft: 11,
         },
-
 
         tipoTitle: {
             fontSize: 13,
@@ -183,13 +166,11 @@ export const styles =
             color: Colors.white,
         },
 
-
         tipoSubtitle: {
             marginTop: 3,
             fontSize: 10,
             color: Colors.textSecondary,
         },
-
 
         /* =====================================================
            SWITCH
@@ -209,17 +190,14 @@ export const styles =
                 "rgba(255,255,255,0.07)",
         },
 
-
         switchContent: {
             flexDirection: "row",
             alignItems: "center",
         },
 
-
         switchTextContainer: {
             marginLeft: 10,
         },
-
 
         switchTitle: {
             fontSize: 13,
@@ -227,13 +205,11 @@ export const styles =
             color: Colors.white,
         },
 
-
         switchSubtitle: {
             marginTop: 3,
             fontSize: 10,
             color: Colors.textSecondary,
         },
-
 
         /* =====================================================
            HORÁRIOS
@@ -244,11 +220,9 @@ export const styles =
             gap: 10,
         },
 
-
         timeField: {
             flex: 1,
         },
-
 
         /* =====================================================
            TEXTAREA
@@ -259,17 +233,14 @@ export const styles =
             paddingVertical: 13,
         },
 
-
         textAreaIcon: {
             marginTop: 2,
         },
-
 
         textArea: {
             minHeight: 90,
             paddingTop: 0,
         },
-
 
         /* =====================================================
            BOTÃO SALVAR
@@ -285,14 +256,12 @@ export const styles =
             backgroundColor: "#2563EB",
         },
 
-
         saveButtonText: {
             marginLeft: 8,
             fontSize: 14,
             fontWeight: "700",
             color: Colors.white,
         },
-
 
         /* =====================================================
            ESPAÇO FINAL
@@ -301,7 +270,6 @@ export const styles =
         bottomSpace: {
             height: 30,
         },
-
         modalOverlay: {
             flex: 1,
             justifyContent: "flex-end",

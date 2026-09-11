@@ -20,70 +20,36 @@ import { buscarCep, } from "@/services/cepService";
 import { buscarCnpj, } from "@/services/cnpjService";
 import { createCliente, } from "@/services/clienteService";
 
-
 type NavigationProp =
     NativeStackNavigationProp<
         ClientesStackParamList,
         "NovoCliente"
     >;
 
-
 export default function NovoClienteScreen() {
 
     const navigation =
         useNavigation<NavigationProp>();
 
-
-    /* =====================================================
+    /* ====================================================
        ESTADOS
     ===================================================== */
 
-    const [pessoa, setPessoa] =
-        useState<"F" | "J">("J");
-
-    const [documento, setDocumento] =
-        useState("");
-
-    const [nome, setNome] =
-        useState("");
-
-    const [nomeFantasia, setNomeFantasia] =
-        useState("");
-
-    const [telefone, setTelefone] =
-        useState("");
-
-    const [email, setEmail] =
-        useState("");
-
-    const [cep, setCep] =
-        useState("");
-
-    const [endereco, setEndereco] =
-        useState("");
-
-    const [numero, setNumero] =
-        useState("");
-
-    const [bairro, setBairro] =
-        useState("");
-
-    const [cidade, setCidade] =
-        useState("");
-
-    const [estado, setEstado] =
-        useState("");
-
-    const [observacao, setObservacao] =
-        useState("");
-
-
-    const [carregandoCnpj, setCarregandoCnpj] =
-        useState(false);
-
-    const [carregandoCep, setCarregandoCep] =
-        useState(false);
-
+    const [pessoa, setPessoa] = useState<"F" | "J">("J");
+    const [documento, setDocumento] = useState("");
+    const [nome, setNome] = useState("");
+    const [nomeFantasia, setNomeFantasia] = useState("");
+    const [telefone, setTelefone] = useState("");
+    const [email, setEmail] = useState("");
+    const [cep, setCep] = useState("");
+    const [endereco, setEndereco] = useState("");
+    const [numero, setNumero] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [estado, setEstado] = useState("");
+    const [observacao, setObservacao] = useState("");
+    const [carregandoCnpj, setCarregandoCnpj] = useState(false);
+    const [carregandoCep, setCarregandoCep] = useState(false);
 
     /* =====================================================
        MÁSCARA DOCUMENTO
@@ -105,7 +71,6 @@ export default function NovoClienteScreen() {
         );
     }
 
-
     /* =====================================================
        TROCAR PESSOA
     ===================================================== */
@@ -122,7 +87,6 @@ export default function NovoClienteScreen() {
 
         setNomeFantasia("");
     }
-
 
     /* =====================================================
        BUSCAR CNPJ
@@ -228,7 +192,6 @@ export default function NovoClienteScreen() {
         }
     }
 
-
     /* =====================================================
        BUSCAR CEP
     ===================================================== */
@@ -283,7 +246,6 @@ export default function NovoClienteScreen() {
         }
     }
 
-
     /* =====================================================
        SALVAR
     ===================================================== */
@@ -302,7 +264,6 @@ export default function NovoClienteScreen() {
             return;
         }
 
-
         if (!documento.trim()) {
 
             Alert.alert(
@@ -314,7 +275,6 @@ export default function NovoClienteScreen() {
 
             return;
         }
-
 
         if (
             pessoa === "J" &&
@@ -328,7 +288,6 @@ export default function NovoClienteScreen() {
 
             return;
         }
-
 
         try {
 
@@ -411,15 +370,12 @@ export default function NovoClienteScreen() {
 
             };
 
-
             console.log(
                 "CADASTRANDO CLIENTE:",
                 data
             );
 
-
             await createCliente(data);
-
 
             Alert.alert(
                 "Sucesso",
@@ -432,7 +388,6 @@ export default function NovoClienteScreen() {
                     },
                 ]
             );
-
 
         } catch (error: any) {
 
@@ -452,7 +407,6 @@ export default function NovoClienteScreen() {
 
     }
 
-
     /* =====================================================
        TELA
     ===================================================== */
@@ -469,7 +423,6 @@ export default function NovoClienteScreen() {
                         : undefined
                 }
             >
-
                 {/* =================================================
                    HEADER
                 ================================================= */}
@@ -506,7 +459,6 @@ export default function NovoClienteScreen() {
                     </View>
 
                 </View>
-
 
                 {/* =================================================
                    FORMULÁRIO
@@ -563,7 +515,6 @@ export default function NovoClienteScreen() {
 
                         </TouchableOpacity>
 
-
                         <TouchableOpacity
                             style={[
                                 styles.personButton,
@@ -599,7 +550,6 @@ export default function NovoClienteScreen() {
 
                     </View>
 
-
                     {/* DOCUMENTO */}
 
                     <View style={styles.inputGroup}>
@@ -609,7 +559,6 @@ export default function NovoClienteScreen() {
                                 ? "CNPJ"
                                 : "CPF"}
                         </Text>
-
 
                         <View style={styles.inputWithAction}>
 
@@ -627,7 +576,6 @@ export default function NovoClienteScreen() {
                                 placeholderTextColor="#64748B"
                                 keyboardType="numeric"
                             />
-
 
                             {pessoa === "J" && (
 
@@ -660,7 +608,6 @@ export default function NovoClienteScreen() {
 
                     </View>
 
-
                     {/* NOME */}
 
                     <View style={styles.inputGroup}>
@@ -684,7 +631,6 @@ export default function NovoClienteScreen() {
                         />
 
                     </View>
-
 
                     {/* NOME FANTASIA */}
 
@@ -710,7 +656,6 @@ export default function NovoClienteScreen() {
 
                     )}
 
-
                     {/* TELEFONE */}
 
                     <View style={styles.inputGroup}>
@@ -734,7 +679,6 @@ export default function NovoClienteScreen() {
 
                     </View>
 
-
                     {/* EMAIL */}
 
                     <View style={styles.inputGroup}>
@@ -754,7 +698,6 @@ export default function NovoClienteScreen() {
                         />
 
                     </View>
-
 
                     {/* ENDEREÇO */}
 
@@ -818,7 +761,6 @@ export default function NovoClienteScreen() {
 
                     </View>
 
-
                     {/* LOGRADOURO */}
 
                     <View style={styles.inputGroup}>
@@ -836,7 +778,6 @@ export default function NovoClienteScreen() {
                         />
 
                     </View>
-
 
                     {/* NÚMERO / BAIRRO */}
 
@@ -864,7 +805,6 @@ export default function NovoClienteScreen() {
 
                         </View>
 
-
                         <View
                             style={[
                                 styles.inputGroup,
@@ -887,7 +827,6 @@ export default function NovoClienteScreen() {
                         </View>
 
                     </View>
-
 
                     {/* CIDADE / ESTADO */}
 
@@ -940,7 +879,6 @@ export default function NovoClienteScreen() {
 
                     </View>
 
-
                     {/* OBSERVAÇÕES */}
 
                     <View style={styles.inputGroup}>
@@ -963,7 +901,6 @@ export default function NovoClienteScreen() {
                         />
 
                     </View>
-
 
                     {/* BOTÕES */}
 

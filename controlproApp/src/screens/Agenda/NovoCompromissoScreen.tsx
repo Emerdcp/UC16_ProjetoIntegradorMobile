@@ -21,7 +21,6 @@ import { getClientes, getClienteById, Cliente, EnderecoCliente,} from "@/service
 import { getProjetos, Projeto,} from "@/services/projetoService";
 import { styles,} from "./NovoCompromissoStyles";
 
-
 /* =====================================================
    NAVEGAÇÃO
 ===================================================== */
@@ -30,7 +29,6 @@ type NavigationProp =
     NativeStackNavigationProp<
         AgendaStackParamList
     >;
-
 
 /* =====================================================
    TIPOS DE COMPROMISSO
@@ -41,7 +39,6 @@ type TipoCompromisso =
     | "R"
     | "C"
     | "E";
-
 
 interface TipoOpcao {
 
@@ -54,9 +51,7 @@ interface TipoOpcao {
     icone: keyof typeof Ionicons.glyphMap;
 
     cor: string;
-
 }
-
 
 /* =====================================================
    OPÇÕES DE COMPROMISSO
@@ -98,7 +93,6 @@ const tipos: TipoOpcao[] = [
 
 ];
 
-
 /* =====================================================
    FUNÇÃO PARA EXTRAIR LISTA DA API
 ===================================================== */
@@ -131,7 +125,6 @@ function extrairLista(
 
 }
 
-
 /* =====================================================
    FORMATAR DATA PARA EXIBIÇÃO
 ===================================================== */
@@ -156,7 +149,6 @@ function formatarDataExibicao(
     return `${dia}/${mes}/${ano}`;
 
 }
-
 
 /* =====================================================
    FORMATAR DATA PARA MYSQL
@@ -184,128 +176,80 @@ function formatarDataMySQL(
 
 }
 
-
 /* =====================================================
    COMPONENTE
 ===================================================== */
 
 export default function NovoCompromissoScreen() {
 
-    const navigation =
-        useNavigation<NavigationProp>();
-
+    const navigation = useNavigation<NavigationProp>();
 
     /* =================================================
        CAMPOS
     ================================================= */
 
-    const [titulo, setTitulo] =
-        useState("");
-
-    const [descricao, setDescricao] =
-        useState("");
-
-    const [tipo, setTipo] =
-        useState<TipoCompromisso>("V");
-
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [tipo, setTipo] = useState<TipoCompromisso>("V");
 
     /* =================================================
        DATA
     ================================================= */
 
-    const [dataSelecionada, setDataSelecionada] =
-        useState(new Date());
-
-    const [mostrarCalendario, setMostrarCalendario] =
-        useState(false);
-
+    const [dataSelecionada, setDataSelecionada] = useState(new Date());
+    const [mostrarCalendario, setMostrarCalendario] = useState(false);
 
     /* =================================================
        HORÁRIOS
     ================================================= */
 
-    const [horaInicio, setHoraInicio] =
-        useState("09:00");
-
-    const [horaFim, setHoraFim] =
-        useState("10:00");
-
-    const [mostrarHoraInicio, setMostrarHoraInicio] =
-        useState(false);
-
-    const [mostrarHoraFim, setMostrarHoraFim] =
-        useState(false);
-
+    const [horaInicio, setHoraInicio] = useState("09:00");
+    const [horaFim, setHoraFim] = useState("10:00");
+    const [mostrarHoraInicio, setMostrarHoraInicio] = useState(false);
+    const [mostrarHoraFim, setMostrarHoraFim] = useState(false);
 
     /* =================================================
        DIA INTEIRO
     ================================================= */
 
-    const [diaInteiro, setDiaInteiro] =
-        useState(false);
-
+    const [diaInteiro, setDiaInteiro] = useState(false);
 
     /* =================================================
        CLIENTE
     ================================================= */
 
-    const [clienteSelecionado, setClienteSelecionado] =
-        useState<Cliente | null>(null);
-
-    const [clientes, setClientes] =
-        useState<Cliente[]>([]);
-
-    const [carregandoClientes, setCarregandoClientes] =
-        useState(false);
-
-    const [mostrarClientes, setMostrarClientes] =
-        useState(false);
-
+    const [clienteSelecionado, setClienteSelecionado] = useState<Cliente | null>(null);
+    const [clientes, setClientes] = useState<Cliente[]>([]);
+    const [carregandoClientes, setCarregandoClientes] = useState(false);
+    const [mostrarClientes, setMostrarClientes] = useState(false);
 
     /* =================================================
        PROJETO
     ================================================= */
 
-    const [projetoSelecionado, setProjetoSelecionado] =
-        useState<Projeto | null>(null);
-
-    const [projetos, setProjetos] =
-        useState<Projeto[]>([]);
-
-    const [mostrarProjetos, setMostrarProjetos] =
-        useState(false);
-
-    const [carregandoProjetos, setCarregandoProjetos] =
-        useState(false);
-
+    const [projetoSelecionado, setProjetoSelecionado] = useState<Projeto | null>(null);
+    const [projetos, setProjetos] = useState<Projeto[]>([]);
+    const [mostrarProjetos, setMostrarProjetos] = useState(false);
+    const [carregandoProjetos, setCarregandoProjetos] = useState(false);
 
     /* =================================================
        ENDEREÇO
     ================================================= */
 
-    const [enderecoCliente, setEnderecoCliente] =
-        useState<EnderecoCliente | null>(null);
-
-    const [local, setLocal] =
-        useState("");
-
+    const [enderecoCliente, setEnderecoCliente] = useState<EnderecoCliente | null>(null);
+    const [local, setLocal] = useState("");
 
     /* =================================================
        ATENDIMENTO
     ================================================= */
 
-    const [atendimento, setAtendimento] =
-        useState("");
-
+    const [atendimento, setAtendimento] = useState("");
 
     /* =================================================
        SALVAMENTO
     ================================================= */
 
-    const [salvando, setSalvando] =
-        useState(false);
-
-
+    const [salvando, setSalvando] = useState(false);
 
     /* =================================================
        HORAS
@@ -363,7 +307,6 @@ export default function NovoCompromissoScreen() {
 
     }
 
-
     /* =================================================
        CARREGAR CLIENTES
     ================================================= */
@@ -409,7 +352,6 @@ export default function NovoCompromissoScreen() {
 
     }
 
-
     /* =================================================
        ABRIR CLIENTES
     ================================================= */
@@ -425,9 +367,7 @@ export default function NovoCompromissoScreen() {
             await carregarClientes();
 
         }
-
     }
-
 
     /* =================================================
        SELECIONAR CLIENTE
@@ -443,12 +383,6 @@ export default function NovoCompromissoScreen() {
 
         setMostrarClientes(false);
 
-        /*
-         * Ao trocar de cliente,
-         * o projeto anterior deixa
-         * de ser válido.
-         */
-
         setProjetoSelecionado(
             null
         );
@@ -461,14 +395,12 @@ export default function NovoCompromissoScreen() {
 
         setLocal("");
 
-
         try {
 
             const resposta =
                 await getClienteById(
                     cliente.id
                 );
-
 
             /*
              * Endereço
@@ -482,10 +414,8 @@ export default function NovoCompromissoScreen() {
                     resposta.endereco
                 );
 
-
                 const endereco =
                     resposta.endereco;
-
 
                 const partes = [
                     endereco.ce_endereco,
@@ -496,13 +426,11 @@ export default function NovoCompromissoScreen() {
                     endereco.ce_estado,
                 ].filter(Boolean);
 
-
                 setLocal(
                     partes.join(", ")
                 );
 
             }
-
 
             /*
              * Projetos
@@ -528,7 +456,6 @@ export default function NovoCompromissoScreen() {
         }
 
     }
-
 
     /* =================================================
        CARREGAR PROJETOS
@@ -577,7 +504,6 @@ export default function NovoCompromissoScreen() {
 
     }
 
-
     /* =================================================
        ABRIR PROJETOS
     ================================================= */
@@ -594,16 +520,13 @@ export default function NovoCompromissoScreen() {
             );
 
             return;
-
         }
-
 
         setMostrarProjetos(
             true
         );
 
     }
-
 
     /* =================================================
        SELECIONAR PROJETO
@@ -622,7 +545,6 @@ export default function NovoCompromissoScreen() {
         );
 
     }
-
 
     /* =================================================
        DATA
@@ -648,7 +570,6 @@ export default function NovoCompromissoScreen() {
 
     }
 
-
     /* =================================================
        SALVAR
     ================================================= */
@@ -668,7 +589,6 @@ export default function NovoCompromissoScreen() {
 
         }
 
-
         if (
             !diaInteiro &&
             !horaInicio.trim()
@@ -683,11 +603,9 @@ export default function NovoCompromissoScreen() {
 
         }
 
-
         try {
 
             setSalvando(true);
-
 
             const dataInicio =
                 diaInteiro
@@ -701,7 +619,6 @@ export default function NovoCompromissoScreen() {
                         dataSelecionada,
                         horaInicio
                     );
-
 
             const dataFim =
                 diaInteiro
@@ -720,53 +637,24 @@ export default function NovoCompromissoScreen() {
 
                         : null;
 
-
             await createAgenda({
 
-                ag_titulo:
-                    titulo.trim(),
-
-                ag_descricao:
-                    descricao.trim() ||
-                    null,
-
-                ag_tipo:
-                    tipo,
-
-                ag_data_inicio:
-                    dataInicio,
-
-                ag_data_fim:
-                    dataFim,
-
+                ag_titulo: titulo.trim(),
+                ag_descricao: descricao.trim() || null,
+                ag_tipo: tipo,
+                ag_data_inicio: dataInicio,
+                ag_data_fim: dataFim,
                 ag_dia_inteiro:
                     diaInteiro
                         ? "S"
                         : "N",
-
-                ag_local:
-                    local.trim() ||
-                    null,
-
-                ag_cliente_id:
-                    clienteSelecionado?.id ||
-                    null,
-
-                ag_projeto_id:
-                    projetoSelecionado?.id ||
-                    null,
-
-                ag_atendimento_id:
-                    null,
-
-                ag_tarefa_id:
-                    null,
-
-                ag_status:
-                    "A",
-
+                ag_local: local.trim() || null,
+                ag_cliente_id: clienteSelecionado?.id || null,
+                ag_projeto_id: projetoSelecionado?.id || null,
+                ag_atendimento_id: null,
+                ag_tarefa_id: null,
+                ag_status: "A",
             });
-
 
             Alert.alert(
                 "Sucesso",
@@ -788,28 +676,22 @@ export default function NovoCompromissoScreen() {
                 error
             );
 
-
             console.log(
                 "Resposta da API:",
                 error?.response?.data
             );
-
 
             Alert.alert(
                 "Erro",
                 error?.response?.data?.message ||
                 "Não foi possível salvar o compromisso."
             );
-
         }
         finally {
 
             setSalvando(false);
-
         }
-
     }
-
 
     /* =================================================
        CLIENTE EXIBIDO
@@ -820,7 +702,6 @@ export default function NovoCompromissoScreen() {
         clienteSelecionado?.cli_razaosocial ||
         "";
 
-
     /* =================================================
        PROJETO EXIBIDO
     ================================================= */
@@ -829,7 +710,6 @@ export default function NovoCompromissoScreen() {
         projetoSelecionado
             ? `${projetoSelecionado.pj_codigo} - ${projetoSelecionado.pj_descresumo || ""}`
             : "";
-
 
     /* =================================================
        RENDER
@@ -865,7 +745,6 @@ export default function NovoCompromissoScreen() {
 
                 </TouchableOpacity>
 
-
                 <View
                     style={styles.headerContent}
                 >
@@ -876,7 +755,6 @@ export default function NovoCompromissoScreen() {
                         Novo compromisso
                     </Text>
 
-
                     <Text
                         style={styles.headerSubtitle}
                     >
@@ -886,7 +764,6 @@ export default function NovoCompromissoScreen() {
                 </View>
 
             </View>
-
 
             {/* =================================================
                 FORMULÁRIO
@@ -909,7 +786,6 @@ export default function NovoCompromissoScreen() {
                         Título
                     </Text>
 
-
                     <View
                         style={
                             styles.inputContainer
@@ -921,7 +797,6 @@ export default function NovoCompromissoScreen() {
                             size={19}
                             color="#64748B"
                         />
-
 
                         <TextInput
                             style={styles.input}
@@ -937,7 +812,6 @@ export default function NovoCompromissoScreen() {
 
                 </View>
 
-
                 {/* =================================================
                     TIPO
                 ================================================= */}
@@ -947,7 +821,6 @@ export default function NovoCompromissoScreen() {
                     <Text style={styles.label}>
                         Tipo de compromisso
                     </Text>
-
 
                     <View
                         style={styles.tipoGrid}
@@ -959,7 +832,6 @@ export default function NovoCompromissoScreen() {
                                 const selecionado =
                                     tipo ===
                                     item.codigo;
-
 
                                 return (
 
@@ -1033,7 +905,6 @@ export default function NovoCompromissoScreen() {
 
                                         </View>
 
-
                                         {selecionado && (
 
                                             <Ionicons
@@ -1055,7 +926,6 @@ export default function NovoCompromissoScreen() {
 
                 </View>
 
-
                 {/* =================================================
                     DATA
                 ================================================= */}
@@ -1065,7 +935,6 @@ export default function NovoCompromissoScreen() {
                     <Text style={styles.label}>
                         Data
                     </Text>
-
 
                     <TouchableOpacity
                         style={
@@ -1085,7 +954,6 @@ export default function NovoCompromissoScreen() {
                             color="#64748B"
                         />
 
-
                         <Text
                             style={[
                                 styles.input,
@@ -1101,7 +969,6 @@ export default function NovoCompromissoScreen() {
                             }
                         </Text>
 
-
                         <Ionicons
                             name="chevron-forward-outline"
                             size={18}
@@ -1109,7 +976,6 @@ export default function NovoCompromissoScreen() {
                         />
 
                     </TouchableOpacity>
-
 
                     {mostrarCalendario && (
 
@@ -1127,7 +993,6 @@ export default function NovoCompromissoScreen() {
                     )}
 
                 </View>
-
 
                 {/* =================================================
                     DIA INTEIRO
@@ -1151,7 +1016,6 @@ export default function NovoCompromissoScreen() {
                             color="#4F8DF7"
                         />
 
-
                         <View
                             style={
                                 styles.switchTextContainer
@@ -1166,7 +1030,6 @@ export default function NovoCompromissoScreen() {
                                 Dia inteiro
                             </Text>
 
-
                             <Text
                                 style={
                                     styles.switchSubtitle
@@ -1179,7 +1042,6 @@ export default function NovoCompromissoScreen() {
 
                     </View>
 
-
                     <Switch
                         value={diaInteiro}
                         onValueChange={
@@ -1191,9 +1053,7 @@ export default function NovoCompromissoScreen() {
                         }}
                         thumbColor="#FFFFFF"
                     />
-
                 </View>
-
 
                 {/* =================================================
                     HORÁRIOS
@@ -1217,7 +1077,6 @@ export default function NovoCompromissoScreen() {
                                 Início
                             </Text>
 
-
                             <TouchableOpacity
                                 style={styles.inputContainer}
                                 activeOpacity={0.8}
@@ -1232,7 +1091,6 @@ export default function NovoCompromissoScreen() {
                                     color="#64748B"
                                 />
 
-
                                 <Text
                                     style={[
                                         styles.input,
@@ -1245,7 +1103,6 @@ export default function NovoCompromissoScreen() {
                                     {horaInicio}
                                 </Text>
 
-
                                 <Ionicons
                                     name="chevron-forward-outline"
                                     size={18}
@@ -1253,7 +1110,6 @@ export default function NovoCompromissoScreen() {
                                 />
 
                             </TouchableOpacity>
-
 
                             {mostrarHoraInicio && (
 
@@ -1301,7 +1157,6 @@ export default function NovoCompromissoScreen() {
                                 Término
                             </Text>
 
-
                             <TouchableOpacity
                                 style={styles.inputContainer}
                                 activeOpacity={0.8}
@@ -1316,7 +1171,6 @@ export default function NovoCompromissoScreen() {
                                     color="#64748B"
                                 />
 
-
                                 <Text
                                     style={[
                                         styles.input,
@@ -1329,7 +1183,6 @@ export default function NovoCompromissoScreen() {
                                     {horaFim}
                                 </Text>
 
-
                                 <Ionicons
                                     name="chevron-forward-outline"
                                     size={18}
@@ -1337,7 +1190,6 @@ export default function NovoCompromissoScreen() {
                                 />
 
                             </TouchableOpacity>
-
 
                             {mostrarHoraFim && (
 
@@ -1379,7 +1231,6 @@ export default function NovoCompromissoScreen() {
 
                 )}
 
-
             {/* =================================================
                     CLIENTE
                 ================================================= */}
@@ -1392,7 +1243,6 @@ export default function NovoCompromissoScreen() {
                         {" "}opcional
                     </Text>
                 </Text>
-
 
                 <TouchableOpacity
                     style={
@@ -1409,7 +1259,6 @@ export default function NovoCompromissoScreen() {
                         size={19}
                         color="#64748B"
                     />
-
 
                     <Text
                         style={[
@@ -1441,7 +1290,6 @@ export default function NovoCompromissoScreen() {
 
             </View>
 
-
             {/* =================================================
                     PROJETO
                 ================================================= */}
@@ -1454,7 +1302,6 @@ export default function NovoCompromissoScreen() {
                         {" "}opcional
                     </Text>
                 </Text>
-
 
                 <TouchableOpacity
                     style={[
@@ -1476,7 +1323,6 @@ export default function NovoCompromissoScreen() {
                         size={19}
                         color="#64748B"
                     />
-
 
                     <Text
                         style={[
@@ -1501,7 +1347,6 @@ export default function NovoCompromissoScreen() {
                         }
                     </Text>
 
-
                     <Ionicons
                         name="chevron-forward-outline"
                         size={18}
@@ -1511,7 +1356,6 @@ export default function NovoCompromissoScreen() {
                 </TouchableOpacity>
 
             </View>
-
 
             {/* =================================================
                     ATENDIMENTO
@@ -1526,7 +1370,6 @@ export default function NovoCompromissoScreen() {
                     </Text>
                 </Text>
 
-
                 <View
                     style={
                         styles.inputContainer
@@ -1538,7 +1381,6 @@ export default function NovoCompromissoScreen() {
                         size={19}
                         color="#64748B"
                     />
-
 
                     <TextInput
                         style={styles.input}
@@ -1556,7 +1398,6 @@ export default function NovoCompromissoScreen() {
 
             </View>
 
-
             {/* =================================================
                     LOCAL
                 ================================================= */}
@@ -1570,7 +1411,6 @@ export default function NovoCompromissoScreen() {
                     </Text>
                 </Text>
 
-
                 <View
                     style={
                         styles.inputContainer
@@ -1582,7 +1422,6 @@ export default function NovoCompromissoScreen() {
                         size={19}
                         color="#64748B"
                     />
-
 
                     <TextInput
                         style={styles.input}
@@ -1598,7 +1437,6 @@ export default function NovoCompromissoScreen() {
 
             </View>
 
-
             {/* =================================================
                     OBSERVAÇÃO
                 ================================================= */}
@@ -1608,7 +1446,6 @@ export default function NovoCompromissoScreen() {
                 <Text style={styles.label}>
                     Observação
                 </Text>
-
 
                 <View
                     style={[
@@ -1625,7 +1462,6 @@ export default function NovoCompromissoScreen() {
                             styles.textAreaIcon
                         }
                     />
-
 
                     <TextInput
                         style={[
@@ -1647,7 +1483,6 @@ export default function NovoCompromissoScreen() {
                 </View>
 
             </View>
-
 
             {/* =================================================
                     SALVAR
@@ -1686,7 +1521,6 @@ export default function NovoCompromissoScreen() {
 
                 )}
 
-
                 <Text
                     style={
                         styles.saveButtonText
@@ -1698,7 +1532,6 @@ export default function NovoCompromissoScreen() {
                 </Text>
 
             </TouchableOpacity>
-
 
             <View
                 style={
@@ -1784,7 +1617,6 @@ export default function NovoCompromissoScreen() {
                     </TouchableOpacity>
 
                 </View>
-
 
                 {carregandoClientes ? (
 
@@ -1928,10 +1760,9 @@ export default function NovoCompromissoScreen() {
 
     </Modal>
 
-
     {/* =================================================
-                MODAL DE PROJETOS
-            ================================================= */}
+        MODAL DE PROJETOS
+    ================================================= */}
 
     <Modal
         visible={
@@ -1943,7 +1774,6 @@ export default function NovoCompromissoScreen() {
             setMostrarProjetos(false)
         }
     >
-
         <View
             style={
                 styles.modalOverlay
@@ -1972,7 +1802,6 @@ export default function NovoCompromissoScreen() {
                             Selecionar projeto
                         </Text>
 
-
                         <Text
                             style={
                                 styles.modalSubtitle
@@ -1982,7 +1811,6 @@ export default function NovoCompromissoScreen() {
                         </Text>
 
                     </View>
-
 
                     <TouchableOpacity
                         style={
@@ -2004,7 +1832,6 @@ export default function NovoCompromissoScreen() {
                     </TouchableOpacity>
 
                 </View>
-
 
                 {carregandoProjetos ? (
 
@@ -2071,7 +1898,6 @@ export default function NovoCompromissoScreen() {
 
                                 </View>
 
-
                                 <View
                                     style={
                                         styles.modalItemContent
@@ -2107,7 +1933,6 @@ export default function NovoCompromissoScreen() {
                                     </Text>
 
                                 </View>
-
 
                                 <Ionicons
                                     name="chevron-forward-outline"

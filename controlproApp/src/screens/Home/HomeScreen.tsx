@@ -20,7 +20,6 @@ import { AgendaEvento, getAgenda, } from "@/services/agendaService";
 import { getClientes, Cliente } from "@/services/clienteService";
 import { getProjetos, Projeto } from "@/services/projetoService";
 
-
 interface Indicator {
     id: number;
     title: string;
@@ -80,7 +79,6 @@ const indicators: Indicator[] = [
 
 ];
 
-
 export default function HomeScreen() {
 
     const navigation = useNavigation<AppNavigationProp>();
@@ -119,7 +117,6 @@ export default function HomeScreen() {
     else if (horaAtual >= 12 && horaAtual < 18) {
         saudacao = "Boa tarde";
     }
-
     const carregarAtendimentos = useCallback(
         async (
             mostrarCarregamento = true
@@ -133,20 +130,12 @@ export default function HomeScreen() {
 
                 setErroAtendimentos(false);
 
-
                 const resposta =
                     await getAtendimentos(
                         "",
                         1,
                         100
                     );
-
-
-                /*
-                 * O endpoint pode retornar
-                 * diretamente um array ou
-                 * um objeto contendo data.
-                 */
 
                 const lista =
                     Array.isArray(resposta)
@@ -188,8 +177,8 @@ export default function HomeScreen() {
     );
 
     /* =====================================================
-   FUNÇÕES DA AGENDA
-===================================================== */
+        FUNÇÕES DA AGENDA
+    ===================================================== */
 
     function formatarDataAgenda(data: Date) {
 
@@ -210,13 +199,8 @@ export default function HomeScreen() {
     }
 
 
-    const anoAgenda =
-        mesAgenda.getFullYear();
-
-    const mesAgendaNumero =
-        mesAgenda.getMonth();
-
-
+    const anoAgenda = mesAgenda.getFullYear();
+    const mesAgendaNumero = mesAgenda.getMonth();
     const primeiroDiaAgenda =
         new Date(
             anoAgenda,
@@ -224,14 +208,12 @@ export default function HomeScreen() {
             1
         ).getDay();
 
-
     const quantidadeDiasAgenda =
         new Date(
             anoAgenda,
             mesAgendaNumero + 1,
             0
         ).getDate();
-
 
     const diasAgenda = [];
 
@@ -477,11 +459,8 @@ export default function HomeScreen() {
         useCallback(() => {
 
             carregarAtendimentos();
-
             carregarIndicadores();
-
             carregarAgendaHome();
-
         }, [
             carregarAtendimentos,
             carregarIndicadores,
@@ -785,8 +764,8 @@ export default function HomeScreen() {
                     </View>
 
                     {/* =================================================
-    AGENDA
-================================================= */}
+                        AGENDA
+                    ================================================= */}
 
                     <View style={styles.section}>
 
@@ -821,8 +800,8 @@ export default function HomeScreen() {
 
 
                             {/* =============================================
-            CABEÇALHO
-        ============================================= */}
+                                CABEÇALHO
+                            ============================================= */}
 
                             <View style={styles.homeCalendarHeader}>
 
@@ -902,8 +881,8 @@ export default function HomeScreen() {
 
 
                             {/* =============================================
-            SEMANA
-        ============================================= */}
+                                SEMANA
+                            ============================================= */}
 
                             <View style={styles.homeWeekRow}>
 
@@ -934,8 +913,8 @@ export default function HomeScreen() {
 
 
                             {/* =============================================
-            DIAS
-        ============================================= */}
+                                DIAS
+                            ============================================= */}
 
                             <View style={styles.homeDaysGrid}>
 

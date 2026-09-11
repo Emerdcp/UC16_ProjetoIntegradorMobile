@@ -1,37 +1,18 @@
 import React from "react";
-
-import {
-    createNativeStackNavigator,
-} from "@react-navigation/native-stack";
-
-import AtendimentoScreen
-    from "@/screens/Atendimento/AtendimentoScreen";
-
-import NovoAtendimentoScreen
-    from "@/screens/Atendimento/NovoAtendimentoScreen";
-
-import AtendimentoDetalheScreen
-    from "@/screens/Atendimento/AtendimentoDetalheScreen";
-
+import { createNativeStackNavigator,} from "@react-navigation/native-stack";
+import AtendimentoScreen from "@/screens/Atendimento/AtendimentoScreen";
+import NovoAtendimentoScreen from "@/screens/Atendimento/NovoAtendimentoScreen";
+import AtendimentoDetalheScreen from "@/screens/Atendimento/AtendimentoDetalheScreen";
 
 export type AtendimentoStackParamList = {
-
     Atendimento: undefined;
-
     NovoAtendimento: undefined;
-
     AtendimentoDetalhe: {
         id: number;
     };
-
 };
 
-
-const Stack =
-    createNativeStackNavigator<
-        AtendimentoStackParamList
-    >();
-
+const Stack = createNativeStackNavigator<AtendimentoStackParamList>();
 
 export default function AtendimentoNavigator() {
 

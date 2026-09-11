@@ -1,13 +1,5 @@
-import {
-    StyleSheet,
-} from "react-native";
-
-import {
-    Colors,
-    Radius,
-    Spacing,
-} from "@/designSystem";
-
+import { StyleSheet,} from "react-native";
+import { Colors, Radius, Spacing,} from "@/designSystem";
 
 export const styles =
     StyleSheet.create({
@@ -20,7 +12,6 @@ export const styles =
             flex: 1,
             backgroundColor: "#050B2C",
         },
-
 
         /* =====================================================
            HEADER
@@ -38,7 +29,6 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         headerButton: {
             width: 44,
             height: 44,
@@ -52,12 +42,10 @@ export const styles =
                 "rgba(255,255,255,0.09)",
         },
 
-
         headerContent: {
             flex: 1,
             marginLeft: 14,
         },
-
 
         headerTitle: {
             fontSize: 21,
@@ -65,13 +53,11 @@ export const styles =
             color: Colors.white,
         },
 
-
         headerSubtitle: {
             marginTop: 2,
             fontSize: 12,
             color: Colors.textSecondary,
         },
-
 
         /* =====================================================
            CONTEÚDO
@@ -81,7 +67,6 @@ export const styles =
             paddingTop: Spacing.lg,
             paddingBottom: 110,
         },
-
 
         /* =====================================================
            LOADING
@@ -93,13 +78,11 @@ export const styles =
             justifyContent: "center",
         },
 
-
         loadingText: {
             marginTop: 10,
             fontSize: 13,
             color: Colors.textSecondary,
         },
-
 
         /* =====================================================
            TÍTULO
@@ -118,7 +101,6 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         mainIcon: {
             width: 52,
             height: 52,
@@ -128,18 +110,15 @@ export const styles =
             marginRight: 12,
         },
 
-
         titleContent: {
             flex: 1,
         },
-
 
         typeText: {
             fontSize: 10,
             fontWeight: "700",
             color: Colors.textSecondary,
         },
-
 
         eventTitle: {
             marginTop: 3,
@@ -148,19 +127,16 @@ export const styles =
             color: Colors.white,
         },
 
-
         status: {
             paddingHorizontal: 9,
             paddingVertical: 6,
             borderRadius: Radius.full,
         },
 
-
         statusText: {
             fontSize: 9,
             fontWeight: "700",
         },
-
 
         /* =====================================================
            INFORMAÇÕES
@@ -178,17 +154,14 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         infoRow: {
             flexDirection: "row",
             alignItems: "center",
         },
 
-
         infoRowSpacing: {
             marginTop: 14,
         },
-
 
         infoIcon: {
             width: 42,
@@ -200,17 +173,14 @@ export const styles =
                 "rgba(79,141,247,0.13)",
         },
 
-
         infoContent: {
             marginLeft: 12,
         },
-
 
         infoLabel: {
             fontSize: 10,
             color: Colors.textSecondary,
         },
-
 
         infoValue: {
             marginTop: 3,
@@ -218,7 +188,6 @@ export const styles =
             fontWeight: "700",
             color: Colors.white,
         },
-
 
         /* =====================================================
            DETALHES
@@ -236,12 +205,10 @@ export const styles =
                 "rgba(255,255,255,0.08)",
         },
 
-
         detailHeader: {
             flexDirection: "row",
             alignItems: "center",
         },
-
 
         detailHeaderText: {
             marginLeft: 8,
@@ -250,14 +217,12 @@ export const styles =
             color: Colors.textSecondary,
         },
 
-
         detailValue: {
             marginTop: 10,
             fontSize: 14,
             lineHeight: 20,
             color: Colors.white,
         },
-
 
         detailSecondary: {
             marginTop: 5,
@@ -266,7 +231,6 @@ export const styles =
             color: Colors.textSecondary,
         },
 
-
         /* =====================================================
            ESPAÇO FINAL
         ===================================================== */
@@ -274,5 +238,4 @@ export const styles =
         bottomSpace: {
             height: 30,
         },
-
     });

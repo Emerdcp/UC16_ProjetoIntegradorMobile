@@ -1,10 +1,5 @@
 import { StyleSheet } from "react-native";
-
-import {
-    Colors,
-    Radius,
-    Spacing,
-} from "@/designSystem";
+import { Colors, Radius, Spacing,} from "@/designSystem";
 
 
 export const styles = StyleSheet.create({
@@ -17,7 +12,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#050B2C",
     },
-
 
     /* =====================================================
        HEADER
@@ -34,7 +28,6 @@ export const styles = StyleSheet.create({
             "rgba(255,255,255,0.08)",
     },
 
-
     headerButton: {
         width: 44,
         height: 44,
@@ -48,12 +41,10 @@ export const styles = StyleSheet.create({
             "rgba(255,255,255,0.09)",
     },
 
-
     headerContent: {
         flex: 1,
         marginLeft: 14,
     },
-
 
     headerTitle: {
         fontSize: 21,
@@ -61,13 +52,11 @@ export const styles = StyleSheet.create({
         color: Colors.white,
     },
 
-
     headerSubtitle: {
         marginTop: 2,
         fontSize: 12,
         color: Colors.textSecondary,
     },
-
 
     /* =====================================================
        CONTEÚDO
@@ -77,7 +66,6 @@ export const styles = StyleSheet.create({
         paddingTop: Spacing.lg,
         paddingBottom: 110,
     },
-
 
     /* =====================================================
        CARD DO CALENDÁRIO
@@ -94,7 +82,6 @@ export const styles = StyleSheet.create({
             "rgba(255,255,255,0.08)",
     },
 
-
     /* =====================================================
        CABEÇALHO DO MÊS
     ===================================================== */
@@ -106,7 +93,6 @@ export const styles = StyleSheet.create({
         marginBottom: 18,
     },
 
-
     monthButton: {
         width: 38,
         height: 38,
@@ -117,11 +103,9 @@ export const styles = StyleSheet.create({
             "rgba(5,11,44,0.65)",
     },
 
-
     monthCenter: {
         alignItems: "center",
     },
-
 
     monthTitle: {
         fontSize: 18,
@@ -129,13 +113,11 @@ export const styles = StyleSheet.create({
         color: Colors.white,
     },
 
-
     yearText: {
         marginTop: 2,
         fontSize: 11,
         color: Colors.textSecondary,
     },
-
 
     /* =====================================================
        SEMANA
@@ -146,7 +128,6 @@ export const styles = StyleSheet.create({
         marginBottom: 8,
     },
 
-
     weekText: {
         width: `${100 / 7}%`,
         textAlign: "center",
@@ -154,7 +135,6 @@ export const styles = StyleSheet.create({
         fontWeight: "700",
         color: Colors.textSecondary,
     },
-
 
     /* =====================================================
        GRADE DE DIAS
@@ -165,7 +145,6 @@ export const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
 
-
     dayContainer: {
         width: `${100 / 7}%`,
         height: 46,
@@ -173,7 +152,6 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         position: "relative",
     },
-
 
     day: {
         width: 34,
@@ -183,17 +161,14 @@ export const styles = StyleSheet.create({
         borderRadius: 17,
     },
 
-
     daySelected: {
         backgroundColor: "#4F8DF7",
     },
-
 
     dayToday: {
         borderWidth: 1,
         borderColor: "#4F8DF7",
     },
-
 
     dayText: {
         fontSize: 12,
@@ -201,12 +176,10 @@ export const styles = StyleSheet.create({
         color: Colors.white,
     },
 
-
     dayTextSelected: {
         color: Colors.white,
         fontWeight: "700",
     },
-
 
     eventDot: {
         position: "absolute",
@@ -216,7 +189,6 @@ export const styles = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: "#4F8DF7",
     },
-
 
     /* =====================================================
        CABEÇALHO DOS COMPROMISSOS
@@ -231,13 +203,11 @@ export const styles = StyleSheet.create({
         marginBottom: 12,
     },
 
-
     dayHeaderTitle: {
         fontSize: 18,
         fontWeight: "700",
         color: Colors.white,
     },
-
 
     dayHeaderSubtitle: {
         marginTop: 4,
@@ -245,7 +215,6 @@ export const styles = StyleSheet.create({
         color: Colors.textSecondary,
         textTransform: "capitalize",
     },
-
 
     eventCount: {
         width: 34,
@@ -256,7 +225,6 @@ export const styles = StyleSheet.create({
         backgroundColor:
             "rgba(79,141,247,0.14)",
     },
-
 
     eventCountText: {
         fontSize: 13,
@@ -283,7 +251,6 @@ export const styles = StyleSheet.create({
             "rgba(255,255,255,0.08)",
     },
 
-
     eventIcon: {
         width: 46,
         height: 46,
@@ -293,11 +260,9 @@ export const styles = StyleSheet.create({
         marginRight: 12,
     },
 
-
     eventContent: {
         flex: 1,
     },
-
 
     eventTop: {
         flexDirection: "row",
@@ -305,13 +270,11 @@ export const styles = StyleSheet.create({
         marginBottom: 3,
     },
 
-
     eventTime: {
         fontSize: 11,
         fontWeight: "700",
         color: "#4F8DF7",
     },
-
 
     eventTitle: {
         fontSize: 14,
@@ -319,20 +282,17 @@ export const styles = StyleSheet.create({
         color: Colors.white,
     },
 
-
     eventClient: {
         marginTop: 3,
         fontSize: 11,
         color: Colors.textSecondary,
     },
 
-
     eventDescription: {
         marginTop: 3,
         fontSize: 10,
         color: "#64748B",
     },
-
 
     /* =====================================================
        ESPAÇO FINAL

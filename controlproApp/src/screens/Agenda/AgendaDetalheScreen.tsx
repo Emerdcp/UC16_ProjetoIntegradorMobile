@@ -1,45 +1,12 @@
-import React, {
-    useCallback,
-    useState,
-} from "react";
-
-import {
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-    Alert,
-} from "react-native";
-
-import {
-    Ionicons,
-} from "@expo/vector-icons";
-
-import {
-    useNavigation,
-} from "@react-navigation/native";
-
-import {
-    NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
-
-import {
-    SafeAreaView,
-} from "react-native-safe-area-context";
-
-import {
-    AgendaEvento,
-    getAgendaById,
-} from "@/services/agendaService";
-
-import {
-    AgendaStackParamList,
-} from "@/navigation/AgendaNavigator";
-
-import {
-    styles,
-} from "./AgendaDetalheStyles";
-
+import React, { useCallback, useState,} from "react";
+import { ScrollView, Text, TouchableOpacity, View, Alert,} from "react-native";
+import { Ionicons,} from "@expo/vector-icons";
+import { useNavigation,} from "@react-navigation/native";
+import { NativeStackNavigationProp,} from "@react-navigation/native-stack";
+import { SafeAreaView,} from "react-native-safe-area-context";
+import { AgendaEvento, getAgendaById,} from "@/services/agendaService";
+import { AgendaStackParamList,} from "@/navigation/AgendaNavigator";
+import { styles,} from "./AgendaDetalheStyles";
 
 /* =====================================================
    NAVEGAÇÃO
@@ -50,7 +17,6 @@ type NavigationProp =
         AgendaStackParamList,
         "AgendaDetalhe"
     >;
-
 
 /* =====================================================
    PROPS
@@ -65,7 +31,6 @@ interface Props {
     };
 
 }
-
 
 /* =====================================================
    FORMATAR DATA
@@ -98,7 +63,6 @@ function formatarData(
 
 }
 
-
 /* =====================================================
    FORMATAR HORA
 ===================================================== */
@@ -117,7 +81,6 @@ function formatarHora(
     );
 
 }
-
 
 /* =====================================================
    TIPO
@@ -151,7 +114,6 @@ function obterTipo(
 
 }
 
-
 /* =====================================================
    ÍCONE
 ===================================================== */
@@ -183,7 +145,6 @@ function obterIcone(
     }
 
 }
-
 
 /* =====================================================
    COR
@@ -217,7 +178,6 @@ function obterCor(
 
 }
 
-
 /* =====================================================
    STATUS
 ===================================================== */
@@ -239,11 +199,9 @@ function obterStatus(
 
         default:
             return "Agendado";
-
     }
 
 }
-
 
 /* =====================================================
    COMPONENTE
@@ -255,19 +213,15 @@ export default function AgendaDetalheScreen(
     }: Props
 ) {
 
-    const navigation =
-        useNavigation<NavigationProp>();
-
+    const navigation = useNavigation<NavigationProp>();
 
     const [evento, setEvento] =
         useState<AgendaEvento | null>(
             null
         );
 
-
     const [carregando, setCarregando] =
         useState(true);
-
 
     /* =================================================
        CARREGAR
@@ -283,12 +237,10 @@ export default function AgendaDetalheScreen(
                         true
                     );
 
-
                     const resultado =
                         await getAgendaById(
                             route.params.id
                         );
-
 
                     setEvento(
                         resultado
@@ -330,7 +282,6 @@ export default function AgendaDetalheScreen(
             ]
         );
 
-
     React.useEffect(
         () => {
 
@@ -341,7 +292,6 @@ export default function AgendaDetalheScreen(
             carregarEvento,
         ]
     );
-
 
     /* =================================================
        CARREGANDO
@@ -379,7 +329,6 @@ export default function AgendaDetalheScreen(
 
     }
 
-
     /* =================================================
        SEM EVENTO
     ================================================= */
@@ -410,7 +359,6 @@ export default function AgendaDetalheScreen(
 
     }
 
-
     const cor =
         obterCor(
             evento.ag_tipo
@@ -420,7 +368,6 @@ export default function AgendaDetalheScreen(
     const cliente =
         evento.cli_fantasia ||
         evento.cli_razaosocial;
-
 
     /* =================================================
        RENDER
@@ -547,7 +494,6 @@ export default function AgendaDetalheScreen(
 
                     </View>
 
-
                     <View
                         style={[
                             styles.status,
@@ -586,7 +532,6 @@ export default function AgendaDetalheScreen(
 
                 </View>
 
-
                 {/* =================================================
                     DATA E HORÁRIO
                 ================================================= */}
@@ -610,7 +555,6 @@ export default function AgendaDetalheScreen(
                             />
 
                         </View>
-
 
                         <View
                             style={styles.infoContent}
@@ -636,7 +580,6 @@ export default function AgendaDetalheScreen(
                         </View>
 
                     </View>
-
 
                     {!(
                         evento.ag_dia_inteiro === "S"
@@ -696,7 +639,6 @@ export default function AgendaDetalheScreen(
 
                 </View>
 
-
                 {/* =================================================
                     CLIENTE
                 ================================================= */}
@@ -735,7 +677,6 @@ export default function AgendaDetalheScreen(
                     </View>
 
                 )}
-
 
                 {/* =================================================
                     PROJETO
@@ -791,7 +732,6 @@ export default function AgendaDetalheScreen(
 
                 )}
 
-
                 {/* =================================================
                     LOCAL
                 ================================================= */}
@@ -833,7 +773,6 @@ export default function AgendaDetalheScreen(
 
                 )}
 
-
                 {/* =================================================
                     OBSERVAÇÃO
                 ================================================= */}
@@ -874,7 +813,6 @@ export default function AgendaDetalheScreen(
                     </View>
 
                 )}
-
 
                 <View
                     style={styles.bottomSpace}

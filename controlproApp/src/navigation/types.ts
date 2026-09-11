@@ -4,7 +4,6 @@ import { AtendimentoStackParamList, } from "./AtendimentoNavigator";
 import { ClientesStackParamList, } from "./ClientesNavigator";
 import { AgendaStackParamList,} from "./AgendaNavigator";
 
-
 export type AppDrawerParamList = {
     Home: undefined;
     Atendimento:

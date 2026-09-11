@@ -1,9 +1,5 @@
 import React from "react";
-
-import {
-    createNativeStackNavigator,
-} from "@react-navigation/native-stack";
-
+import { createNativeStackNavigator,} from "@react-navigation/native-stack";
 import ClientesScreen from "@/screens/Clientes/ClientesScreen";
 import NovoClienteScreen from "@/screens/Clientes/NovoClienteScreen";
 import ClienteDetalheScreen from "@/screens/Clientes/ClienteDetalheScreen";
@@ -19,7 +15,6 @@ export type ClientesStackParamList = {
 
 const Stack =
     createNativeStackNavigator<ClientesStackParamList>();
-
 
 export default function ClientesNavigator() {
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
     View,
     Text,
@@ -7,17 +6,11 @@ import {
     ImageBackground,
     Alert,
 } from "react-native";
-
-import {
-    SafeAreaView,
-} from "react-native-safe-area-context";
-
+import { SafeAreaView,} from "react-native-safe-area-context";
 import { styles } from "./styles";
-
 import Card from "@/components/Card";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-
 import { useAuth } from "@/context/AuthContext";
 
 
@@ -31,7 +24,6 @@ export default function LoginScreen() {
         loading,
     } = useAuth();
 
-
     async function handleLogin() {
 
         if (!email.trim() || !senha.trim()) {
@@ -43,7 +35,6 @@ export default function LoginScreen() {
 
             return;
         }
-
 
         const sucesso = await signIn(
             email.trim(),
@@ -61,7 +52,6 @@ export default function LoginScreen() {
         }
 
     }
-
 
     return (
 
@@ -84,7 +74,6 @@ export default function LoginScreen() {
                     />
 
                 </View>
-
 
                 {/* BODY */}
 
@@ -124,7 +113,6 @@ export default function LoginScreen() {
                     </Card>
 
                 </View>
-
 
                 {/* FOOTER */}
 

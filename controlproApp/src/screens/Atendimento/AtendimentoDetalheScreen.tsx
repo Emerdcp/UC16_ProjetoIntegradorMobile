@@ -51,36 +51,20 @@ export default function AtendimentoDetalheScreen() {
        ESTADOS
     ===================================================== */
 
-    const [atendimento, setAtendimento] =
-        useState<Atendimento | null>(null);
-
-    const [loading, setLoading] =
-        useState(true);
-
-    const [salvando, setSalvando] =
-        useState(false);
-
-    const [erro, setErro] =
-        useState("");
+    const [atendimento, setAtendimento] =  useState<Atendimento | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [salvando, setSalvando] = useState(false);
+    const [erro, setErro] = useState("");
 
     /* =====================================================
        CAMPOS DE ACOMPANHAMENTO
     ===================================================== */
 
-    const [causa, setCausa] =
-        useState("");
-
-    const [observacaoDiagnostico, setObservacaoDiagnostico] =
-        useState("");
-
-    const [solucao, setSolucao] =
-        useState("");
-
-    const [modalCancelamento, setModalCancelamento] =
-        useState(false);
-
-    const [motivoCancelamento, setMotivoCancelamento] =
-        useState("");
+    const [causa, setCausa] = useState("");
+    const [observacaoDiagnostico, setObservacaoDiagnostico] = useState("");
+    const [solucao, setSolucao] = useState("");
+    const [modalCancelamento, setModalCancelamento] = useState(false);
+    const [motivoCancelamento, setMotivoCancelamento] = useState("");
 
     /* =====================================================
        CARREGAR ATENDIMENTO
@@ -1254,7 +1238,6 @@ export default function AtendimentoDetalheScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        INFORMAÇÕES
                     ================================================= */}
@@ -1327,7 +1310,6 @@ export default function AtendimentoDetalheScreen() {
 
                         )}
 
-
                         {atendimento.ta_descricao && (
 
                             <View
@@ -1355,7 +1337,6 @@ export default function AtendimentoDetalheScreen() {
                             </View>
 
                         )}
-
 
                         {atendimento.ca_descricao && (
 
@@ -1387,7 +1368,6 @@ export default function AtendimentoDetalheScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        HISTÓRICO
                     ================================================= */}
@@ -1397,7 +1377,6 @@ export default function AtendimentoDetalheScreen() {
                     >
                         Histórico
                     </Text>
-
 
                     <View
                         style={styles.card}
@@ -1429,7 +1408,6 @@ export default function AtendimentoDetalheScreen() {
 
                         </View>
 
-
                         {atendimento.at_data_inicio && (
 
                             <View
@@ -1459,7 +1437,6 @@ export default function AtendimentoDetalheScreen() {
                             </View>
 
                         )}
-
 
                         {atendimento.at_data_finalizacao && (
 
@@ -1492,7 +1469,6 @@ export default function AtendimentoDetalheScreen() {
                         )}
 
                     </View>
-
 
                     {/* =================================================
                        RESPONSÁVEL
@@ -1559,7 +1535,6 @@ export default function AtendimentoDetalheScreen() {
                         </>
 
                     )}
-
 
                     {/* =================================================
                        INICIAR
@@ -1644,16 +1619,12 @@ export default function AtendimentoDetalheScreen() {
 
                     )}
 
-
-
                     {/* =================================================
                        DIAGNÓSTICO / SOLUÇÃO
                     ================================================= */}
 
                     {atendimento.at_status === "F" && (
-
                         <>
-
                             {/* =========================================
                                DIAGNÓSTICO
                             ========================================= */}
@@ -1714,7 +1685,6 @@ export default function AtendimentoDetalheScreen() {
 
                             </View>
 
-
                             {/* =========================================
                                SOLUÇÃO
                             ========================================= */}
@@ -1757,11 +1727,8 @@ export default function AtendimentoDetalheScreen() {
 
                     )}
 
-
                     {podeEditar && (
-
                         <>
-
                             {/* =========================================
                                DIAGNÓSTICO
                             ========================================= */}
@@ -1849,11 +1816,9 @@ export default function AtendimentoDetalheScreen() {
 
                             </View>
 
-
                             {/* =========================================
                                SOLUÇÃO
                             ========================================= */}
-
                             <Text
                                 style={
                                     styles.sectionTitle
@@ -1861,7 +1826,6 @@ export default function AtendimentoDetalheScreen() {
                             >
                                 Solução
                             </Text>
-
 
                             <View
                                 style={styles.card}
@@ -1899,7 +1863,6 @@ export default function AtendimentoDetalheScreen() {
                                 </Text>
 
                             </View>
-
 
                             {/* =========================================
                                AÇÕES
@@ -1945,7 +1908,6 @@ export default function AtendimentoDetalheScreen() {
 
                             </TouchableOpacity>
 
-
                             {podeFinalizar && (
 
                                 <TouchableOpacity
@@ -1980,7 +1942,6 @@ export default function AtendimentoDetalheScreen() {
                         </>
 
                     )}
-
 
                     {/* =================================================
                        ERRO
@@ -2055,7 +2016,6 @@ export default function AtendimentoDetalheScreen() {
 
                                 </View>
 
-
                                 <TouchableOpacity
                                     onPress={() =>
                                         setModalCancelamento(false)
@@ -2072,13 +2032,11 @@ export default function AtendimentoDetalheScreen() {
 
                             </View>
 
-
                             <Text
                                 style={styles.cancelModalLabel}
                             >
                                 Motivo *
                             </Text>
-
 
                             <TextInput
                                 value={motivoCancelamento}
@@ -2101,13 +2059,11 @@ export default function AtendimentoDetalheScreen() {
                                 maxLength={500}
                             />
 
-
                             <Text
                                 style={styles.cancelModalCounter}
                             >
                                 {motivoCancelamento.length}/500
                             </Text>
-
 
                             <View
                                 style={styles.cancelModalActions}
@@ -2132,7 +2088,6 @@ export default function AtendimentoDetalheScreen() {
                                     </Text>
 
                                 </TouchableOpacity>
-
 
                                 <TouchableOpacity
                                     style={

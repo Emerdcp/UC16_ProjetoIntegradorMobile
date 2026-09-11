@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
     ImageBackground,
     View,
@@ -12,15 +11,10 @@ import {
     ActivityIndicator,
     Alert,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Ionicons } from "@expo/vector-icons";
-
 import { useNavigation } from "@react-navigation/native";
-
 import { styles } from "./NovoAtendimentoStyles";
-
 import {
     getClientes,
     getClienteById,
@@ -28,26 +22,10 @@ import {
     ContatoCliente,
     SistemaCliente,
 } from "@/services/clienteService";
-
-import {
-    getProjetos,
-    Projeto,
-} from "@/services/projetoService";
-
-import {
-    getTiposAtendimento,
-    TipoAtendimento,
-} from "@/services/tipoAtendimentoService";
-
-import {
-    getCategoriasAtendimento,
-    CategoriaAtendimento,
-} from "@/services/categoriaAtendimentoService";
-
-import {
-    createAtendimento,
-} from "@/services/atendimentoService";
-
+import { getProjetos, Projeto,} from "@/services/projetoService";
+import { getTiposAtendimento, TipoAtendimento,} from "@/services/tipoAtendimentoService";
+import { getCategoriasAtendimento, CategoriaAtendimento,} from "@/services/categoriaAtendimentoService";
+import { createAtendimento,} from "@/services/atendimentoService";
 
 /* =====================================================
    TIPOS
@@ -62,7 +40,6 @@ type TipoLista =
     | "contato"
     | null;
 
-
 /* =====================================================
    COMPONENTE
 ===================================================== */
@@ -70,7 +47,6 @@ type TipoLista =
 export default function NovoAtendimentoScreen() {
 
     const navigation = useNavigation();
-
 
     /* =====================================================
        CLIENTE
@@ -91,7 +67,6 @@ export default function NovoAtendimentoScreen() {
     const [projetoId, setProjetoId] = useState<number | null>(null);
     const [projetoNome, setProjetoNome] = useState("");
 
-
     /* =====================================================
        SISTEMA
     ===================================================== */
@@ -99,7 +74,6 @@ export default function NovoAtendimentoScreen() {
     const [sistemas, setSistemas] = useState<SistemaCliente[]>([]);
     const [sistemaId, setSistemaId] = useState<number | null>(null);
     const [sistemaNome, setSistemaNome] = useState("");
-
 
     /* =====================================================
        TIPO
@@ -109,34 +83,21 @@ export default function NovoAtendimentoScreen() {
     const [tipoId, setTipoId] = useState<number | null>(null);
     const [tipoNome, setTipoNome] = useState("");
 
-
     /* =====================================================
        CATEGORIA
     ===================================================== */
 
-    const [categorias, setCategorias] =
-        useState<CategoriaAtendimento[]>([]);
-
-    const [categoriaId, setCategoriaId] =
-        useState<number | null>(null);
-
-    const [categoriaNome, setCategoriaNome] =
-        useState("");
-
+    const [categorias, setCategorias] = useState<CategoriaAtendimento[]>([]);
+    const [categoriaId, setCategoriaId] = useState<number | null>(null);
+    const [categoriaNome, setCategoriaNome] = useState("");
 
     /* =====================================================
        CONTATO
     ===================================================== */
 
-    const [contatos, setContatos] =
-        useState<ContatoCliente[]>([]);
-
-    const [contatoId, setContatoId] =
-        useState<number | null>(null);
-
-    const [contatoNome, setContatoNome] =
-        useState("");
-
+    const [contatos, setContatos] = useState<ContatoCliente[]>([]);
+    const [contatoId, setContatoId] = useState<number | null>(null);
+    const [contatoNome, setContatoNome] = useState("");
 
     /* =====================================================
        DESCRIÇÃO
@@ -144,25 +105,15 @@ export default function NovoAtendimentoScreen() {
 
     const [descricao, setDescricao] = useState("");
 
-
     /* =====================================================
        CONTROLE
     ===================================================== */
 
     const [erro, setErro] = useState("");
-
-    const [modalLista, setModalLista] =
-        useState<TipoLista>(null);
-
-    const [carregando, setCarregando] =
-        useState(true);
-
-    const [carregandoCliente, setCarregandoCliente] =
-        useState(false);
-
-    const [salvando, setSalvando] =
-        useState(false);
-
+    const [modalLista, setModalLista] = useState<TipoLista>(null);
+    const [carregando, setCarregando] = useState(true);
+    const [carregandoCliente, setCarregandoCliente] = useState(false);
+    const [salvando, setSalvando] = useState(false);
 
     /* =====================================================
        CARREGAR DADOS INICIAIS
@@ -173,7 +124,6 @@ export default function NovoAtendimentoScreen() {
         carregarDados();
 
     }, []);
-
 
     async function carregarDados() {
 
@@ -188,13 +138,10 @@ export default function NovoAtendimentoScreen() {
             ] = await Promise.all([
 
                 getClientes("", 1),
-
                 getTiposAtendimento(),
-
                 getCategoriasAtendimento(),
 
             ]);
-
 
             /* =================================================
                CLIENTES
@@ -204,7 +151,6 @@ export default function NovoAtendimentoScreen() {
                 clientesResponse?.data || []
             );
 
-
             /* =================================================
                TIPOS
             ================================================= */
@@ -213,7 +159,6 @@ export default function NovoAtendimentoScreen() {
                 tiposResponse || []
             );
 
-
             /* =================================================
                CATEGORIAS
             ================================================= */
@@ -221,7 +166,6 @@ export default function NovoAtendimentoScreen() {
             setCategorias(
                 categoriasResponse || []
             );
-
 
         } catch (error) {
 
@@ -241,7 +185,6 @@ export default function NovoAtendimentoScreen() {
         }
 
     }
-
 
     /* =====================================================
        SELECIONAR CLIENTE
@@ -277,11 +220,9 @@ export default function NovoAtendimentoScreen() {
         setSistemas([]);
         setContatos([]);
 
-
         try {
 
             setCarregandoCliente(true);
-
 
             /* ---------------------------------------------
                Carrega projeto do cliente
@@ -295,7 +236,6 @@ export default function NovoAtendimentoScreen() {
                 projetosResponse ||
                 []
             );
-
 
             /* ---------------------------------------------
                Carrega detalhes do cliente
@@ -370,7 +310,6 @@ export default function NovoAtendimentoScreen() {
 
         });
 
-
     /* =====================================================
        SALVAR ATENDIMENTO
     ===================================================== */
@@ -378,7 +317,6 @@ export default function NovoAtendimentoScreen() {
     async function salvarAtendimento() {
 
         setErro("");
-
 
         /* ---------------------------------------------
            Validações
@@ -394,7 +332,6 @@ export default function NovoAtendimentoScreen() {
 
         }
 
-
         if (!tipoId) {
 
             setErro(
@@ -404,7 +341,6 @@ export default function NovoAtendimentoScreen() {
             return;
 
         }
-
 
         if (!categoriaId) {
 
@@ -416,7 +352,6 @@ export default function NovoAtendimentoScreen() {
 
         }
 
-
         if (!descricao.trim()) {
 
             setErro(
@@ -427,11 +362,9 @@ export default function NovoAtendimentoScreen() {
 
         }
 
-
         try {
 
             setSalvando(true);
-
 
             /* ---------------------------------------------
                Envia para API
@@ -462,7 +395,6 @@ export default function NovoAtendimentoScreen() {
 
             });
 
-
             /* ---------------------------------------------
                Sucesso
             --------------------------------------------- */
@@ -478,7 +410,6 @@ export default function NovoAtendimentoScreen() {
                     },
                 ]
             );
-
 
         } catch (error) {
 
@@ -498,7 +429,6 @@ export default function NovoAtendimentoScreen() {
         }
 
     }
-
 
     /* =====================================================
        TÍTULO DO MODAL
@@ -532,7 +462,6 @@ export default function NovoAtendimentoScreen() {
         }
 
     }
-
 
     /* =====================================================
        ITEM DO MODAL
@@ -612,7 +541,6 @@ export default function NovoAtendimentoScreen() {
 
                 );
 
-
             /* =============================================
                PROJETOS
             ============================================= */
@@ -684,7 +612,6 @@ export default function NovoAtendimentoScreen() {
                     />
 
                 );
-
 
             /* =============================================
                SISTEMAS
@@ -760,7 +687,6 @@ export default function NovoAtendimentoScreen() {
 
                 );
 
-
             /* =============================================
                TIPO
             ============================================= */
@@ -827,7 +753,6 @@ export default function NovoAtendimentoScreen() {
 
                 );
 
-
             /* =============================================
                CATEGORIA
             ============================================= */
@@ -893,7 +818,6 @@ export default function NovoAtendimentoScreen() {
                     />
 
                 );
-
 
             /* =============================================
                CONTATO
@@ -974,14 +898,12 @@ export default function NovoAtendimentoScreen() {
 
                 );
 
-
             default:
                 return null;
 
         }
 
     }
-
 
     /* =====================================================
        SELECT
@@ -1059,7 +981,6 @@ export default function NovoAtendimentoScreen() {
 
     }
 
-
     /* =====================================================
        CARREGANDO
     ===================================================== */
@@ -1105,7 +1026,6 @@ export default function NovoAtendimentoScreen() {
 
     }
 
-
     /* =====================================================
        RENDER
     ===================================================== */
@@ -1128,7 +1048,6 @@ export default function NovoAtendimentoScreen() {
                 ]}
             >
 
-
                 {/* =================================================
                    HEADER
                 ================================================= */}
@@ -1149,7 +1068,6 @@ export default function NovoAtendimentoScreen() {
 
                     </TouchableOpacity>
 
-
                     <View style={styles.headerTextArea}>
 
                         <Text style={styles.headerTitle}>
@@ -1164,7 +1082,6 @@ export default function NovoAtendimentoScreen() {
 
                 </View>
 
-
                 {/* =================================================
                    FORMULÁRIO
                 ================================================= */}
@@ -1174,7 +1091,6 @@ export default function NovoAtendimentoScreen() {
                     keyboardShouldPersistTaps="handled"
                     contentContainerStyle={styles.content}
                 >
-
 
                     {/* =================================================
                        CLIENTE
@@ -1187,7 +1103,6 @@ export default function NovoAtendimentoScreen() {
                         icon="business-outline"
                         type="cliente"
                     />
-
 
                     {/* =================================================
                        CARREGANDO DADOS DO CLIENTE
@@ -1210,7 +1125,6 @@ export default function NovoAtendimentoScreen() {
 
                     )}
 
-
                     {/* =================================================
                        PROJETO
                     ================================================= */}
@@ -1227,7 +1141,6 @@ export default function NovoAtendimentoScreen() {
                         type="projeto"
                         disabled={!clienteId}
                     />
-
 
                     {/* =================================================
                        SISTEMA
@@ -1246,7 +1159,6 @@ export default function NovoAtendimentoScreen() {
                         disabled={!clienteId}
                     />
 
-
                     {/* =================================================
                        TIPO
                     ================================================= */}
@@ -1259,7 +1171,6 @@ export default function NovoAtendimentoScreen() {
                         type="tipo"
                     />
 
-
                     {/* =================================================
                        CATEGORIA
                     ================================================= */}
@@ -1271,7 +1182,6 @@ export default function NovoAtendimentoScreen() {
                         icon="pricetag-outline"
                         type="categoria"
                     />
-
 
                     {/* =================================================
                        CONTATO
@@ -1289,7 +1199,6 @@ export default function NovoAtendimentoScreen() {
                         type="contato"
                         disabled={!clienteId}
                     />
-
 
                     {/* =================================================
                        DESCRIÇÃO
@@ -1337,7 +1246,6 @@ export default function NovoAtendimentoScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        ERRO
                     ================================================= */}
@@ -1359,7 +1267,6 @@ export default function NovoAtendimentoScreen() {
                         </View>
 
                     )}
-
 
                     {/* =================================================
                        BOTÃO
@@ -1403,9 +1310,7 @@ export default function NovoAtendimentoScreen() {
 
                     </TouchableOpacity>
 
-
                 </ScrollView>
-
 
                 {/* =================================================
                    MODAL DE SELEÇÃO
@@ -1487,7 +1392,6 @@ export default function NovoAtendimentoScreen() {
                                 )}
 
                             </View>
-
 
                             {/* =====================================
                                LISTA

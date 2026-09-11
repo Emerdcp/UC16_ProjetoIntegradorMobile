@@ -1,10 +1,5 @@
 import { StyleSheet } from "react-native";
-
-import {
-    Colors,
-    Spacing,
-} from "@/designSystem";
-
+import { Colors, Spacing,} from "@/designSystem";
 
 export const styles = StyleSheet.create({
 
@@ -16,17 +11,14 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
 
-
     /* =====================================================
        CONTAINER PRINCIPAL
     ===================================================== */
 
     container: {
         flex: 1,
-
         paddingHorizontal: Spacing.xl,
     },
-
 
     /* =====================================================
        CABEÇALHO / LOGO
@@ -34,13 +26,10 @@ export const styles = StyleSheet.create({
 
     header: {
         flex: 0.34,
-
         justifyContent: "flex-end",
         alignItems: "center",
-
         paddingBottom: 12,
     },
-
 
     /* =====================================================
        ÁREA DO LOGIN
@@ -48,12 +37,9 @@ export const styles = StyleSheet.create({
 
     body: {
         flex: 0.46,
-
         justifyContent: "flex-start",
-
         paddingTop: 8,
     },
-
 
     /* =====================================================
        RODAPÉ
@@ -64,10 +50,8 @@ export const styles = StyleSheet.create({
 
         justifyContent: "flex-end",
         alignItems: "center",
-
         paddingBottom: 28,
     },
-
 
     /* =====================================================
        LOGO
@@ -76,10 +60,8 @@ export const styles = StyleSheet.create({
     logo: {
         width: 320,
         height: 170,
-
         marginBottom: 0,
     },
-
 
     /* =====================================================
        TÍTULO
@@ -87,12 +69,9 @@ export const styles = StyleSheet.create({
 
     title: {
         fontSize: 40,
-
         fontWeight: "700",
-
         color: Colors.white,
     },
-
 
     /* =====================================================
        SUBTÍTULO
@@ -100,14 +79,10 @@ export const styles = StyleSheet.create({
 
     subtitle: {
         marginTop: 6,
-
         color: Colors.textSecondary,
-
         fontSize: 13,
-
         letterSpacing: 2.5,
     },
-
 
     /* =====================================================
        TEXTO DO RODAPÉ
@@ -115,12 +90,9 @@ export const styles = StyleSheet.create({
 
     footerText: {
         color: Colors.textSecondary,
-
         fontSize: 11,
-
         opacity: 0.9,
     },
-
 
     /* =====================================================
        VERSÃO
@@ -128,11 +100,8 @@ export const styles = StyleSheet.create({
 
     version: {
         marginTop: 3,
-
         color: Colors.textSecondary,
-
         fontSize: 10,
-
         opacity: 0.75,
     },
 

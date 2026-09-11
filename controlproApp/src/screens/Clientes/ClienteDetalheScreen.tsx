@@ -93,13 +93,11 @@ export default function ClienteDetalheScreen() {
 
     }
 
-
     useEffect(() => {
 
         carregarCliente();
 
     }, [route.params.id]);
-
 
     /* =====================================================
        DOCUMENTO
@@ -125,7 +123,6 @@ export default function ClienteDetalheScreen() {
         return cnpjMask(documento);
 
     }
-
 
     /* =====================================================
        MAPA
@@ -168,7 +165,6 @@ export default function ClienteDetalheScreen() {
 
     }
 
-
     /* =====================================================
        TELEFONE
     ===================================================== */
@@ -193,7 +189,6 @@ export default function ClienteDetalheScreen() {
 
     }
 
-
     /* =====================================================
        E-MAIL
     ===================================================== */
@@ -211,7 +206,6 @@ export default function ClienteDetalheScreen() {
         );
 
     }
-
 
     /* =====================================================
        CARREGANDO
@@ -239,7 +233,6 @@ export default function ClienteDetalheScreen() {
         );
 
     }
-
 
     /* =====================================================
        ERRO
@@ -283,18 +276,10 @@ export default function ClienteDetalheScreen() {
     }
 
 
-    const dados =
-        cliente.cliente;
-
-    const endereco =
-        cliente.endereco;
-
-    const contatos =
-        cliente.contatos || [];
-
-    const sistemas =
-        cliente.sistemas || [];
-
+    const dados =  cliente.cliente;
+    const endereco = cliente.endereco;
+    const contatos = cliente.contatos || [];
+    const sistemas = cliente.sistemas || [];
 
     return (
 
@@ -337,7 +322,6 @@ export default function ClienteDetalheScreen() {
 
                     </TouchableOpacity>
 
-
                     <View
                         style={styles.headerText}
                     >
@@ -359,7 +343,6 @@ export default function ClienteDetalheScreen() {
                     </View>
 
                 </View>
-
 
                 <ScrollView
                     showsVerticalScrollIndicator={
@@ -394,7 +377,6 @@ export default function ClienteDetalheScreen() {
 
                         </View>
 
-
                         <View
                             style={
                                 styles.companyInfo
@@ -422,7 +404,6 @@ export default function ClienteDetalheScreen() {
                                     dados.cli_razaosocial
                                 }
                             </Text>
-
 
                             <View
                                 style={
@@ -460,7 +441,6 @@ export default function ClienteDetalheScreen() {
 
                     </View>
 
-
                     {/* =================================================
                        DADOS
                     ================================================= */}
@@ -470,7 +450,6 @@ export default function ClienteDetalheScreen() {
                     >
                         Dados do cliente
                     </Text>
-
 
                     <View style={styles.card}>
 
@@ -517,7 +496,6 @@ export default function ClienteDetalheScreen() {
                             </View>
 
                         </View>
-
 
                         {dados.cli_telefone && (
 
@@ -573,7 +551,6 @@ export default function ClienteDetalheScreen() {
                             </TouchableOpacity>
 
                         )}
-
 
                         {dados.cli_email && (
 
@@ -632,7 +609,6 @@ export default function ClienteDetalheScreen() {
                         )}
 
                     </View>
-
 
                     {/* =================================================
                        ENDEREÇO
@@ -723,7 +699,6 @@ export default function ClienteDetalheScreen() {
 
                                 </View>
 
-
                                 <TouchableOpacity
                                     style={
                                         styles.mapButton
@@ -754,7 +729,6 @@ export default function ClienteDetalheScreen() {
                         </>
 
                     )}
-
 
                     {/* =================================================
                        CONTATOS
@@ -898,7 +872,6 @@ export default function ClienteDetalheScreen() {
                         </>
 
                     )}
-
 
                     {/* =================================================
                        SISTEMAS

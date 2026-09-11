@@ -4,7 +4,6 @@ import AgendaScreen from "@/screens/Agenda/AgendaScreen";
 import NovoCompromissoScreen from "@/screens/Agenda/NovoCompromissoScreen";
 import AgendaDetalheScreen from "@/screens/Agenda/AgendaDetalheScreen";
 
-
 /* =====================================================
    ROTAS DA AGENDA
 ===================================================== */
@@ -19,16 +18,11 @@ export type AgendaStackParamList = {
     };
 };
 
-
 /* =====================================================
    STACK
 ===================================================== */
 
-const Stack =
-    createNativeStackNavigator<
-        AgendaStackParamList
-    >();
-
+const Stack = createNativeStackNavigator<AgendaStackParamList>();
 
 /* =====================================================
    NAVIGATOR

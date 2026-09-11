@@ -1,27 +1,12 @@
-import React, {
-    useMemo,
-    useState,
-    useCallback,
-} from "react";
-import {
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import React, { useMemo, useState, useCallback,} from "react";
+import { ScrollView, Text, TouchableOpacity, View,} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {
-    useNavigation,
-    CommonActions,
-    DrawerActions,
-    useFocusEffect,
-} from "@react-navigation/native";
+import { useNavigation, CommonActions, DrawerActions, useFocusEffect,} from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AgendaEvento, getAgenda, } from "@/services/agendaService";
 import { NativeStackNavigationProp, } from "@react-navigation/native-stack";
 import { AgendaStackParamList, } from "@/navigation/AgendaNavigator";
 import { styles } from "./styles";
-
 
 /* =========================================================
    MESES
@@ -63,7 +48,6 @@ const diasSemana = [
 function formatarData(
     data: Date
 ) {
-
     const ano = data.getFullYear();
     const mes =
         String(
@@ -75,9 +59,7 @@ function formatarData(
         ).padStart(2, "0");
 
     return `${ano}-${mes}-${dia}`;
-
 }
-
 
 /* =========================================================
    COMPONENTE
@@ -92,50 +74,32 @@ export default function AgendaScreen() {
             >
         >();
 
-
-
     /* =====================================================
        EVENTOS
     ===================================================== */
 
-    const [eventos, setEventos] =
-        useState<AgendaEvento[]>([]);
-
-
-    const [carregando, setCarregando] =
-        useState(true);
-
-
-    const [erro, setErro] =
-        useState(false);
-
+    const [eventos, setEventos] = useState<AgendaEvento[]>([]);
+    const [carregando, setCarregando] = useState(true);
+    const [erro, setErro] = useState(false);
 
     /* =====================================================
        MÊS ATUAL DO CALENDÁRIO
     ===================================================== */
 
-    const [mesAtual, setMesAtual] =
-        useState(new Date());
-
+    const [mesAtual, setMesAtual] = useState(new Date());
 
     /* =====================================================
        DIA SELECIONADO
     ===================================================== */
 
-    const [diaSelecionado, setDiaSelecionado] =
-        useState(new Date());
-
+    const [diaSelecionado, setDiaSelecionado] = useState(new Date());
 
     /* =====================================================
        INFORMAÇÕES DO MÊS
     ===================================================== */
 
-    const ano =
-        mesAtual.getFullYear();
-
-    const mes =
-        mesAtual.getMonth();
-
+    const ano = mesAtual.getFullYear();
+    const mes = mesAtual.getMonth();
 
     /* =====================================================
        PRIMEIRO DIA DO MÊS
@@ -148,7 +112,6 @@ export default function AgendaScreen() {
             1
         ).getDay();
 
-
     /* =====================================================
        QUANTIDADE DE DIAS DO MÊS
     ===================================================== */
@@ -160,10 +123,9 @@ export default function AgendaScreen() {
             0
         ).getDate();
 
-
     /* =====================================================
-   CARREGAR AGENDA
-===================================================== */
+        CARREGAR AGENDA
+    ===================================================== */
 
     const carregarAgenda = useCallback(
         async () => {
@@ -174,14 +136,12 @@ export default function AgendaScreen() {
 
                 setErro(false);
 
-
                 const primeiroDiaMes =
                     new Date(
                         ano,
                         mes,
                         1
                     );
-
 
                 const ultimoDiaMes =
                     new Date(
@@ -190,18 +150,15 @@ export default function AgendaScreen() {
                         0
                     );
 
-
                 const dataInicio =
                     formatarData(
                         primeiroDiaMes
                     );
 
-
                 const dataFim =
                     formatarData(
                         ultimoDiaMes
                     );
-
 
                 const resultado =
                     await getAgenda(
@@ -209,13 +166,11 @@ export default function AgendaScreen() {
                         dataFim
                     );
 
-
                 setEventos(
                     Array.isArray(resultado)
                         ? resultado
                         : []
                 );
-
             }
             catch (error) {
 
@@ -232,16 +187,13 @@ export default function AgendaScreen() {
             finally {
 
                 setCarregando(false);
-
             }
-
         },
         [
             ano,
             mes,
         ]
     );
-
 
     /* =====================================================
        CARREGAR QUANDO A TELA GANHAR FOCO
@@ -257,7 +209,6 @@ export default function AgendaScreen() {
         ])
     );
 
-
     /* =====================================================
        CARREGAR QUANDO MUDAR O MÊS
     ===================================================== */
@@ -272,7 +223,6 @@ export default function AgendaScreen() {
         ])
     );
 
-
     /* =====================================================
        DIAS DO CALENDÁRIO
     ===================================================== */
@@ -283,7 +233,6 @@ export default function AgendaScreen() {
             const dias: (
                 number | null
             )[] = [];
-
 
             /* ---------------------------------------------
                ESPAÇOS ANTES DO PRIMEIRO DIA
@@ -299,7 +248,6 @@ export default function AgendaScreen() {
 
             }
 
-
             /* ---------------------------------------------
                DIAS DO MÊS
             --------------------------------------------- */
@@ -314,7 +262,6 @@ export default function AgendaScreen() {
 
             }
 
-
             return dias;
 
         }, [
@@ -322,16 +269,11 @@ export default function AgendaScreen() {
             quantidadeDias,
         ]);
 
-
     /* =====================================================
        DATA SELECIONADA
     ===================================================== */
 
-    const dataSelecionada =
-        formatarData(
-            diaSelecionado
-        );
-
+    const dataSelecionada = formatarData(diaSelecionado);
 
     /* =====================================================
        EVENTOS DO DIA
@@ -348,7 +290,6 @@ export default function AgendaScreen() {
                             10
                         );
 
-
                 return (
                     dataEvento ===
                     dataSelecionada
@@ -356,7 +297,6 @@ export default function AgendaScreen() {
 
             }
         );
-
 
     /* =====================================================
        ALTERAR MÊS
@@ -378,19 +318,11 @@ export default function AgendaScreen() {
             novoMes
         );
 
-
-        /*
-         * Ao mudar de mês,
-         * selecionamos o primeiro
-         * dia daquele mês.
-         */
-
         setDiaSelecionado(
             novoMes
         );
 
     }
-
 
     /* =====================================================
        SELECIONAR DIA
@@ -411,9 +343,7 @@ export default function AgendaScreen() {
         setDiaSelecionado(
             novaData
         );
-
     }
-
 
     /* =====================================================
        VERIFICAR EVENTO NO DIA
@@ -432,7 +362,6 @@ export default function AgendaScreen() {
                 )
             );
 
-
         return eventos.some(
             (evento) => {
 
@@ -442,8 +371,6 @@ export default function AgendaScreen() {
                             0,
                             10
                         );
-
-
                 return (
                     dataEvento === data
                 );
@@ -452,7 +379,6 @@ export default function AgendaScreen() {
         );
 
     }
-
 
     /* =====================================================
        ÍCONE DO EVENTO
@@ -486,7 +412,6 @@ export default function AgendaScreen() {
 
     }
 
-
     /* =====================================================
        COR DO EVENTO
     ===================================================== */
@@ -518,7 +443,6 @@ export default function AgendaScreen() {
         }
 
     }
-
 
     /* =====================================================
        RENDER
@@ -558,13 +482,11 @@ export default function AgendaScreen() {
                 <View
                     style={styles.headerContent}
                 >
-
                     <Text
                         style={styles.headerTitle}
                     >
                         Agenda
                     </Text>
-
 
                     <Text
                         style={styles.headerSubtitle}
@@ -573,7 +495,6 @@ export default function AgendaScreen() {
                     </Text>
 
                 </View>
-
 
                 <TouchableOpacity
                     style={styles.headerButton}
@@ -596,7 +517,6 @@ export default function AgendaScreen() {
                 </TouchableOpacity>
 
             </View>
-
 
             {/* =================================================
                 CONTEÚDO
@@ -638,7 +558,6 @@ export default function AgendaScreen() {
                     </View>
 
                 )}
-
 
                 {/* =================================================
                     ERRO
@@ -694,7 +613,6 @@ export default function AgendaScreen() {
 
                     )}
 
-
                 {/* =================================================
                     CALENDÁRIO
                 ================================================= */}
@@ -729,7 +647,6 @@ export default function AgendaScreen() {
 
                         </TouchableOpacity>
 
-
                         <View
                             style={styles.monthCenter}
                         >
@@ -742,7 +659,6 @@ export default function AgendaScreen() {
                                 {meses[mes]}
                             </Text>
 
-
                             <Text
                                 style={
                                     styles.yearText
@@ -752,7 +668,6 @@ export default function AgendaScreen() {
                             </Text>
 
                         </View>
-
 
                         <TouchableOpacity
                             style={
@@ -773,7 +688,6 @@ export default function AgendaScreen() {
                         </TouchableOpacity>
 
                     </View>
-
 
                     {/* ---------------------------------------------
                         DIAS DA SEMANA
@@ -799,7 +713,6 @@ export default function AgendaScreen() {
                         )}
 
                     </View>
-
 
                     {/* ---------------------------------------------
                         DIAS
@@ -831,7 +744,6 @@ export default function AgendaScreen() {
 
                                 }
 
-
                                 const dataDia =
                                     new Date(
                                         ano,
@@ -839,13 +751,11 @@ export default function AgendaScreen() {
                                         dia
                                     );
 
-
                                 const selecionado =
                                     formatarData(
                                         dataDia
                                     ) ===
                                     dataSelecionada;
-
 
                                 const hoje =
                                     formatarData(
@@ -854,7 +764,6 @@ export default function AgendaScreen() {
                                     formatarData(
                                         new Date()
                                     );
-
 
                                 return (
 
@@ -897,7 +806,6 @@ export default function AgendaScreen() {
 
                                         </View>
 
-
                                         {/* ---------------------------------
                                             INDICADOR DE EVENTO
                                         --------------------------------- */}
@@ -925,7 +833,6 @@ export default function AgendaScreen() {
 
                 </View>
 
-
                 {/* =================================================
                     DIA SELECIONADO
                 ================================================= */}
@@ -944,7 +851,6 @@ export default function AgendaScreen() {
                             Compromissos
                         </Text>
 
-
                         <Text
                             style={
                                 styles.dayHeaderSubtitle
@@ -962,7 +868,6 @@ export default function AgendaScreen() {
 
                     </View>
 
-
                     <View
                         style={styles.eventCount}
                     >
@@ -978,7 +883,6 @@ export default function AgendaScreen() {
                     </View>
 
                 </View>
-
 
                 {/* =================================================
                     SEM EVENTOS
@@ -1022,7 +926,6 @@ export default function AgendaScreen() {
                         </View>
 
                     )}
-
 
                 {/* =================================================
                     EVENTOS
@@ -1081,7 +984,6 @@ export default function AgendaScreen() {
 
                                 </View>
 
-
                                 {/* ---------------------------------
                                     CONTEÚDO
                                 --------------------------------- */}
@@ -1104,7 +1006,6 @@ export default function AgendaScreen() {
                                             )}
                                     </Text>
 
-
                                     <Text
                                         style={
                                             styles.eventTitle
@@ -1113,7 +1014,6 @@ export default function AgendaScreen() {
                                     >
                                         {evento.ag_titulo}
                                     </Text>
-
 
                                     {(
                                         evento.cli_fantasia ||
@@ -1132,7 +1032,6 @@ export default function AgendaScreen() {
 
                                         )}
 
-
                                     {evento.ag_descricao && (
 
                                         <Text
@@ -1147,7 +1046,6 @@ export default function AgendaScreen() {
                                     )}
 
                                 </View>
-
 
                                 {/* ---------------------------------
                                     SETA
